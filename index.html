@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saboratto - Comidas Rápidas</title>
+    <link rel="icon" type="image/png" href="logo-saboratto.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Bebas+Neue&family=Outfit:wght@400;600;700;800&display=swap');
+
+        :root {
+            --primary: #f97316;
+            --primary-light: #fb923c;
+            --primary-dark: #ea580c;
+            --secondary: #111827;
+            --accent: #ef4444;
+            --bg-glass: rgba(255, 255, 255, 0.75);
+            --bg-glass-hover: rgba(255, 255, 255, 0.85);
+            --shadow-glass: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000000;
+            color: #f3f4f6;
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        .bebas {
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        .font-outfit {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .glass {
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .glass-dark {
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .hero-pattern {
+            background-color: #f97316;
+            background-image: radial-gradient(#ffffff 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        /* Animaciones */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes floating {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .animate-fade-up {
+            animation: fadeUp 0.8s ease-out forwards;
+        }
+
+        .animate-floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #f97316;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ea580c;
+        }
+
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Hover Cards */
+        .card-p:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 3D Tilt Effect */
+        .perspective-1000 {
+            perspective: 1000px;
+        }
+
+        .tilt-card {
+            transform-style: preserve-3d;
+            transition: transform 0.2s ease-out;
+            will-change: transform;
+        }
+
+        .tilt-card:hover {
+            transition: transform 0.1s ease-out;
+        }
+
+        /* Video / Asset Effects */
+        .video-glow {
+            filter: drop-shadow(0 0 50px rgba(249, 115, 22, 0.6));
+        }
+
+        .blend-screen {
+            will-change: transform, opacity;
+            transform: translateZ(0);
+            /* Hardware Acceleration */
+            /* Empujamos los negros casi-negros a negro puro (#000) */
+            filter: contrast(1.2) brightness(1.1);
+        }
+
+        .layer-3d {
+            transform: translateZ(80px);
+            /* Más separación para mayor efecto 3D */
+        }
+    </style>
+</head>
+
+<body class="antialiased">
+
+    <!-- Navegación -->
+    <nav class="fixed w-full z-50 transition-all duration-500 glass" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex md:justify-between justify-center items-center h-24 relative">
+                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="scrollToSection('inicio')">
+                    <img src="logo-saboratto.png" alt="Saboratto" class="h-20">
+                </div>
+
+                <!-- Menú Desktop -->
+                <div class="hidden md:flex space-x-8">
+                    <button onclick="scrollToSection('inicio')"
+                        class="text-gray-300 hover:text-orange-500 font-semibold transition-colors">Inicio</button>
+                    <button onclick="scrollToSection('menu')"
+                        class="text-gray-300 hover:text-orange-500 font-semibold transition-colors">Nuestro
+                        Menú</button>
+                    <button onclick="scrollToSection('galeria')"
+                        class="text-gray-300 hover:text-orange-500 font-semibold transition-colors">Galería</button>
+                    <button onclick="scrollToSection('contacto')"
+                        class="text-gray-300 hover:text-orange-500 font-semibold transition-colors">Ubicación</button>
+                </div>
+
+                <div class="hidden md:flex">
+                    <button onclick="enviarWhatsAppGeneral()"
+                        class="bg-orange-600 hover:bg-orange-700 text-white px-6 py-2 rounded-full font-bold transition-transform hover:scale-105 shadow-lg flex items-center gap-2">
+                        <i data-lucide="message-circle" class="w-5 h-5"></i>
+                        Pedir Ahora
+                    </button>
+                </div>
+
+                <!-- Botón Menú Móvil -->
+                <div class="md:hidden absolute right-4 flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-300 hover:text-orange-500 focus:outline-none p-2"
+                        onclick="toggleMobileMenu()">
+                        <i data-lucide="menu" class="w-8 h-8"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menú Móvil -->
+        <div id="mobile-menu"
+            class="hidden md:hidden bg-black/95 backdrop-blur-xl border-t border-white/5 shadow-2xl absolute w-full">
+            <div class="px-4 pt-2 pb-6 space-y-2 flex flex-col">
+                <button onclick="scrollToSection('inicio'); toggleMobileMenu()"
+                    class="text-left px-3 py-3 text-gray-300 font-medium hover:bg-orange-950/30 hover:text-orange-500 rounded-md">Inicio</button>
+                <button onclick="scrollToSection('menu'); toggleMobileMenu()"
+                    class="text-left px-3 py-3 text-gray-300 font-medium hover:bg-orange-950/30 hover:text-orange-500 rounded-md">Nuestro
+                    Menú</button>
+                <button onclick="scrollToSection('galeria'); toggleMobileMenu()"
+                    class="text-left px-3 py-3 text-gray-300 font-medium hover:bg-orange-950/30 hover:text-orange-500 rounded-md">Galería</button>
+                <button onclick="scrollToSection('contacto'); toggleMobileMenu()"
+                    class="text-left px-3 py-3 text-gray-300 font-medium hover:bg-orange-950/30 hover:text-orange-500 rounded-md">Ubicación</button>
+                <button onclick="enviarWhatsAppGeneral(); toggleMobileMenu()"
+                    class="mt-4 w-full bg-orange-600 text-white px-4 py-3 rounded-md font-bold text-center flex justify-center items-center gap-2">
+                    <i data-lucide="message-circle" class="w-5 h-5"></i>
+                    Pedir Ahora
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-black">
+        <!-- Fondo Decorativo (Ajustado para el modo oscuro del inicio) -->
+        <div class="absolute inset-0 z-0 overflow-hidden">
+            <div class="absolute inset-0 bg-black"></div>
+            <div
+                class="absolute top-20 right-0 w-[500px] h-[500px] bg-orange-900/20 rounded-full mix-blend-screen filter blur-[150px] animate-pulse">
+            </div>
+            <div
+                class="absolute -bottom-20 -left-20 w-[600px] h-[600px] bg-orange-800/10 rounded-full mix-blend-screen filter blur-[150px] animate-pulse delay-700">
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+                <!-- Texto Hero -->
+                <div class="text-center lg:text-left reveal">
+                    <div
+                        class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-orange-950/30 backdrop-blur-sm text-orange-500 font-bold text-xs uppercase tracking-widest mb-8 border border-orange-500/20">
+                        <span class="relative flex h-2 w-2">
+                            <span
+                                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2 w-2 bg-orange-500"></span>
+                        </span>
+                        Saboratto Oficial
+                    </div>
+
+                    <h1 class="text-7xl sm:text-8xl lg:text-[10rem] text-white leading-[0.85] mb-8 uppercase">
+                        SABOR <br>
+                        <span class="text-orange-600 block transform -skew-x-6">ÚNICO</span>
+                        ARTESANAL
+                    </h1>
+
+                    <p class="text-xl text-gray-400 mb-10 max-w-xl mx-auto lg:mx-0 leading-relaxed font-outfit">
+                        Experiencia gastronómica que despierta tus sentidos. Hamburguesas de autor creadas con pasión y
+                        nuestra inconfundible cebolla secreta.
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row gap-5 justify-center lg:justify-start">
+                        <button onclick="scrollToSection('menu')"
+                            class="bg-orange-600 hover:bg-orange-700 text-white px-10 py-5 rounded-2xl font-bold text-lg transition-all hover:scale-105 active:scale-95 shadow-[0_20px_50px_rgba(234,88,12,0.3)]">
+                            Explorar Menú
+                        </button>
+                        <button onclick="enviarWhatsAppGeneral()"
+                            class="bg-white/5 backdrop-blur-sm border-2 border-orange-600 text-orange-500 hover:bg-orange-600 hover:text-white px-10 py-5 rounded-2xl font-bold text-lg transition-all hover:scale-105 active:scale-95 shadow-lg flex justify-center items-center gap-3">
+                            <i data-lucide="message-circle" class="w-6 h-6"></i>
+                            Pide por WhatsApp
+                        </button>
+                    </div>
+
+                    <!-- Estadísticas Rápidas -->
+                    <div
+                        class="mt-16 flex items-center justify-center lg:justify-start gap-12 pt-10 border-t border-gray-800">
+                        <div>
+                            <p class="bebas text-5xl text-white">100%</p>
+                            <p class="text-xs uppercase tracking-widest font-bold text-gray-500">Artesanal</p>
+                        </div>
+                        <div class="w-px h-14 bg-gray-800"></div>
+                        <div>
+                            <p class="bebas text-5xl text-white">+Premium</p>
+                            <p class="text-xs uppercase tracking-widest font-bold text-gray-500">Ingredientes</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Asset Hero (Video Strike) -->
+                <div class="relative group reveal">
+                    <!-- Glow Dinámico de Fondo (Sutil para no crear un recuadro de luz brusco) -->
+                    <div
+                        class="absolute -inset-20 bg-orange-600/10 rounded-full blur-[120px] opacity-40 group-hover:opacity-60 transition duration-1000">
+                    </div>
+
+                    <!-- Video de la hamburguesa: 'blend-screen' quita el fondo negro -->
+                    <div class="relative flex items-center justify-center">
+                        <!-- 'preload="auto"' ayuda a que el scrubbing sea fluido -->
+                        <video id="hero-video" class="w-[120%] h-auto max-w-none blend-screen pointer-events-none" muted
+                            playsinline preload="auto" poster="logo-saboratto.png">
+                            <source src="hamburguesa_saboratto.mp4" type="video/mp4">
+                            <p>Tu navegador no soporta videos.</p>
+                        </video>
+                    </div>
+
+                    <!-- Etiqueta Flotante (Ya no 3D, solo flotando con scroll) -->
+                    <div id="hero-badge-1"
+                        class="absolute -bottom-4 -left-12 glass-dark p-5 rounded-[2.5rem] shadow-2xl flex items-center gap-4 border border-white/10">
+                        <div class="bg-gradient-to-br from-orange-500 to-orange-600 p-3.5 rounded-2xl shadow-lg">
+                            <i data-lucide="flame" class="text-white w-7 h-7"></i>
+                        </div>
+                        <div>
+                            <p class="text-[10px] text-orange-400 font-black uppercase tracking-widest mb-0.5">
+                                Receta Secreta</p>
+                            <p class="bebas text-3xl text-white leading-none">LA SABORATTO</p>
+                        </div>
+                    </div>
+
+                    <!-- Badge Premium -->
+                    <div id="hero-badge-2"
+                        class="absolute -top-10 -right-10 bg-orange-600 text-white w-24 h-24 rounded-full flex items-center justify-center text-center p-2 shadow-[0_20px_40px_rgba(234,88,12,0.4)] border-4 border-black transform rotate-12">
+                        <span class="bebas text-2xl leading-tight">100% ARTESANAL</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Menú -->
+    <section id="menu" class="py-20 bg-black">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-orange-600 font-bold tracking-widest uppercase text-xs mb-3 font-outfit">Sabor de Verdad
+                </h2>
+                <h3 class="bebas text-6xl md:text-8xl text-white leading-none">NUESTROS MANJARES</h3>
+                <div class="w-20 h-1.5 bg-orange-600 mx-auto mt-6 rounded-full shadow-lg shadow-orange-900/40"></div>
+            </div>
+
+            <!-- CATEGORÍA: HAMBURGUESAS -->
+            <div class="mb-16">
+                <div class="flex items-center gap-4 mb-8">
+                    <h4 class="bebas text-4xl text-white">🍔 HAMBURGUESAS</h4>
+                    <div class="h-px bg-zinc-800 flex-grow"></div>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                    <!-- Tradicional -->
+                    <!-- Producto Card -->
+                    <div
+                        class="bg-zinc-900/40 border border-white/5 rounded-[2rem] p-6 shadow-sm hover:shadow-2xl transition-all duration-500 group flex flex-col h-full card-p reveal">
+                        <div class="relative mb-6 overflow-hidden rounded-2xl aspect-video bg-zinc-800 shrink-0">
+                            <img src="https://placehold.co/600x400/f97316/white?text=FOTO+TRADICIONAL"
+                                alt="Hamburguesa Tradicional"
+                                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <div class="flex justify-between items-start mb-4">
+                            <h5 class="bebas text-3xl text-white">TRADICIONAL</h5>
+                            <span class="font-bold text-xl text-orange-500 whitespace-nowrap">$10.000</span>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-6 flex-grow font-outfit">
+                            Pan artesanal, carne artesanal, queso, cebolla Saboratto, lechuga, tomate, papa ripio y
+                            salsa de la casa.
+                        </p>
+                        <button onclick="pedirProducto('Hamburguesa Tradicional')"
+                            class="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 rounded-xl transition-all hover:scale-105 active:scale-95 shadow-lg flex justify-center items-center gap-2 mt-auto">
+                            <i data-lucide="smartphone" class="w-5 h-5"></i> Pedir
+                        </button>
+                    </div>
+
+                    <!-- Especial -->
+                    <!-- Producto Card -->
+                    <div
+                        class="bg-zinc-900/40 border border-white/5 rounded-[2rem] p-6 shadow-sm hover:shadow-2xl transition-all duration-500 group flex flex-col h-full card-p reveal">
+                        <div class="relative mb-6 overflow-hidden rounded-2xl aspect-video bg-zinc-800 shrink-0">
+                            <img src="hamburguesa_especial_v3.png" alt="Hamburguesa Especial"
+                                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                            <div
+                                class="absolute top-4 right-4 bg-orange-600 text-white px-3 py-1 rounded-full text-sm font-bold shadow-sm">
+                                Especial
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-start mb-4">
+                            <h5 class="bebas text-3xl text-white">ESPECIAL</h5>
+                            <span class="font-bold text-xl text-orange-500 whitespace-nowrap">$15.000</span>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-6 flex-grow font-outfit">
+                            Todos los ingredientes de la tradicional + jamón ahumado, doble tocineta y huevo de
+                            codorniz.
+                        </p>
+                        <button onclick="pedirProducto('Hamburguesa Especial')"
+                            class="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 rounded-xl transition-all hover:scale-105 active:scale-95 shadow-lg flex justify-center items-center gap-2 mt-auto">
+                            <i data-lucide="smartphone" class="w-5 h-5"></i> Pedir
+                        </button>
+                    </div>
+
+                    <!-- Ranchera -->
+                    <!-- Producto Card -->
+                    <div
+                        class="bg-zinc-900/40 border border-white/5 rounded-[2rem] p-6 shadow-sm hover:shadow-2xl transition-all duration-500 group flex flex-col h-full card-p reveal">
+                        <div class="relative mb-6 overflow-hidden rounded-2xl aspect-video bg-zinc-800 shrink-0">
+                            <img src="hamburguesa_ranchera.jpg" alt="Hamburguesa Ranchera"
+                                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                            <div
+                                class="absolute top-4 right-4 bg-orange-600 text-white px-3 py-1 rounded-full text-sm font-bold shadow-sm">
+                                La más vendida
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-start mb-4">
+                            <h5 class="bebas text-3xl text-white">RANCHERA</h5>
+                            <span class="font-bold text-xl text-orange-500 whitespace-nowrap">$15.000</span>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-6 flex-grow font-outfit">
+                            Todos los ingredientes de la tradicional + salchicha Ranchera premium, tocineta y queso
+                            doble crema + huevo de codorniz.
+                        </p>
+                        <button onclick="pedirProducto('Hamburguesa Ranchera')"
+                            class="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 rounded-xl transition-all hover:scale-105 active:scale-95 shadow-lg flex justify-center items-center gap-2 mt-auto">
+                            <i data-lucide="smartphone" class="w-5 h-5"></i> Pedir
+                        </button>
+                    </div>
+
+                    <!-- Doble -->
+                    <!-- Producto Card -->
+                    <div
+                        class="bg-zinc-900/40 border border-white/5 rounded-[2rem] p-6 shadow-sm hover:shadow-2xl transition-all duration-500 group flex flex-col h-full card-p reveal">
+                        <div class="relative mb-6 overflow-hidden rounded-2xl aspect-video bg-zinc-800 shrink-0">
+                            <img src="https://placehold.co/600x400/f97316/white?text=FOTO+DOBLE" alt="Hamburguesa Doble"
+                                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <div class="flex justify-between items-start mb-4">
+                            <h5 class="bebas text-3xl text-white">DOBLE</h5>
+                            <span class="font-bold text-xl text-orange-500 whitespace-nowrap">$18.000</span>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-6 flex-grow font-outfit">
+                            Todos los ingredientes de la especial + una porción extra de carne artesanal y queso.
+                        </p>
+                        <button onclick="pedirProducto('Hamburguesa Doble')"
+                            class="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 rounded-xl transition-all hover:scale-105 active:scale-95 shadow-lg flex justify-center items-center gap-2 mt-auto">
+                            <i data-lucide="smartphone" class="w-5 h-5"></i> Pedir
+                        </button>
+                    </div>
+
+                    <!-- Con Todo -->
+                    <!-- Producto Card -->
+                    <div
+                        class="bg-zinc-900/40 border border-white/5 rounded-[2rem] p-6 shadow-sm hover:shadow-2xl transition-all duration-500 group flex flex-col h-full card-p reveal">
+                        <div class="relative mb-6 overflow-hidden rounded-2xl aspect-video bg-zinc-800 shrink-0">
+                            <img src="https://placehold.co/600x400/f97316/white?text=FOTO+CON+TODO"
+                                alt="Hamburguesa Con Todo"
+                                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                            <div
+                                class="absolute top-4 right-4 bg-orange-600 text-white px-3 py-1 rounded-full text-sm font-bold shadow-sm">
+                                La Más Grande
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-start mb-4">
+                            <h5 class="bebas text-3xl text-white">CON TODO</h5>
+                            <span class="font-bold text-xl text-orange-500 whitespace-nowrap">$22.000</span>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-6 flex-grow font-outfit">
+                            Todos los ingredientes de la doble + salchicha Ranchera premium y tocineta.
+                        </p>
+                        <button onclick="pedirProducto('Hamburguesa Con Todo')"
+                            class="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 rounded-xl transition-all hover:scale-105 active:scale-95 shadow-lg flex justify-center items-center gap-2 mt-auto">
+                            <i data-lucide="smartphone" class="w-5 h-5"></i> Pedir
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- CATEGORÍA: PERROS CALIENTES -->
+            <div class="mb-16">
+                <div class="flex items-center gap-4 mb-8">
+                    <h4 class="bebas text-4xl text-white">🌭 PERROS CALIENTES</h4>
+                    <div class="h-px bg-zinc-800 flex-grow"></div>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                    <!-- Tradicional -->
+                    <!-- Producto Card -->
+                    <div
+                        class="bg-zinc-900/40 border border-white/5 rounded-[2rem] p-6 shadow-sm hover:shadow-2xl transition-all duration-500 group flex flex-col h-full card-p reveal">
+                        <div class="relative mb-6 overflow-hidden rounded-2xl aspect-video bg-zinc-800 shrink-0">
+                            <img src="https://placehold.co/600x400/f97316/white?text=FOTO+PERRO+TRADICIONAL"
+                                alt="Perro Caliente Tradicional"
+                                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <div class="flex justify-between items-start mb-4">
+                            <h5 class="bebas text-3xl text-white">TRADICIONAL</h5>
+                            <span class="font-bold text-xl text-orange-500 whitespace-nowrap">$8.000</span>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-6 flex-grow font-outfit">
+                            Pan artesanal, salchicha de cerdo ahumado, cebolla Saboratto, papa ripio, salsa de la casa y
+                            queso doble crema.
+                        </p>
+                        <button onclick="pedirProducto('Perro Caliente Tradicional')"
+                            class="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 rounded-xl transition-all hover:scale-105 active:scale-95 shadow-lg flex justify-center items-center gap-2 mt-auto">
+                            <i data-lucide="smartphone" class="w-5 h-5"></i> Pedir
+                        </button>
+                    </div>
+
+                    <!-- Especial -->
+                    <!-- Producto Card -->
+                    <div
+                        class="bg-zinc-900/40 border border-white/5 rounded-[2rem] p-6 shadow-sm hover:shadow-2xl transition-all duration-500 group flex flex-col h-full card-p reveal">
+                        <div class="relative mb-6 overflow-hidden rounded-2xl aspect-video bg-zinc-800 shrink-0">
+                            <img src="https://placehold.co/600x400/f97316/white?text=FOTO+PERRO+ESPECIAL"
+                                alt="Perro Caliente Especial"
+                                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <div class="flex justify-between items-start mb-4">
+                            <h5 class="bebas text-3xl text-white">ESPECIAL</h5>
+                            <span class="font-bold text-xl text-orange-500 whitespace-nowrap">$13.000</span>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-6 flex-grow font-outfit">
+                            Todos los ingredientes del tradicional + jamón ahumado, doble tocineta y huevo de codorniz.
+                        </p>
+                        <button onclick="pedirProducto('Perro Caliente Especial')"
+                            class="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 rounded-xl transition-all hover:scale-105 active:scale-95 shadow-lg flex justify-center items-center gap-2 mt-auto">
+                            <i data-lucide="smartphone" class="w-5 h-5"></i> Pedir
+                        </button>
+                    </div>
+
+                    <!-- Ranchero -->
+                    <!-- Producto Card -->
+                    <div
+                        class="bg-zinc-900/40 border border-white/5 rounded-[2rem] p-6 shadow-sm hover:shadow-2xl transition-all duration-500 group flex flex-col h-full card-p reveal">
+                        <div class="relative mb-6 overflow-hidden rounded-2xl aspect-video bg-zinc-800 shrink-0">
+                            <img src="perro_ranchero.jpg" alt="Perro Caliente Ranchero"
+                                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                            <div
+                                class="absolute top-4 right-4 bg-orange-600 text-white px-3 py-1 rounded-full text-sm font-bold shadow-sm">
+                                El mas comprado
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-start mb-4">
+                            <h5 class="bebas text-3xl text-white">RANCHERO</h5>
+                            <span class="font-bold text-xl text-orange-500 whitespace-nowrap">$13.000</span>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-6 flex-grow font-outfit">
+                            Todos los ingredientes del tradicional + salchicha Ranchera premium, tocineta y extra queso
+                            doble crema.
+                        </p>
+                        <button onclick="pedirProducto('Perro Caliente Ranchero')"
+                            class="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 rounded-xl transition-all hover:scale-105 active:scale-95 shadow-lg flex justify-center items-center gap-2 mt-auto">
+                            <i data-lucide="smartphone" class="w-5 h-5"></i> Pedir
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- CATEGORÍA: SALCHIPAPAS -->
+            <div class="mb-16">
+                <div class="flex items-center gap-4 mb-8">
+                    <h4 class="bebas text-4xl text-white">🍟 SALCHIPAPAS</h4>
+                    <div class="h-px bg-zinc-800 flex-grow"></div>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                    <!-- Tradicional -->
+                    <!-- Producto Card -->
+                    <div
+                        class="bg-zinc-900/40 border border-white/5 rounded-[2rem] p-6 shadow-sm hover:shadow-2xl transition-all duration-500 group flex flex-col h-full card-p reveal">
+                        <div class="relative mb-6 overflow-hidden rounded-2xl aspect-video bg-zinc-800 shrink-0">
+                            <img src="https://placehold.co/600x400/f97316/white?text=FOTO+SALCHIPAPA+TRADICIONAL"
+                                alt="Salchipapa Tradicional"
+                                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <div class="flex justify-between items-start mb-4">
+                            <h5 class="bebas text-3xl text-white">TRADICIONAL</h5>
+                            <span class="font-bold text-xl text-orange-500 whitespace-nowrap">$10.000</span>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-6 flex-grow font-outfit">
+                            Papa francesa, salchicha de cerdo ahumado, triple queso, huevo de codorniz y salsa cheddar.
+                        </p>
+                        <button onclick="pedirProducto('Salchipapa Tradicional')"
+                            class="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 rounded-xl transition-all hover:scale-105 active:scale-95 shadow-lg flex justify-center items-center gap-2 mt-auto">
+                            <i data-lucide="smartphone" class="w-5 h-5"></i> Pedir
+                        </button>
+                    </div>
+
+                    <!-- Ranchera -->
+                    <!-- Producto Card -->
+                    <div
+                        class="bg-zinc-900/40 border border-white/5 rounded-[2rem] p-6 shadow-sm hover:shadow-2xl transition-all duration-500 group flex flex-col h-full card-p reveal">
+                        <div class="relative mb-6 overflow-hidden rounded-2xl aspect-video bg-zinc-800 shrink-0">
+                            <img src="https://placehold.co/600x400/f97316/white?text=FOTO+SALCHIPAPA+RANCHERA"
+                                alt="Salchipapa Ranchera"
+                                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        </div>
+                        <div class="flex justify-between items-start mb-4">
+                            <h5 class="bebas text-3xl text-white">RANCHERA</h5>
+                            <span class="font-bold text-xl text-orange-500 whitespace-nowrap">$15.000</span>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-6 flex-grow font-outfit">
+                            Todos los ingredientes de la tradicional + salchicha Ranchera premium y tocineta.
+                        </p>
+                        <button onclick="pedirProducto('Salchipapa Ranchera')"
+                            class="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 rounded-xl transition-all hover:scale-105 active:scale-95 shadow-lg flex justify-center items-center gap-2 mt-auto">
+                            <i data-lucide="smartphone" class="w-5 h-5"></i> Pedir
+                        </button>
+                    </div>
+
+                    <!-- Doble -->
+                    <!-- Producto Card -->
+                    <div
+                        class="bg-zinc-900/40 border border-white/5 rounded-[2rem] p-6 shadow-sm hover:shadow-2xl transition-all duration-500 group flex flex-col h-full card-p reveal">
+                        <div class="relative mb-6 overflow-hidden rounded-2xl aspect-video bg-zinc-800 shrink-0">
+                            <img src="salchipapa_doble.jpg"
+                                alt="Salchipapa Doble"
+                                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                            <div
+                                class="absolute top-4 right-4 bg-orange-600 text-white px-3 py-1 rounded-full text-sm font-bold shadow-sm">
+                                La mas grande
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-start mb-4">
+                            <h5 class="bebas text-3xl text-white">DOBLE</h5>
+                            <span class="font-bold text-xl text-orange-500 whitespace-nowrap">$22.000</span>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-6 flex-grow font-outfit">
+                            Todos los ingredientes de la ranchera + otra porción de salchicha y papas, extra queso y más
+                            huevos de codorniz.
+                        </p>
+                        <button onclick="pedirProducto('Salchipapa Doble')"
+                            class="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 rounded-xl transition-all hover:scale-105 active:scale-95 shadow-lg flex justify-center items-center gap-2 mt-auto">
+                            <i data-lucide="smartphone" class="w-5 h-5"></i> Pedir
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- CATEGORÍA: SÁNDWICHES -->
+            <div>
+                <div class="flex items-center gap-4 mb-8">
+                    <h4 class="bebas text-4xl text-white">🥪 SÁNDWICHES</h4>
+                    <div class="h-px bg-zinc-800 flex-grow"></div>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                    <!-- Sándwich con carne -->
+                    <!-- Producto Card -->
+                    <div
+                        class="bg-zinc-900/40 border border-white/5 rounded-[2rem] p-6 shadow-sm hover:shadow-2xl transition-all duration-500 group flex flex-col h-full card-p reveal">
+                        <div class="relative mb-6 overflow-hidden rounded-2xl aspect-video bg-zinc-800 shrink-0">
+                            <img src="sandwich.jpg" alt="Sándwich"
+                                class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                            <div
+                                class="absolute top-4 right-4 bg-orange-600 text-white px-3 py-1 rounded-full text-sm font-bold shadow-sm">
+                                Imperdible
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-start mb-4">
+                            <h5 class="bebas text-3xl text-white leading-tight">SÁNDWICH CON CARNE DE HAMBURGUESA
+                            </h5>
+                            <span class="font-bold text-xl text-orange-500 whitespace-nowrap ml-4">$10.000</span>
+                        </div>
+                        <p class="text-gray-400 text-sm mb-6 flex-grow font-outfit">
+                            Pan artesanal, carne artesanal, queso, cebolla Saboratto, lechuga, tomate, papa ripio y
+                            salsa de la casa.
+                        </p>
+                        <button onclick="pedirProducto('Sándwich con carne de hamburguesa')"
+                            class="w-full bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 rounded-xl transition-all hover:scale-105 active:scale-95 shadow-lg flex justify-center items-center gap-2 mt-auto">
+                            <i data-lucide="smartphone" class="w-5 h-5"></i> Pedir
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Características -->
+    <section class="py-24 bg-black relative overflow-hidden border-y border-white/5">
+        <div class="absolute inset-0 bg-orange-950/10"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid md:grid-cols-3 gap-10 text-center">
+                <div
+                    class="bg-white/10 backdrop-blur-md p-10 rounded-[2.5rem] border border-white/20 hover:bg-white/15 transition-all duration-500 reveal">
+                    <div
+                        class="w-20 h-20 bg-white text-orange-600 rounded-3xl flex items-center justify-center mx-auto mb-8 transform -rotate-12 shadow-2xl group-hover:rotate-0 transition-transform">
+                        <i data-lucide="beef" class="w-10 h-10"></i>
+                    </div>
+                    <h4 class="bebas text-4xl mb-6 tracking-tight">Cortes Selectos</h4>
+                    <p class="text-white/90 leading-relaxed font-outfit">Materia prima de primera calidad. Carne 100%
+                        artesanal, jugosa y preparada al momento.</p>
+                </div>
+
+                <div
+                    class="bg-white/10 backdrop-blur-md p-10 rounded-[2.5rem] border border-white/20 hover:bg-white/15 transition-all duration-500 reveal">
+                    <div
+                        class="w-20 h-20 bg-white text-orange-600 rounded-3xl flex items-center justify-center mx-auto mb-8 transform rotate-6 shadow-2xl group-hover:rotate-0 transition-transform">
+                        <i data-lucide="sparkles" class="w-10 h-10"></i>
+                    </div>
+                    <h4 class="bebas text-4xl mb-6 tracking-tight">El Toque Maestro</h4>
+                    <p class="text-white/90 leading-relaxed font-outfit">Nuestra cebolla caramelizada Saboratto. Una
+                        receta guardada bajo llave que te hará volver.</p>
+                </div>
+
+                <div
+                    class="bg-white/10 backdrop-blur-md p-10 rounded-[2.5rem] border border-white/20 hover:bg-white/15 transition-all duration-500 reveal">
+                    <div
+                        class="w-20 h-20 bg-white text-orange-600 rounded-3xl flex items-center justify-center mx-auto mb-8 transform -rotate-3 shadow-2xl group-hover:rotate-0 transition-transform">
+                        <i data-lucide="truck" class="w-10 h-10"></i>
+                    </div>
+                    <h4 class="bebas text-4xl mb-6 tracking-tight">Directo a Casa</h4>
+                    <p class="text-white/90 leading-relaxed font-outfit">Empaques premium diseñados para que tu pedido
+                        llegue perfecto, caliente y listo para disfrutar.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galería -->
+    <section id="galeria" class="py-20 bg-black overflow-hidden border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
+            <div class="flex justify-between items-end">
+                <div>
+                    <h2 class="text-orange-600 font-bold tracking-wider uppercase text-sm mb-2">Puro Antojo</h2>
+                    <h3 class="bebas text-5xl md:text-6xl text-white">GALERÍA SABORATTO</h3>
+                </div>
+                <div class="hidden md:flex gap-4">
+                    <button
+                        class="w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center text-gray-600 hover:bg-orange-600 hover:text-white hover:border-orange-600 transition-all"
+                        onclick="scrollGallery('left')">
+                        <i data-lucide="chevron-left"></i>
+                    </button>
+                    <button
+                        class="w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center text-gray-600 hover:bg-orange-600 hover:text-white hover:border-orange-600 transition-all"
+                        onclick="scrollGallery('right')">
+                        <i data-lucide="chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="pl-4 sm:pl-6 lg:pl-8 xl:pl-[max(2rem,calc((100vw-80rem)/2))]">
+            <div id="gallery-container" class="flex gap-6 overflow-x-auto no-scrollbar snap-x snap-mandatory pb-8 pr-8">
+                <!-- REEMPLAZAR: Imágenes de la galería -->
+                <div
+                    class="snap-center shrink-0 w-[80vw] sm:w-[60vw] md:w-[40vw] lg:w-[30vw] aspect-[4/5] rounded-3xl overflow-hidden relative group">
+                    <img src="https://placehold.co/800x1000/f97316/white?text=FOTO+GALERIA+1" alt="Saboratto Galería 1"
+                        class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                </div>
+                <div
+                    class="snap-center shrink-0 w-[80vw] sm:w-[60vw] md:w-[40vw] lg:w-[30vw] aspect-[4/5] rounded-3xl overflow-hidden relative group">
+                    <img src="https://placehold.co/800x1000/f97316/white?text=FOTO+GALERIA+2" alt="Saboratto Galería 2"
+                        class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                </div>
+                <div
+                    class="snap-center shrink-0 w-[80vw] sm:w-[60vw] md:w-[40vw] lg:w-[30vw] aspect-[4/5] rounded-3xl overflow-hidden relative group">
+                    <img src="https://placehold.co/800x1000/f97316/white?text=FOTO+GALERIA+3" alt="Saboratto Galería 3"
+                        class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                </div>
+                <div
+                    class="snap-center shrink-0 w-[80vw] sm:w-[60vw] md:w-[40vw] lg:w-[30vw] aspect-[4/5] rounded-3xl overflow-hidden relative group">
+                    <img src="https://placehold.co/800x1000/f97316/white?text=FOTO+GALERIA+4" alt="Saboratto Galería 4"
+                        class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                </div>
+                <div class="shrink-0 w-4"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer & Contacto -->
+    <footer id="contacto" class="bg-black text-white pt-20 pb-10 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+
+                <!-- Logo y Redes -->
+                <div class="lg:col-span-1">
+                    <img src="logo-saboratto.png" alt="Saboratto" class="h-24 mb-4">
+                    <p class="text-gray-400 text-sm mb-6 leading-relaxed">
+                        No hacemos simples comidas rápidas, creamos experiencias llenas de sabor, calidad y tradición en
+                        cada mordida.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.instagram.com/saboratto.oficial/" target="_blank"
+                            class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-orange-600 transition-colors">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.332 3.608 1.308.975.975 1.245 2.242 1.308 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.063 1.366-.333 2.633-1.308 3.608-.975.975-2.242 1.245-3.608 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.063-2.633-.333-3.608-1.308-.975-.975-1.245-2.242-1.308-3.608-.058-1.266-.07-1.646-.07-4.85s.012-3.584.07-4.85c.062-1.366.332-2.633 1.308-3.608.975-.975 2.242-1.245 3.608-1.308 1.266-.058 1.646-.07 4.85-.07zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072s3.667-.014 4.947-.072c4.358-.2 6.78-2.618 6.98-6.98.058-1.281.072-1.689.072-4.948s-.014-3.667-.072-4.947c-.2-4.358-2.618-6.78-6.98-6.98-1.281-.058-1.689-.072-4.948-.072zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.791-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.209-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                            </svg>
+                        </a>
+                        <!-- Icono SVG de TikTok ya que no siempre está en librerías estándar -->
+                        <a href="https://www.tiktok.com/@saboratto_oficial?_r=1&_t=ZS-94jzUiOFgzQ" target="_blank"
+                            class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-orange-600 transition-colors">
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Horarios -->
+                <div>
+                    <h4 class="text-lg font-bold mb-6 uppercase tracking-wider">Horario</h4>
+                    <ul class="space-y-3 text-gray-400 text-sm">
+                        <li class="flex justify-between">
+                            <span>Martes - Jueves</span>
+                            <span class="text-white">7:00 PM - 10:00 PM</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Viernes - Domingo</span>
+                            <span class="text-white">6:00 PM - 11:00 PM</span>
+                        </li>
+                        <li class="flex justify-between border-t border-gray-700 pt-3">
+                            <span>Lunes</span>
+                            <span class="text-red-400 font-semibold">Cerrado</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Contacto -->
+                <div>
+                    <h4 class="text-lg font-bold mb-6 uppercase tracking-wider">Contacto</h4>
+                    <ul class="space-y-4 text-gray-400 text-sm">
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="map-pin" class="w-5 h-5 text-orange-500 shrink-0 mt-1"></i>
+                            <a href="https://www.google.com/maps?q=Saboratto+Oficial+-+Comidas+R%C3%A1pidas,+Cl.+27a+Sur+%235-21,+este,+Bogot%C3%A1"
+                                target="_blank" class="hover:text-white transition-colors">
+                                Cll 27a Sur #5-21 este<br>
+                                Santa Ines Sur - San Cristobal<br>
+                                Bogotá, Colombia
+                            </a>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="phone" class="w-5 h-5 text-orange-500 shrink-0"></i>
+                            <span>+57 322 2430079</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- CTA -->
+                <div>
+                    <h4 class="text-lg font-bold mb-6 uppercase tracking-wider">¡Encuéntranos!</h4>
+                    <p class="text-gray-400 text-sm mb-4">¿Antojo? Toca el botón para ver cómo llegar a Saboratto en
+                        Google Maps.</p>
+                    <a href="https://www.google.com/maps?q=Saboratto+Oficial+-+Comidas+R%C3%A1pidas,+Cl.+27a+Sur+%235-21,+este,+Bogot%C3%A1"
+                        target="_blank"
+                        class="w-full bg-white/10 border border-gray-700 hover:bg-orange-600 hover:border-orange-600 text-white px-6 py-3 rounded-xl font-bold transition-colors flex justify-center items-center gap-2">
+                        <i data-lucide="map" class="w-5 h-5"></i>
+                        Ver en el Mapa
+                    </a>
+                </div>
+
+            </div>
+
+            <div
+                class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
+                <p>&copy; 2026 Saboratto Oficial. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Inicializar iconos de Lucide
+        lucide.createIcons();
+
+        // Lógica de Reveal al hacer Scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Lógica del Menú Móvil
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.querySelector('#mobile-menu-btn i');
+            menu.classList.toggle('hidden');
+
+            if (menu.classList.contains('hidden')) {
+                lucide.createIcons({ name: 'menu' });
+            } else {
+                lucide.createIcons({ name: 'x' });
+            }
+        }
+
+        // Animación del Navbar al hacer scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 20) {
+                nav.classList.add('shadow-2xl', 'border-white/5');
+                nav.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
+            } else {
+                nav.classList.remove('shadow-2xl', 'border-white/5');
+                nav.style.backgroundColor = 'rgba(0, 0, 0, 0.6)';
+            }
+        });
+
+        // Scroll suave a secciones
+        function scrollToSection(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                const offset = 80;
+                const bodyRect = document.body.getBoundingClientRect().top;
+                const elementRect = element.getBoundingClientRect().top;
+                const elementPosition = elementRect - bodyRect;
+                const offsetPosition = elementPosition - offset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        // Scroll Horizontal Galería
+        function scrollGallery(direction) {
+            const container = document.getElementById('gallery-container');
+            const scrollAmount = container.clientWidth * 0.8;
+
+            if (direction === 'left') {
+                container.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+            } else {
+                container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            }
+        }
+
+        // === FUNCIONES DE WHATSAPP AUTOMATIZADAS ===
+        const numeroSaboratto = "573222430079"; // Tu número registrado
+
+        // Para pedir un producto específico desde el menú
+        function pedirProducto(nombreProducto) {
+            const mensaje = `¡Hola Saboratto! 🍔 Quiero pedir: ${nombreProducto}.`;
+            const url = `https://wa.me/${numeroSaboratto}?text=${encodeURIComponent(mensaje)}`;
+            window.open(url, '_blank');
+        }
+
+        // Para el botón general del menú (arriba a la derecha)
+        function enviarWhatsAppGeneral() {
+            const mensaje = `¡Hola Saboratto! 👋 Quiero hacer un pedido, ¿me pueden tomar la orden por favor?`;
+            const url = `https://wa.me/${numeroSaboratto}?text=${encodeURIComponent(mensaje)}`;
+            window.open(url, '_blank');
+        }
+        // Interacción 3D Hero
+        const tiltContainer = document.getElementById('hero-tilt-container');
+        if (tiltContainer) {
+            tiltContainer.addEventListener('mousemove', (e) => {
+                const rect = tiltContainer.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+
+                const rotateX = (y - centerY) / 20;
+                const rotateY = (centerX - x) / 20;
+
+                tiltContainer.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            });
+
+            tiltContainer.addEventListener('mouseleave', () => {
+                tiltContainer.style.transform = `rotateX(0deg) rotateY(0deg)`;
+            });
+        }
+        // Smooth Vuelo Parallax + Scrollytelling (Optimizado: Zero Delay & Límites)
+        const video = document.getElementById('hero-video');
+        const badge1 = document.getElementById('hero-badge-1');
+        const badge2 = document.getElementById('hero-badge-2');
+        const heroSection = document.getElementById('inicio');
+
+        if (video) {
+            window.addEventListener('scroll', () => {
+                const scrollTop = window.scrollY;
+                const heroHeight = window.innerHeight; // Definimos el rango de acción (1 pantalla)
+
+                // Solo actuamos si estamos dentro del Hero (o un poco después)
+                if (scrollTop <= heroHeight) {
+                    const progress = Math.min(Math.max(scrollTop / heroHeight, 0), 1);
+
+                    // Sincronización DIRECTA para eliminar cualquier delay percibido
+                    if (video.duration) {
+                        video.currentTime = video.duration * progress;
+                    }
+
+                    // Integración Progresiva: Escala y Opacidad sutil al bajar
+                    const scale = 1 + (progress * 0.1);
+                    const opacity = 1 - (progress * 0.3);
+
+                    // Movimiento vertical MÍNIMO (0.1 en lugar de 0.3)
+                    const currentY = scrollTop * 0.1;
+                    video.style.transform = `translateY(${currentY}px) scale(${scale}) translateZ(0)`;
+                    video.style.opacity = opacity;
+
+                    if (badge1) {
+                        badge1.style.transform = `translateY(${currentY * 1.2}px)`;
+                        badge1.style.opacity = 1 - (progress * 1.5); // Desaparece antes
+                    }
+                    if (badge2) {
+                        badge2.style.transform = `translateY(${currentY * 0.8}px)`;
+                        badge2.style.opacity = 1 - (progress * 1.5);
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
