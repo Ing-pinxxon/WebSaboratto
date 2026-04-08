@@ -659,19 +659,44 @@ function actualizarPedidoUI() {
 window.enviarPedidoWhatsApp = function () {
     if (pedido.length === 0) return;
 
-    let mensaje = "¡Hola Saboratto! 👋 Quiero hacer el siguiente pedido:%0A%0A";
-    let totalPesos = 0;
+    let mensaje = "¡Hola Saboratto! 👋 Quiero hacer el siguiente pedido mediante la página web:%0A%0A";
+    let subtotal = 0;
 
     pedido.forEach(item => {
-        let name = `🔸 ${item.cantidad}x ${item.nombre}`;
+        // Buscar emoji del producto o usar uno genérico de comida
+        let emojiProducto = "🍔";
+        if (item.nombre.toLowerCase().includes('perro')) emojiProducto = "🌭";
+        if (item.nombre.toLowerCase().includes('salchipapa')) emojiProducto = "🍟";
+        if (item.nombre.toLowerCase().includes('sándwich')) emojiProducto = "🥪";
+
+        mensaje += `• ${item.cantidad} ${item.nombre} ${emojiProducto} - $${(item.precio * item.cantidad).toLocaleString('es-CO')}%0A`;
+        
         if (item.exclusiones && item.exclusiones.length > 0) {
-            name += ` (Sin: ${item.exclusiones.join(', ')})`;
+            mensaje += `  – Sin: ${item.exclusiones.join(', ')}%0A`;
         }
-        mensaje += `${name} - $${(item.precio * item.cantidad).toLocaleString('es-CO')}%0A`;
-        totalPesos += item.precio * item.cantidad;
+        
+        subtotal += item.precio * item.cantidad;
+        mensaje += "%0A";
     });
 
-    mensaje += `%0A💰 *Total estimado: $${totalPesos.toLocaleString('es-CO')}*%0A%0A¡Muchas gracias!`;
+    const descuento = subtotal * 0.05;
+    const totalConDescuento = subtotal - descuento;
+    const costoIcopor = 0; // Ajustar si es necesario
+    const costoDomicilio = 1000;
+    const granTotal = totalConDescuento + costoIcopor + costoDomicilio;
+
+    if (pedido.length > 1) {
+        mensaje += `Subtotal: $${subtotal.toLocaleString('es-CO')}%0A`;
+    }
+
+    mensaje += `Descuento página web (5%): -$${descuento.toLocaleString('es-CO')}%0A`;
+    
+    if (costoIcopor > 0) {
+        mensaje += `Icopor: $${costoIcopor.toLocaleString('es-CO')} (0 unidades)%0A`;
+    }
+
+    mensaje += `Domicilio: $${costoDomicilio.toLocaleString('es-CO')}%0A`;
+    mensaje += `*Total: $${granTotal.toLocaleString('es-CO')}*`;
 
     window.open(`https://wa.me/${numeroSaboratto}?text=${mensaje}`, '_blank');
 };
@@ -710,12 +735,43 @@ window.toggleMobileMenu = function () {
 
 window.scrollGallery = function (direction) {
     const container = document.getElementById('gallery-container');
+    if (!container) return;
     const amount = container.clientWidth * 0.75;
     container.scrollBy({
         left: direction === 'left' ? -amount : amount,
         behavior: 'smooth'
     });
 };
+
+// Autoscroll para Testimonios y Galería
+function initAutoScroll() {
+    const configs = [
+        { id: 'testimonials-container', step: 1 },
+        { id: 'gallery-container', step: 1 }
+    ];
+
+    configs.forEach(config => {
+        const el = document.getElementById(config.id);
+        if (!el) return;
+
+        let isPaused = false;
+        
+        el.addEventListener('mouseenter', () => isPaused = true);
+        el.addEventListener('mouseleave', () => isPaused = false);
+        el.addEventListener('touchstart', () => isPaused = true);
+        el.addEventListener('touchend', () => isPaused = false);
+
+        setInterval(() => {
+            if (isPaused) return;
+            
+            if (el.scrollLeft + el.clientWidth >= el.scrollWidth - 1) {
+                el.scrollTo({ left: 0, behavior: 'smooth' });
+            } else {
+                el.scrollBy({ left: 300, behavior: 'smooth' });
+            }
+        }, 4000);
+    });
+}
 
 // ===== BUSINESS HOURS =====
 function updateBusinessHours() {
@@ -760,5 +816,6 @@ function updateBusinessHours() {
 document.addEventListener('DOMContentLoaded', () => {
     initPreloader();
     updateBusinessHours();
+    initAutoScroll();
     setInterval(updateBusinessHours, 60000); // Check every minute
 });
