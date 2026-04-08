@@ -1536,6 +1536,126 @@ h1, h2, h3, h4, .font-display {
     color: #ef4444;
 }
 
+/* ===== TESTIMONIALS ===== */
+.testimonials-section {
+    padding: 6rem 0;
+    background: linear-gradient(to bottom, #000, #0a0a0a);
+    border-top: 1px solid var(--border);
+}
+
+.testimonials-track-wrap {
+    margin-top: 4rem;
+    padding-left: 1.5rem;
+}
+
+@media (min-width: 640px) { .testimonials-track-wrap { padding-left: 2rem; } }
+
+.testimonials-track {
+    display: flex;
+    gap: 2rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 3rem;
+    padding-right: 2rem;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE */
+}
+
+.testimonials-track::-webkit-scrollbar { display: none; }
+
+.testimonial-card {
+    flex-shrink: 0;
+    width: 85vw;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 2.5rem;
+    scroll-snap-align: center;
+    transition: all 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+@media (min-width: 640px) { .testimonial-card { width: 450px; } }
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+    background: var(--bg-card-hover);
+    border-color: rgba(249, 115, 22, 0.3);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.testimonial-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.testimonial-google {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-dim);
+}
+
+.google-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.testimonial-stars {
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+}
+
+.testimonial-text {
+    font-style: italic;
+    color: var(--text);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    font-family: var(--font-alt);
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.author-avatar {
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 1.25rem;
+    color: #fff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.author-name {
+    font-family: var(--font-body);
+    font-weight: 700;
+    color: #fff;
+    font-size: 1rem;
+    margin-bottom: 0.15rem;
+}
+
+.author-label {
+    font-size: 0.75rem;
+    color: var(--primary);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
 /* ===== TOAST NOTIFICATION ===== */
 .toast {
     position: fixed;
