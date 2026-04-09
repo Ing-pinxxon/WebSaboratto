@@ -198,13 +198,33 @@
     <section id="menu" class="menu-section">
         <div class="container">
             <div class="section-header" data-reveal>
-                <span class="section-tag">Sabor de Verdad</span>
-                <h2 class="section-title">NUESTROS MANJARES</h2>
+                <span class="section-tag">Directo al Grano</span>
+                <h2 class="section-title">¿QUÉ TE APETECE HOY?</h2>
                 <div class="section-line"></div>
             </div>
 
+            <!-- Navegación de Categorías (Resumen) -->
+            <div class="category-summary" data-reveal>
+                <a href="#hamburguesas" class="cat-pill">
+                    <span class="cat-icon">🍔</span>
+                    <span class="cat-name">Hamburguesas</span>
+                </a>
+                <a href="#perros" class="cat-pill">
+                    <span class="cat-icon">🌭</span>
+                    <span class="cat-name">Perros</span>
+                </a>
+                <a href="#salchipapas" class="cat-pill">
+                    <span class="cat-icon">🍟</span>
+                    <span class="cat-name">Salchipapas</span>
+                </a>
+                <a href="#bebidasyadicionales" class="cat-pill">
+                    <span class="cat-icon">🥤</span>
+                    <span class="cat-name">Bebidas</span>
+                </a>
+            </div>
+
             <!-- HAMBURGUESAS -->
-            <div class="menu-category" data-reveal>
+            <div id="hamburguesas" class="menu-category" data-reveal>
                 <div class="category-header">
                     <h3 class="category-title">🍔 HAMBURGUESAS</h3>
                     <div class="category-line"></div>
@@ -226,7 +246,7 @@
                                     <i data-lucide="plus" class="icon-xs"></i> Solo
                                 </button>
                                 <button onclick="agregarAlPedido('Hamburguesa Tradicional', 16000, this, true)" class="product-btn btn-combo">
-                                    <i data-lucide="zap" class="icon-xs"></i> Combo (+6k)
+                                    <i data-lucide="zap" class="icon-xs"></i> + Papas y Gaseosa
                                 </button>
                             </div>
                         </div>
@@ -248,7 +268,7 @@
                                     <i data-lucide="plus" class="icon-xs"></i> Solo
                                 </button>
                                 <button onclick="agregarAlPedido('Hamburguesa Especial', 21000, this, true)" class="product-btn btn-combo">
-                                    <i data-lucide="zap" class="icon-xs"></i> Combo (+6k)
+                                    <i data-lucide="zap" class="icon-xs"></i> + Papas y Gaseosa
                                 </button>
                             </div>
                         </div>
@@ -270,7 +290,7 @@
                                     <i data-lucide="plus" class="icon-xs"></i> Solo
                                 </button>
                                 <button onclick="agregarAlPedido('Hamburguesa Ranchera', 21000, this, true)" class="product-btn btn-combo">
-                                    <i data-lucide="zap" class="icon-xs"></i> Combo (+6k)
+                                    <i data-lucide="zap" class="icon-xs"></i> + Papas y Gaseosa
                                 </button>
                             </div>
                         </div>
@@ -293,7 +313,7 @@
                                     <i data-lucide="plus" class="icon-xs"></i> Solo
                                 </button>
                                 <button onclick="agregarAlPedido('Hamburguesa Con Todo', 28000, this, true)" class="product-btn btn-combo">
-                                    <i data-lucide="zap" class="icon-xs"></i> Combo (+6k)
+                                    <i data-lucide="zap" class="icon-xs"></i> + Papas y Gaseosa
                                 </button>
                             </div>
                         </div>
@@ -303,7 +323,7 @@
 
             <!-- PERROS CALIENTES -->
             <div class="menu-category" data-reveal>
-                <div class="category-header">
+                <div id="perros" class="category-header">
                     <h3 class="category-title">🌭 PERROS CALIENTES</h3>
                     <div class="category-line"></div>
                 </div>
@@ -362,7 +382,7 @@
 
             <!-- SALCHIPAPAS -->
             <div class="menu-category" data-reveal>
-                <div class="category-header">
+                <div id="salchipapas" class="category-header">
                     <h3 class="category-title">🍟 SALCHIPAPAS</h3>
                     <div class="category-line"></div>
                 </div>
@@ -420,7 +440,7 @@
             </div>
 
             <!-- BEBIDAS 🥤 -->
-            <div class="menu-category" data-reveal>
+            <div id="bebidasyadicionales" class="menu-category" data-reveal>
                 <div class="category-header">
                     <h3 class="category-title">🥤 BEBIDAS</h3>
                     <div class="category-line"></div>

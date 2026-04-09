@@ -1871,3 +1871,49 @@ h1, h2, h3, h4, .font-display {
 }
 
 .icon-xs { width: 0.85rem; height: 0.85rem; }
+
+/* ===== CATEGORY SUMMARY PILLS ===== */
+.category-summary {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: -1rem auto 4rem;
+    max-width: 600px;
+}
+
+.cat-pill {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border);
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    color: var(--text-muted);
+}
+
+.cat-pill:hover {
+    background: rgba(249, 115, 22, 0.1);
+    border-color: var(--primary);
+    color: #fff;
+    transform: translateY(-4px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3), 0 0 15px rgba(249, 115, 22, 0.1);
+}
+
+.cat-icon {
+    font-size: 1.25rem;
+}
+
+.cat-name {
+    font-weight: 700;
+    font-size: 0.95rem;
+    font-family: var(--font-alt);
+}
+
+@media (max-width: 480px) {
+    .category-summary { gap: 0.75rem; }
+    .cat-pill { padding: 0.6rem 1.2rem; }
+    .cat-name { font-size: 0.85rem; }
+}
