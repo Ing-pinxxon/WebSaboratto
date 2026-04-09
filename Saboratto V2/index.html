@@ -221,9 +221,14 @@
                                 <span class="product-price">$10.000</span>
                             </div>
                             <p class="product-desc">Pan artesanal, carne artesanal, queso, cebolla Saboratto, lechuga, tomate, papa ripio y salsa de la casa.</p>
-                            <button onclick="agregarAlPedido('Hamburguesa Tradicional', 10000, this)" class="product-btn magnetic-btn">
-                                <i data-lucide="plus" class="icon-sm"></i> Agregar
-                            </button>
+                            <div class="product-actions-grid">
+                                <button onclick="agregarAlPedido('Hamburguesa Tradicional', 10000, this)" class="product-btn btn-sm">
+                                    <i data-lucide="plus" class="icon-xs"></i> Solo
+                                </button>
+                                <button onclick="agregarAlPedido('Hamburguesa Tradicional', 16000, this, true)" class="product-btn btn-combo">
+                                    <i data-lucide="zap" class="icon-xs"></i> Combo (+6k)
+                                </button>
+                            </div>
                         </div>
                     </div>
 
@@ -238,9 +243,14 @@
                                 <span class="product-price">$15.000</span>
                             </div>
                             <p class="product-desc">Todos los ingredientes de la tradicional + jamón ahumado, doble tocineta y huevo de codorniz.</p>
-                            <button onclick="agregarAlPedido('Hamburguesa Especial', 15000, this)" class="product-btn magnetic-btn">
-                                <i data-lucide="plus" class="icon-sm"></i> Agregar
-                            </button>
+                            <div class="product-actions-grid">
+                                <button onclick="agregarAlPedido('Hamburguesa Especial', 15000, this)" class="product-btn btn-sm">
+                                    <i data-lucide="plus" class="icon-xs"></i> Solo
+                                </button>
+                                <button onclick="agregarAlPedido('Hamburguesa Especial', 21000, this, true)" class="product-btn btn-combo">
+                                    <i data-lucide="zap" class="icon-xs"></i> Combo (+6k)
+                                </button>
+                            </div>
                         </div>
                     </div>
 
@@ -255,9 +265,14 @@
                                 <span class="product-price">$15.000</span>
                             </div>
                             <p class="product-desc">Todos los ingredientes de la tradicional + salchicha Ranchera premium, tocineta y queso doble crema + huevo de codorniz.</p>
-                            <button onclick="agregarAlPedido('Hamburguesa Ranchera', 15000, this)" class="product-btn magnetic-btn">
-                                <i data-lucide="plus" class="icon-sm"></i> Agregar
-                            </button>
+                            <div class="product-actions-grid">
+                                <button onclick="agregarAlPedido('Hamburguesa Ranchera', 15000, this)" class="product-btn btn-sm">
+                                    <i data-lucide="plus" class="icon-xs"></i> Solo
+                                </button>
+                                <button onclick="agregarAlPedido('Hamburguesa Ranchera', 21000, this, true)" class="product-btn btn-combo">
+                                    <i data-lucide="zap" class="icon-xs"></i> Combo (+6k)
+                                </button>
+                            </div>
                         </div>
                     </div>
 
@@ -273,9 +288,14 @@
                                 <span class="product-price">$22.000</span>
                             </div>
                             <p class="product-desc">Todos los ingredientes de la especial + doble carne + salchicha Ranchera premium y tocineta.</p>
-                            <button onclick="agregarAlPedido('Hamburguesa Con Todo', 22000, this)" class="product-btn magnetic-btn">
-                                <i data-lucide="plus" class="icon-sm"></i> Agregar
-                            </button>
+                            <div class="product-actions-grid">
+                                <button onclick="agregarAlPedido('Hamburguesa Con Todo', 22000, this)" class="product-btn btn-sm">
+                                    <i data-lucide="plus" class="icon-xs"></i> Solo
+                                </button>
+                                <button onclick="agregarAlPedido('Hamburguesa Con Todo', 28000, this, true)" class="product-btn btn-combo">
+                                    <i data-lucide="zap" class="icon-xs"></i> Combo (+6k)
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -399,26 +419,165 @@
                 </div>
             </div>
 
-            <!-- SÁNDWICHES -->
+            <!-- BEBIDAS 🥤 -->
             <div class="menu-category" data-reveal>
                 <div class="category-header">
-                    <h3 class="category-title">🥪 SÁNDWICHES</h3>
+                    <h3 class="category-title">🥤 BEBIDAS</h3>
+                    <div class="category-line"></div>
+                </div>
+                
+                <!-- COCA-COLA -->
+                <div class="drink-brand-header">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/ce/Coca-Cola_logo.svg" alt="Coca-Cola" class="brand-logo">
+                    <span class="brand-tag">Original & Cero</span>
+                </div>
+                <div class="product-grid drink-grid">
+                    <div class="product-card drink-card" data-reveal>
+                        <div class="product-info">
+                            <h4 class="product-name">Coca Cola pequeña combo</h4>
+                            <span class="product-price">$2.000</span>
+                            <button onclick="agregarAlPedido('Coca Cola pequeña de combo', 2000, this)" class="product-btn btn-drink">
+                                <i data-lucide="plus" class="icon-xs"></i> Agregar
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-card drink-card" data-reveal>
+                        <div class="product-info">
+                            <h4 class="product-name">Coca Cola pequeña original</h4>
+                            <span class="product-price">$2.500</span>
+                            <button onclick="agregarAlPedido('Coca Cola pequeña original', 2500, this)" class="product-btn btn-drink">
+                                <i data-lucide="plus" class="icon-xs"></i> Agregar
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-card drink-card" data-reveal>
+                        <div class="product-info">
+                            <h4 class="product-name">Coca Cola personal</h4>
+                            <span class="product-price">$3.500</span>
+                            <button onclick="agregarAlPedido('Coca Cola personal', 3500, this)" class="product-btn btn-drink">
+                                <i data-lucide="plus" class="icon-xs"></i> Agregar
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-card drink-card" data-reveal>
+                        <div class="product-info">
+                            <h4 class="product-name">Coca Cola 1.5L</h4>
+                            <span class="product-price">$6.500</span>
+                            <button onclick="agregarAlPedido('Coca Cola 1.5L', 6500, this)" class="product-btn btn-drink">
+                                <i data-lucide="plus" class="icon-xs"></i> Agregar
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-card drink-card" data-reveal>
+                        <div class="product-info">
+                            <h4 class="product-name">Quatro 1.5L</h4>
+                            <span class="product-price">$5.000</span>
+                            <button onclick="agregarAlPedido('Quatro 1.5L', 5000, this)" class="product-btn btn-drink">
+                                <i data-lucide="plus" class="icon-xs"></i> Agregar
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-card drink-card" data-reveal>
+                        <div class="product-info">
+                            <h4 class="product-name">Sprite 1.5L</h4>
+                            <span class="product-price">$5.000</span>
+                            <button onclick="agregarAlPedido('Sprite 1.5L', 5000, this)" class="product-btn btn-drink">
+                                <i data-lucide="plus" class="icon-xs"></i> Agregar
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-card drink-card" data-reveal>
+                        <div class="product-info">
+                            <h4 class="product-name">Jugo Del Valle</h4>
+                            <span class="product-price">$5.000</span>
+                            <button onclick="agregarAlPedido('Jugo Del Valle', 5000, this)" class="product-btn btn-drink">
+                                <i data-lucide="plus" class="icon-xs"></i> Agregar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- POSTOBON -->
+                <div class="drink-brand-header">
+                    <img src="https://vignette.wikia.nocookie.net/logopedia/images/4/41/Postobon_2017.png/revision/latest?cb=20180104153921" alt="Postobón" class="brand-logo">
+                    <span class="brand-tag">Sabores Locales</span>
+                </div>
+                <div class="product-grid drink-grid">
+                    <div class="product-card drink-card" data-reveal>
+                        <div class="product-info">
+                            <h4 class="product-name">Manzana pequeña</h4>
+                            <span class="product-price">$1.500</span>
+                            <button onclick="agregarAlPedido('Manzana pequeña', 1500, this)" class="product-btn btn-drink">
+                                <i data-lucide="plus" class="icon-xs"></i> Agregar
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-card drink-card" data-reveal>
+                        <div class="product-info">
+                            <h4 class="product-name">Colombiana pequeña</h4>
+                            <span class="product-price">$1.500</span>
+                            <button onclick="agregarAlPedido('Colombiana pequeña', 1500, this)" class="product-btn btn-drink">
+                                <i data-lucide="plus" class="icon-xs"></i> Agregar
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-card drink-card" data-reveal>
+                        <div class="product-info">
+                            <h4 class="product-name">Pepsi pequeña</h4>
+                            <span class="product-price">$1.500</span>
+                            <button onclick="agregarAlPedido('Pepsi pequeña', 1500, this)" class="product-btn btn-drink">
+                                <i data-lucide="plus" class="icon-xs"></i> Agregar
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-card drink-card" data-reveal>
+                        <div class="product-info">
+                            <h4 class="product-name">Manzana 2.5L</h4>
+                            <span class="product-price">$6.000</span>
+                            <button onclick="agregarAlPedido('Manzana 2.5L', 6000, this)" class="product-btn btn-drink">
+                                <i data-lucide="plus" class="icon-xs"></i> Agregar
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-card drink-card" data-reveal>
+                        <div class="product-info">
+                            <h4 class="product-name">Colombiana 2.5L</h4>
+                            <span class="product-price">$6.000</span>
+                            <button onclick="agregarAlPedido('Colombiana 2.5L', 6000, this)" class="product-btn btn-drink">
+                                <i data-lucide="plus" class="icon-xs"></i> Agregar
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-card drink-card" data-reveal>
+                        <div class="product-info">
+                            <h4 class="product-name">Pepsi 2.5L</h4>
+                            <span class="product-price">$6.000</span>
+                            <button onclick="agregarAlPedido('Pepsi 2.5L', 6000, this)" class="product-btn btn-drink">
+                                <i data-lucide="plus" class="icon-xs"></i> Agregar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ADICIONALES -->
+            <div class="menu-category" data-reveal>
+                <div class="category-header">
+                    <h3 class="category-title">➕ ADICIONALES</h3>
                     <div class="category-line"></div>
                 </div>
                 <div class="product-grid">
-
                     <div class="product-card" data-reveal>
-                        <div class="product-img-wrap">
-                            <img src="/sandwich.jpg" alt="Sándwich" class="product-img">
-                            <span class="product-tag">Imperdible</span>
+                        <div class="product-img-wrap product-img-placeholder">
+                            <div class="placeholder-icon">🍟</div>
                         </div>
                         <div class="product-info">
                             <div class="product-header">
-                                <h4 class="product-name">SÁNDWICH CON CARNE DE HAMBURGUESA</h4>
-                                <span class="product-price">$10.000</span>
+                                <h4 class="product-name">PORCIÓN DE PAPAS</h4>
+                                <span class="product-price">$4.000</span>
                             </div>
-                            <p class="product-desc">Pan artesanal, carne artesanal, queso, cebolla Saboratto, lechuga, tomate, papa ripio y salsa de la casa.</p>
-                            <button onclick="agregarAlPedido('Sándwich con carne de hamburguesa', 10000, this)" class="product-btn magnetic-btn">
+                            <p class="product-desc">Porción extra de papas a la francesa, crocantes y calientes.</p>
+                            <button onclick="agregarAlPedido('Porción de papas', 4000, this)" class="product-btn">
                                 <i data-lucide="plus" class="icon-sm"></i> Agregar
                             </button>
                         </div>

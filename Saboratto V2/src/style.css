@@ -1804,3 +1804,70 @@ h1, h2, h3, h4, .font-display {
     background: var(--primary);
     transform: translateY(-2px);
 }
+
+/* ===== NUEVOS ESTILOS BEBIDAS Y COMBOS ===== */
+.product-actions-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-top: auto;
+}
+
+.product-btn.btn-sm { padding: 0.6rem; font-size: 0.85rem; }
+
+.btn-combo {
+    background: linear-gradient(135deg, #f97316, #ea580c);
+    color: white;
+    border: none;
+    box-shadow: 0 4px 12px rgba(249, 115, 22, 0.3);
+}
+
+.btn-combo:hover {
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 0 6px 15px rgba(249, 115, 22, 0.4);
+}
+
+.drink-brand-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin: 3rem 0 1.5rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: var(--radius-md);
+}
+
+.brand-logo {
+    height: 2.5rem;
+    object-fit: contain;
+}
+
+.brand-tag {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-dim);
+    font-weight: 700;
+}
+
+.drink-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)) !important;
+}
+
+.drink-card {
+    padding: 1.25rem !important;
+    min-height: auto !important;
+}
+
+.drink-card .product-name {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.btn-drink {
+    padding: 0.5rem !important;
+    font-size: 0.8rem !important;
+    margin-top: 1rem !important;
+}
+
+.icon-xs { width: 0.85rem; height: 0.85rem; }

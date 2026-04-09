@@ -453,29 +453,33 @@ const EMOJIS_INGREDIENTES = {
     'Salsa cheddar': '🧀'
 };
 
-window.agregarAlPedido = function (nombre, precio, btnEl) {
+window.agregarAlPedido = function (nombre, precio, btnEl, esCombo = false) {
     if (INGREDIENTES_REMOVIBLES[nombre] && btnEl) {
-        mostrarOpcionesInline(nombre, precio, btnEl);
+        mostrarOpcionesInline(nombre, precio, btnEl, esCombo);
     } else {
-        procesarAgregarAlPedido(nombre, precio, []);
+        procesarAgregarAlPedido(nombre, precio, [], esCombo);
     }
 };
 
-window.mostrarOpcionesInline = function (nombre, precio, btnEl) {
+window.mostrarOpcionesInline = function (nombre, precio, btnEl, esCombo = false) {
     const cardInfo = btnEl.parentElement;
 
     // Si ya está abierto el panel allí, no hacer nada
     if (cardInfo.querySelector('.inline-customize')) return;
 
-    // Ocultar botón "Agregar" original
-    btnEl.style.display = 'none';
+    // Ocultar botones originales
+    if (cardInfo.classList.contains('product-actions-grid')) {
+        cardInfo.style.display = 'none';
+    } else {
+        btnEl.style.display = 'none';
+    }
 
     // Crear el panel
     const panel = document.createElement('div');
     panel.className = 'inline-customize';
     panel.style.animation = 'fadeInUp 0.3s ease';
 
-    let html = `<p class="inline-customize-title">¿Quitar algún ingrediente?</p><div class="inline-ingredients">`;
+    let html = `<p class="inline-customize-title">${esCombo ? '🌟 ¡Combo activado! ' : ''}¿Quitar algo?</p><div class="inline-ingredients">`;
 
     INGREDIENTES_REMOVIBLES[nombre].forEach(ing => {
         const emoji = EMOJIS_INGREDIENTES[ing] || '🔸';
@@ -490,37 +494,34 @@ window.mostrarOpcionesInline = function (nombre, precio, btnEl) {
     html += `</div>
         <div class="inline-customize-actions">
             <button onclick="cancelarInline(this)" class="btn-cancel-inline">Cancelar</button>
-            <button onclick="confirmarInline(this, '${nombre}', ${precio})" class="btn-confirm-inline">Confirmar</button>
+            <button onclick="confirmarInline(this, '${nombre}', ${precio}, ${esCombo})" class="btn-confirm-inline">Confirmar</button>
         </div>
     `;
 
     panel.innerHTML = html;
-    cardInfo.appendChild(panel);
-};
-
-window.toggleInlineIngredient = function (element) {
-    const isExcluded = element.classList.contains('excluded');
-    const checkbox = element.querySelector('.ingredient-checkbox');
-
-    if (isExcluded) {
-        element.classList.remove('excluded');
-        checkbox.checked = true;
+    
+    if (cardInfo.classList.contains('product-actions-grid')) {
+        cardInfo.parentElement.appendChild(panel);
     } else {
-        element.classList.add('excluded');
-        checkbox.checked = false;
+        cardInfo.appendChild(panel);
     }
 };
 
 window.cancelarInline = function (btnAction) {
     const panel = btnAction.closest('.inline-customize');
-    const cardInfo = panel.parentElement;
+    const container = panel.parentElement;
     panel.remove();
 
-    const addBtn = cardInfo.querySelector('.product-btn');
-    if (addBtn) addBtn.style.display = 'flex';
+    const actionsGrid = container.querySelector('.product-actions-grid');
+    if (actionsGrid) {
+        actionsGrid.style.display = 'grid';
+    } else {
+        const addBtn = container.querySelector('.product-btn');
+        if (addBtn) addBtn.style.display = 'flex';
+    }
 };
 
-window.confirmarInline = function (btnAction, nombre, precio) {
+window.confirmarInline = function (btnAction, nombre, precio, esCombo = false) {
     const panel = btnAction.closest('.inline-customize');
 
     const exclusiones = [];
@@ -528,30 +529,44 @@ window.confirmarInline = function (btnAction, nombre, precio) {
         exclusiones.push(el.getAttribute('data-name'));
     });
 
-    procesarAgregarAlPedido(nombre, precio, exclusiones);
+    procesarAgregarAlPedido(nombre, precio, exclusiones, esCombo);
 
     // Restaurar el card
-    const cardInfo = panel.parentElement;
+    const container = panel.parentElement;
     panel.remove();
-    const addBtn = cardInfo.querySelector('.product-btn');
-    if (addBtn) addBtn.style.display = 'flex';
+    
+    const actionsGrid = container.querySelector('.product-actions-grid');
+    if (actionsGrid) {
+        actionsGrid.style.display = 'grid';
+    } else {
+        const addBtn = container.querySelector('.product-btn');
+        if (addBtn) addBtn.style.display = 'flex';
+    }
 };
 
-function procesarAgregarAlPedido(nombre, precio, exclusiones) {
-    // Buscar si ya existe el mismo producto con las MISMAS exclusiones
+function procesarAgregarAlPedido(nombre, precio, exclusiones, esCombo = false) {
+    // Buscar si ya existe el mismo producto con las MISMAS exclusiones y MISMO estado de combo
     const exclusionesStr = exclusiones.sort().join('|');
     const itemExistente = pedido.find(item =>
-        item.nombre === nombre && item.exclusiones.sort().join('|') === exclusionesStr
+        item.nombre === nombre && 
+        item.exclusiones.sort().join('|') === exclusionesStr &&
+        item.esCombo === esCombo
     );
 
     if (itemExistente) {
         itemExistente.cantidad++;
     } else {
-        pedido.push({ nombre, precio, cantidad: 1, exclusiones: [...exclusiones] });
+        pedido.push({ 
+            nombre, 
+            precio, 
+            cantidad: 1, 
+            exclusiones: [...exclusiones],
+            esCombo: esCombo
+        });
     }
 
     actualizarPedidoUI();
-    mostrarToast(`Agregaste: ${nombre}`);
+    mostrarToast(`Agregaste: ${nombre}${esCombo ? ' (Combo)' : ''}`);
 }
 
 window.cambiarCantidad = function (index, delta) {
@@ -661,15 +676,31 @@ window.enviarPedidoWhatsApp = function () {
 
     let mensaje = "¡Hola Saboratto! 👋 Quiero hacer el siguiente pedido mediante la página web:%0A%0A";
     let subtotal = 0;
+    let unidadesIcopor = 0;
 
     pedido.forEach(item => {
         // Buscar emoji del producto o usar uno genérico de comida
         let emojiProducto = "🍔";
-        if (item.nombre.toLowerCase().includes('perro')) emojiProducto = "🌭";
-        if (item.nombre.toLowerCase().includes('salchipapa')) emojiProducto = "🍟";
-        if (item.nombre.toLowerCase().includes('sándwich')) emojiProducto = "🥪";
+        const n = item.nombre.toLowerCase();
+        if (n.includes('perro')) {
+            emojiProducto = "🌭";
+            unidadesIcopor += item.cantidad;
+        } else if (n.includes('salchipapa')) {
+            emojiProducto = "🍟";
+            unidadesIcopor += item.cantidad;
+        } else if (n.includes('sándwich')) {
+            emojiProducto = "🥪";
+        } else if (n.includes('coca') || n.includes('gaseosa') || n.includes('pepsi') || n.includes('manzana') || n.includes('colombiana')) {
+            emojiProducto = "🥤";
+        }
 
-        mensaje += `• ${item.cantidad} ${item.nombre} ${emojiProducto} - $${(item.precio * item.cantidad).toLocaleString('es-CO')}%0A`;
+        let nombreMostrar = item.nombre;
+        if (item.esCombo) {
+            mensaje += `• ${item.cantidad} Combo ${item.nombre} 🍱 - $${(item.precio * item.cantidad).toLocaleString('es-CO')}%0A`;
+            mensaje += `  – Incluye: Papas + Coca-Cola Cero%0A`;
+        } else {
+            mensaje += `• ${item.cantidad} ${item.nombre} ${emojiProducto} - $${(item.precio * item.cantidad).toLocaleString('es-CO')}%0A`;
+        }
         
         if (item.exclusiones && item.exclusiones.length > 0) {
             mensaje += `  – Sin: ${item.exclusiones.join(', ')}%0A`;
@@ -681,18 +712,18 @@ window.enviarPedidoWhatsApp = function () {
 
     const descuento = subtotal * 0.05;
     const totalConDescuento = subtotal - descuento;
-    const costoIcopor = 0; // Ajustar si es necesario
+    const costoIcopor = unidadesIcopor * 500;
     const costoDomicilio = 1000;
     const granTotal = totalConDescuento + costoIcopor + costoDomicilio;
 
-    if (pedido.length > 1) {
+    if (pedido.length > 1 || subtotal !== totalConDescuento) {
         mensaje += `Subtotal: $${subtotal.toLocaleString('es-CO')}%0A`;
     }
 
     mensaje += `Descuento página web (5%): -$${descuento.toLocaleString('es-CO')}%0A`;
     
     if (costoIcopor > 0) {
-        mensaje += `Icopor: $${costoIcopor.toLocaleString('es-CO')} (0 unidades)%0A`;
+        mensaje += `Icopor: $${costoIcopor.toLocaleString('es-CO')} (${unidadesIcopor} unidades)%0A`;
     }
 
     mensaje += `Domicilio: $${costoDomicilio.toLocaleString('es-CO')}%0A`;
