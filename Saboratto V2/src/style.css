@@ -29,6 +29,7 @@
 
 html {
     scroll-behavior: auto; /* GSAP maneja el smooth scrolling */
+    scroll-margin-top: 100px; /* Offset para el navbar fijo */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -1916,4 +1917,35 @@ h1, h2, h3, h4, .font-display {
     .category-summary { gap: 0.75rem; }
     .cat-pill { padding: 0.6rem 1.2rem; }
     .cat-name { font-size: 0.85rem; }
+}
+
+/* ===== PEDIDO TOTAL BREAKDOWN ===== */
+.pedido-total-breakdown {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem 0;
+    border-top: 1px solid var(--border);
+    margin-top: 0.5rem;
+}
+
+.breakdown-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.breakdown-row.discount {
+    color: #ef4444;
+    font-weight: 600;
+}
+
+.breakdown-row.total-row {
+    font-size: 1.25rem;
+    color: #fff;
+    font-weight: 800;
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px dashed var(--border);
 }
