@@ -91,10 +91,10 @@
             <div class="hero-content">
                 <div class="hero-badge">
                     <span class="hero-badge-dot">
-                        <span class="hero-badge-ping"></span>
-                        <span class="hero-badge-core"></span>
+                        <span class="hero-badge-ping" id="status-ping"></span>
+                        <span class="hero-badge-core" id="status-dot"></span>
                     </span>
-                    Saboratto Oficial
+                    <span id="status-text">Cargando estado...</span>
                 </div>
 
                 <h1 class="hero-title">
@@ -217,6 +217,10 @@
                     <span class="cat-icon">🍟</span>
                     <span class="cat-name">Salchipapas</span>
                 </a>
+                <a href="#sandwiches" class="cat-pill">
+                    <span class="cat-icon">🥪</span>
+                    <span class="cat-name">Sándwiches</span>
+                </a>
                 <a href="#bebidasyadicionales" class="cat-pill">
                     <span class="cat-icon">🥤</span>
                     <span class="cat-name">Bebidas</span>
@@ -330,8 +334,8 @@
                 <div class="product-grid">
 
                     <div class="product-card" data-reveal>
-                        <div class="product-img-wrap product-img-placeholder">
-                            <div class="placeholder-icon">🌭</div>
+                        <div class="product-img-wrap">
+                            <img src="/perro_tradicional.PNG" alt="Perro Caliente Tradicional" class="product-img">
                         </div>
                         <div class="product-info">
                             <div class="product-header">
@@ -346,8 +350,8 @@
                     </div>
 
                     <div class="product-card" data-reveal>
-                        <div class="product-img-wrap product-img-placeholder">
-                            <div class="placeholder-icon">🌭</div>
+                        <div class="product-img-wrap">
+                            <img src="/perro_especial.PNG" alt="Perro Caliente Especial" class="product-img">
                         </div>
                         <div class="product-info">
                             <div class="product-header">
@@ -439,6 +443,33 @@
                 </div>
             </div>
 
+            <!-- SÁNDWICHES -->
+            <div class="menu-category" data-reveal>
+                <div id="sandwiches" class="category-header">
+                    <h3 class="category-title">🥪 SÁNDWICHES</h3>
+                    <div class="category-line"></div>
+                </div>
+                <div class="product-grid">
+                    <div class="product-card" data-reveal>
+                        <div class="product-img-wrap">
+                            <img src="/sandwich.jpg" alt="Sándwich Saboratto" class="product-img">
+                            <span class="product-tag">Imperdible</span>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-header">
+                                <h4 class="product-name">SÁNDWICH CON CARNE DE HAMBURGUESA</h4>
+                                <span class="product-price">$12.000</span>
+                            </div>
+                            <p class="product-desc">Pan artesanal tipo sandwich, carne artesanal, queso, cebolla Saboratto, lechuga, tomate, papa ripio y salsa de la casa.</p>
+                            <button onclick="agregarAlPedido('Sándwich con carne de hamburguesa', 12000, this)" class="product-btn magnetic-btn">
+                                <i data-lucide="plus" class="icon-sm"></i> Agregar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
             <!-- BEBIDAS 🥤 -->
             <div id="bebidasyadicionales" class="menu-category" data-reveal>
                 <div class="category-header">
@@ -519,7 +550,7 @@
 
                 <!-- POSTOBON -->
                 <div class="drink-brand-header">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/2/25/Postob%C3%B3n_logo.svg" alt="Postobón" class="brand-logo">
+                    <img src="/logo_postobon.png" alt="Postobón" class="brand-logo">
                     <span class="brand-tag">Sabores Locales</span>
                 </div>
                 <div class="product-grid drink-grid">
@@ -588,8 +619,8 @@
                 </div>
                 <div class="product-grid">
                     <div class="product-card" data-reveal>
-                        <div class="product-img-wrap product-img-placeholder">
-                            <div class="placeholder-icon">🍟</div>
+                        <div class="product-img-wrap">
+                            <img src="/porcion_papas.png" alt="Porción de Papas" class="product-img">
                         </div>
                         <div class="product-info">
                             <div class="product-header">

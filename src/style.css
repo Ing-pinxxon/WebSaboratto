@@ -435,6 +435,11 @@ h1, h2, h3, h4, .font-display {
     75%, 100% { transform: scale(2.5); opacity: 0; }
 }
 
+.status-open { background: #10b981 !important; }
+.status-open-ping { background: rgba(16, 185, 129, 0.75) !important; }
+.status-closed { background: #ef4444 !important; }
+.status-closed-ping { background: rgba(239, 68, 68, 0.75) !important; }
+
 .hero-title {
     font-size: clamp(4rem, 12vw, 10rem);
     color: #fff;
@@ -1061,7 +1066,7 @@ h1, h2, h3, h4, .font-display {
     display: flex;
     gap: 1.5rem;
     overflow-x: auto;
-    scroll-snap-type: x mandatory;
+    scroll-snap-type: none;
     padding-bottom: 2rem;
     padding-right: 2rem;
     scrollbar-width: none;
@@ -1076,7 +1081,6 @@ h1, h2, h3, h4, .font-display {
     aspect-ratio: 4 / 5;
     border-radius: var(--radius-lg);
     overflow: hidden;
-    scroll-snap-align: center;
     position: relative;
 }
 
@@ -1555,7 +1559,7 @@ h1, h2, h3, h4, .font-display {
     display: flex;
     gap: 2rem;
     overflow-x: auto;
-    scroll-snap-type: x mandatory;
+    scroll-snap-type: none;
     padding-bottom: 3rem;
     padding-right: 2rem;
     scrollbar-width: none; /* Firefox */
@@ -1571,7 +1575,6 @@ h1, h2, h3, h4, .font-display {
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
     padding: 2.5rem;
-    scroll-snap-align: center;
     transition: all 0.4s ease;
     display: flex;
     flex-direction: column;
