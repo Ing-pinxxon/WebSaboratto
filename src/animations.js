@@ -294,7 +294,7 @@ export function initParallax() {
 
 export function initAutoScroll() {
     const configs = [
-        { id: 'testimonials-container', step: 1 },
+        { id: 'testimonials-container', step: 0.8 },
         { id: 'gallery-container', step: 1 }
     ];
 
@@ -302,21 +302,48 @@ export function initAutoScroll() {
         const el = document.getElementById(config.id);
         if (!el) return;
 
-        let isPaused = false;
-        
-        el.addEventListener('mouseenter', () => isPaused = true);
-        el.addEventListener('mouseleave', () => isPaused = false);
-        el.addEventListener('touchstart', () => isPaused = true);
-        el.addEventListener('touchend', () => isPaused = false);
+        // Clonar elementos para loop infinito real
+        const items = Array.from(el.children);
+        items.forEach(item => {
+            const clone = item.cloneNode(true);
+            el.appendChild(clone);
+        });
 
-        setInterval(() => {
-            if (isPaused) return;
-            
-            if (el.scrollLeft + el.clientWidth >= el.scrollWidth - 1) {
-                el.scrollTo({ left: 0, behavior: 'smooth' });
-            } else {
-                el.scrollBy({ left: config.step, behavior: 'auto' });
+        let isPaused = false;
+        let resumeTimeout = null;
+
+        const pause = (duration = 5000) => {
+            isPaused = true;
+            if (resumeTimeout) clearTimeout(resumeTimeout);
+            resumeTimeout = setTimeout(() => {
+                isPaused = false;
+                resumeTimeout = null;
+            }, duration);
+        };
+
+        // Eventos de pausa
+        el.addEventListener('mouseenter', () => isPaused = true);
+        el.addEventListener('mouseleave', () => {
+            if (!resumeTimeout) isPaused = false;
+        });
+        el.addEventListener('touchstart', () => pause(8000), { passive: true });
+        
+        // Escuchar evento personalizado de las flechas
+        el.addEventListener('pause-autoscroll', () => pause(6000));
+
+        // Animación de scroll
+        const scroll = () => {
+            if (!isPaused) {
+                el.scrollLeft += config.step;
+                
+                // Si llegamos a la mitad (donde empiezan los clones), saltamos al inicio instantáneamente
+                if (el.scrollLeft >= el.scrollWidth / 2) {
+                    el.scrollLeft = 0;
+                }
             }
-        }, 30);
+            requestAnimationFrame(scroll);
+        };
+
+        requestAnimationFrame(scroll);
     });
 }

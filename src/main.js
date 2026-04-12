@@ -1,12 +1,14 @@
 import './style.css';
 import { initAnimations, initAutoScroll, initScrollAnimations, initParallax } from './animations';
 import { initCartUI, enviarPedidoWhatsApp, pedido } from './cart';
+import { initStatusIndicator } from './status';
 
 // ===== INITIALIZATION =====
 document.addEventListener('DOMContentLoaded', () => {
     initPreloader();
     initCartUI(actualizarPedidoUI);
     initAutoScroll();
+    initStatusIndicator();
     
     // Global functions exposure
     window.enviarPedidoWhatsApp = enviarPedidoWhatsApp;
@@ -174,6 +176,25 @@ function toggleMobileMenu() {
 function scrollGallery(direction) {
     const container = document.getElementById('gallery-container');
     if (!container) return;
+    
+    // Notificar al sistema de auto-scroll que se pause
+    container.dispatchEvent(new CustomEvent('pause-autoscroll'));
+    
     const amount = container.clientWidth * 0.75;
-    container.scrollBy({ left: direction === 'left' ? -amount : amount, behavior: 'smooth' });
+    const targetScroll = container.scrollLeft + (direction === 'left' ? -amount : amount);
+    
+    container.scrollTo({
+        left: targetScroll,
+        behavior: 'smooth'
+    });
+
+    // Si llegamos a los límites del loop infinito (aunque los botones suelen ser para navegación finita)
+    // El clon ya ayuda a que no se vea vacío, pero aquí manejamos los saltos si es necesario
+    setTimeout(() => {
+        if (container.scrollLeft >= container.scrollWidth / 2) {
+            container.scrollLeft -= container.scrollWidth / 2;
+        } else if (container.scrollLeft <= 0 && direction === 'left') {
+            container.scrollLeft += container.scrollWidth / 2;
+        }
+    }, 500); // Esperar a que termine el smooth scroll
 }
