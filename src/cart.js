@@ -27,7 +27,11 @@ const EMOJIS_INGREDIENTES = {
     'Tocineta': '🥓',
     'Huevo de codorniz': '🥚',
     'Queso doble crema': '🧀',
-    'Salsa cheddar': '🧀'
+    'Salsa cheddar': '🧀',
+    'Queso criollo fundido': '🧀',
+    'Maíz tierno asado': '🌽',
+    'Plátano maduro': '🍌',
+    'Salsa BBQ': '🫙'
 };
 
 export function initCartUI(actualizarPedidoUI) {
@@ -100,7 +104,7 @@ export function initCartUI(actualizarPedidoUI) {
         if (actionsGrid) {
             actionsGrid.style.display = 'grid';
         } else {
-            const addBtn = container.querySelector('.product-btn');
+            const addBtn = container.querySelector('.product-btn') || container.querySelector('.vmodal-btn-order');
             if (addBtn) addBtn.style.display = 'flex';
         }
     };
@@ -112,14 +116,23 @@ export function initCartUI(actualizarPedidoUI) {
             exclusiones.push(el.getAttribute('data-name'));
         });
         procesarAgregarAlPedido(nombre, precio, exclusiones, esCombo);
+        
         const container = panel.parentElement;
         panel.remove();
+        
         const actionsGrid = container.querySelector('.product-actions-grid');
         if (actionsGrid) {
             actionsGrid.style.display = 'grid';
         } else {
-            const addBtn = container.querySelector('.product-btn');
+            const addBtn = container.querySelector('.product-btn') || container.querySelector('.vmodal-btn-order');
             if (addBtn) addBtn.style.display = 'flex';
+        }
+
+        // Si se estaba personalizando desde el modal, cerrarlo al terminar
+        if (container.classList.contains('vmodal-actions')) {
+            if (typeof closeVideoModal === 'function') {
+                closeVideoModal();
+            }
         }
     };
 

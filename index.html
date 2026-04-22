@@ -99,12 +99,34 @@
                         <i data-lucide="x" class="icon-sm"></i>
                         Cerrar
                     </button>
-                    <button onclick="scrollToSection('menu'); closeVideoModal()" class="vmodal-btn-order">
+                    <button onclick="pedirLaMaster()" class="vmodal-btn-order">
                         <i data-lucide="shopping-bag" class="icon-sm"></i>
                         ¡La quiero ya!
                     </button>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- ===== MODAL COMBO MASTER ===== -->
+    <div id="combo-modal" class="video-modal-overlay" role="dialog" aria-modal="true" style="display:none; z-index: 100005;">
+        <div class="combo-modal-card">
+            <div class="combo-modal-icon">🍔🍟🥤</div>
+            <h3 class="combo-modal-title">¡Excelente elección!</h3>
+            <p class="combo-modal-desc">¿Deseas agregar el combo (Papas a la francesa + Coca-Cola) por $6.000 adicionales?</p>
+            
+            <div class="combo-modal-actions">
+                <button onclick="confirmarMasterCombo(false)" class="combo-btn-solo magnetic-btn">
+                    No, solo hamburguesa<br><span>($21.000)</span>
+                </button>
+                <button onclick="confirmarMasterCombo(true)" class="combo-btn-combo magnetic-btn">
+                    Sí, en combo<br><span>($27.000)</span>
+                </button>
+            </div>
+            
+            <button onclick="cerrarComboModal()" class="combo-close-btn" aria-label="Cerrar">
+                <i data-lucide="x" class="icon-sm"></i>
+            </button>
         </div>
     </div>
 
@@ -407,6 +429,33 @@
                                     <i data-lucide="plus" class="icon-xs"></i> Solo
                                 </button>
                                 <button onclick="agregarAlPedido('Hamburguesa Con Todo', 28000, this, true)"
+                                    class="product-btn btn-combo">
+                                    <i data-lucide="zap" class="icon-xs"></i> + Papas y Gaseosa
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- LA MASTER (Exclusiva) -->
+                    <div class="product-card product-card-master" data-reveal>
+                        <div class="product-img-wrap">
+                            <video src="/video_hamburguesaMaster.mp4" alt="Hamburguesa La Master" class="product-img master-video-preview" autoplay muted loop playsinline></video>
+                            <span class="product-tag tag-fire">🔥 Edición Especial</span>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-header">
+                                <h4 class="product-name master-title-glow">LA MASTER</h4>
+                                <span class="product-price">$21.000</span>
+                            </div>
+                            <p class="product-desc">
+                                Pan premium artesanal, carne 100% res, queso criollo asado en combinación con maíz tierno, tajadas de maduro con una reducción en panela y salsa BBQ, y salsa de la casa.
+                            </p>
+                            <div class="product-actions-grid">
+                                <button onclick="agregarAlPedido('Hamburguesa La Master', 21000, this)"
+                                    class="product-btn btn-sm">
+                                    <i data-lucide="plus" class="icon-xs"></i> Solo
+                                </button>
+                                <button onclick="agregarAlPedido('Hamburguesa La Master', 27000, this, true)"
                                     class="product-btn btn-combo">
                                     <i data-lucide="zap" class="icon-xs"></i> + Papas y Gaseosa
                                 </button>

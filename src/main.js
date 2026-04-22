@@ -144,6 +144,35 @@ function resetVideoSound() {
     }
 }
 
+// Función específica para pedir La Master desde el modal
+window.pedirLaMaster = function() {
+    // Mostrar el modal de combo personalizado
+    const comboModal = document.getElementById('combo-modal');
+    if (comboModal) {
+        comboModal.style.display = 'flex';
+    }
+};
+
+window.cerrarComboModal = function() {
+    const comboModal = document.getElementById('combo-modal');
+    if (comboModal) {
+        comboModal.style.display = 'none';
+    }
+};
+
+window.confirmarMasterCombo = function(quiereCombo) {
+    if (quiereCombo) {
+        agregarAlPedido('Hamburguesa La Master', 27000, null, true);
+    } else {
+        agregarAlPedido('Hamburguesa La Master', 21000, null, false);
+    }
+    
+    // Cerrar el modal de combo
+    cerrarComboModal();
+    // Cerrar el modal de video original
+    closeVideoModal();
+};
+
 function initNavbar() {
     const nav = document.getElementById('navbar');
     import('gsap/ScrollTrigger').then(({ ScrollTrigger }) => {
