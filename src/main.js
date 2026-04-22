@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.scrollToSection = scrollToSection;
     window.toggleMobileMenu = toggleMobileMenu;
     window.scrollGallery = scrollGallery;
+    window.closeVideoModal = closeVideoModal;
 
     if (window.lucide) lucide.createIcons();
 });
@@ -44,11 +45,103 @@ function initPreloader() {
                     onComplete: () => {
                         preloader.style.display = 'none';
                         initAnimations(initNavbar, initParallax);
+                        // Mostrar modal de video tras el preloader
+                        initVideoModal();
                     }
                 });
             }
         });
     });
+}
+
+// ===== VIDEO ANNOUNCEMENT MODAL =====
+function initVideoModal() {
+    const modal = document.getElementById('video-modal');
+    const closeBtn = document.getElementById('video-modal-close');
+    if (!modal) return;
+
+    // Mostrar el modal con animación
+    modal.style.display = 'flex';
+
+    // Recrear los iconos Lucide dentro del modal
+    if (window.lucide) lucide.createIcons();
+
+    // Cerrar con el botón X
+    closeBtn?.addEventListener('click', closeVideoModal);
+
+    // Cerrar al hacer clic en el backdrop (fuera de la tarjeta)
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeVideoModal();
+    });
+
+    // Cerrar con Escape
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeVideoModal();
+    }, { once: true });
+}
+
+function closeVideoModal() {
+    const modal = document.getElementById('video-modal');
+    const video = document.getElementById('modal-video');
+    if (!modal || modal.classList.contains('closing')) return;
+
+    modal.classList.add('closing');
+    if (video) {
+        video.pause();
+    }
+    setTimeout(() => {
+        modal.style.display = 'none';
+        modal.classList.remove('closing');
+        // Resetear estado del botón de sonido
+        resetVideoSound();
+    }, 400);
+}
+
+// Función para controlar el sonido del video
+window.toggleVideoSound = function() {
+    const video = document.getElementById('modal-video');
+    const iconOff = document.getElementById('sound-icon-off');
+    const iconOn = document.getElementById('sound-icon-on');
+    const text = document.getElementById('sound-text');
+    const btn = document.getElementById('vmodal-sound-btn');
+    
+    if (!video) return;
+
+    if (video.muted) {
+        // Activar sonido
+        video.muted = false;
+        video.volume = 1;
+        iconOff.classList.add('hidden');
+        iconOn.classList.remove('hidden');
+        text.innerText = "Sonido activado";
+        btn.style.animation = "none"; // Quitar pulso
+        btn.style.background = "rgba(10, 10, 12, 0.8)";
+    } else {
+        // Desactivar sonido
+        video.muted = true;
+        iconOn.classList.add('hidden');
+        iconOff.classList.remove('hidden');
+        text.innerText = "Activar sonido";
+        btn.style.animation = "vSoundPulse 2s infinite";
+        btn.style.background = "rgba(234, 88, 12, 0.9)";
+    }
+};
+
+function resetVideoSound() {
+    const video = document.getElementById('modal-video');
+    const iconOff = document.getElementById('sound-icon-off');
+    const iconOn = document.getElementById('sound-icon-on');
+    const text = document.getElementById('sound-text');
+    const btn = document.getElementById('vmodal-sound-btn');
+    
+    if (video) video.muted = true;
+    if (iconOff) iconOff.classList.remove('hidden');
+    if (iconOn) iconOn.classList.add('hidden');
+    if (text) text.innerText = "Activar sonido";
+    if (btn) {
+        btn.style.animation = "vSoundPulse 2s infinite";
+        btn.style.background = "rgba(234, 88, 12, 0.9)";
+    }
 }
 
 function initNavbar() {
