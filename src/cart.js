@@ -27,11 +27,7 @@ const EMOJIS_INGREDIENTES = {
     'Tocineta': '🥓',
     'Huevo de codorniz': '🥚',
     'Queso doble crema': '🧀',
-    'Salsa cheddar': '🧀',
-    'Queso criollo fundido': '🧀',
-    'Maíz tierno asado': '🌽',
-    'Plátano maduro': '🍌',
-    'Salsa BBQ': '🫙'
+    'Salsa cheddar': '🧀'
 };
 
 export function initCartUI(actualizarPedidoUI) {

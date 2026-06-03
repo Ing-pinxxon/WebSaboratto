@@ -1,0 +1,929 @@
+=========================================
+BACKUP: HAMBURGUESA LA MASTER
+=========================================
+
+-----------------------------------------
+1. HTML CODE BLOCKS (index.html)
+-----------------------------------------
+
+--- MODAL ANUNCIO DE VIDEO (index.html lines 36-109) ---
+```html
+    <!-- ===== MODAL ANUNCIO DE VIDEO ===== -->
+    <div id="video-modal" class="video-modal-overlay" role="dialog" aria-modal="true" aria-label="Novedad Saboratto"
+        style="display:none">
+        <!-- Partículas decorativas -->
+        <div class="vmodal-particles">
+            <span class="vp vp-1">🍔</span>
+            <span class="vp vp-2">🔥</span>
+            <span class="vp vp-3">✨</span>
+            <span class="vp vp-4">⭐</span>
+            <span class="vp vp-5">🍟</span>
+        </div>
+
+        <div class="video-modal-card">
+            <!-- Cabecera del modal -->
+            <div class="vmodal-header">
+                <div class="vmodal-badge">
+                    <span class="vmodal-badge-pulse"></span>
+                    <span>🔥 LANZAMIENTO EXCLUSIVO</span>
+                </div>
+                <h2 class="vmodal-title">¡Algo increíble llegó!</h2>
+
+                <!-- Nombre del producto -->
+                <div class="vmodal-product-name-wrap">
+                    <span class="vmodal-product-pre">Presentamos</span>
+                    <span class="vmodal-product-name">LA MASTER</span>
+                    <div class="vmodal-product-line"></div>
+                </div>
+
+                <!-- Descripción del producto -->
+                <p class="vmodal-product-desc">
+                    Pan artesanal premium · Carne 100% de res · Queso criollo fundido con maíz tierno asado ·
+                    Tajadas de plátano maduro caramelizadas en reducción de panela y salsa BBQ ·
+                    Nuestra inconfundible salsa de la casa
+                </p>
+            </div>
+
+            <!-- Contenedor del video -->
+            <div class="vmodal-video-wrap">
+                <div class="vmodal-video-glow"></div>
+                <video id="modal-video" class="vmodal-video" src="/video_hamburguesaMaster.mp4" autoplay muted loop
+                    playsinline preload="auto" poster="/hamburguesa_con_todo.jpg"></video>
+                <!-- Overlay degradado inferior -->
+                <div class="vmodal-video-fade"></div>
+                
+                <!-- Controles de Sonido -->
+                <button id="vmodal-sound-btn" class="vmodal-sound-btn" onclick="toggleVideoSound()" aria-label="Activar Sonido">
+                    <i data-lucide="volume-x" class="icon-sm" id="sound-icon-off"></i>
+                    <i data-lucide="volume-2" class="icon-sm hidden" id="sound-icon-on"></i>
+                    <span id="sound-text">Activar sonido</span>
+                </button>
+
+                <!-- Badge sobre el video -->
+                <div class="vmodal-video-badge">
+                    <i data-lucide="flame" class="icon-sm"></i>
+                    Edición especial
+                </div>
+            </div>
+
+            <!-- Pie del modal -->
+            <div class="vmodal-footer">
+                <p class="vmodal-cta-text">¿Listo para probar la hamburguesa más brutal de Saboratto?</p>
+                <div class="vmodal-actions">
+                    <button id="video-modal-close" class="vmodal-btn-close" aria-label="Cerrar anuncio">
+                        <i data-lucide="x" class="icon-sm"></i>
+                        Cerrar
+                    </button>
+                    <button onclick="pedirLaMaster()" class="vmodal-btn-order">
+                        <i data-lucide="shopping-bag" class="icon-sm"></i>
+                        ¡La quiero ya!
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+```
+
+--- MODAL COMBO MASTER (index.html lines 111-131) ---
+```html
+    <!-- ===== MODAL COMBO MASTER ===== -->
+    <div id="combo-modal" class="video-modal-overlay" role="dialog" aria-modal="true" style="display:none; z-index: 100005;">
+        <div class="combo-modal-card">
+            <div class="combo-modal-icon">🍔🍟🥤</div>
+            <h3 class="combo-modal-title">¡Excelente elección!</h3>
+            <p class="combo-modal-desc">¿Deseas agregar el combo (Papas a la francesa + Coca-Cola) por $6.000 adicionales?</p>
+            
+            <div class="combo-modal-actions">
+                <button onclick="confirmarMasterCombo(false)" class="combo-btn-solo magnetic-btn">
+                    No, solo hamburguesa<br><span>($21.000)</span>
+                </button>
+                <button onclick="confirmarMasterCombo(true)" class="combo-btn-combo magnetic-btn">
+                    Sí, en combo<br><span>($27.000)</span>
+                </button>
+            </div>
+            
+            <button onclick="cerrarComboModal()" class="combo-close-btn" aria-label="Cerrar">
+                <i data-lucide="x" class="icon-sm"></i>
+            </button>
+        </div>
+    </div>
+```
+
+--- LA MASTER PRODUCT CARD (index.html lines 439-464) ---
+```html
+                    <!-- LA MASTER (Exclusiva) -->
+                    <div class="product-card product-card-master" data-reveal>
+                        <div class="product-img-wrap">
+                            <video src="/video_hamburguesaMaster.mp4" alt="Hamburguesa La Master" class="product-img master-video-preview" autoplay muted loop playsinline></video>
+                            <span class="product-tag tag-fire">🔥 Edición Especial</span>
+                        </div>
+                        <div class="product-info">
+                            <div class="product-header">
+                                <h4 class="product-name master-title-glow">LA MASTER</h4>
+                                <span class="product-price">$21.000</span>
+                            </div>
+                            <p class="product-desc">
+                                Pan premium artesanal, carne 100% res, queso criollo asado en combinación con maíz tierno, tajadas de maduro con una reducción en panela y salsa BBQ, y salsa de la casa.
+                            </p>
+                            <div class="product-actions-grid">
+                                <button onclick="agregarAlPedido('Hamburguesa La Master', 21000, this)"
+                                    class="product-btn btn-sm">
+                                    <i data-lucide="plus" class="icon-xs"></i> Solo
+                                </button>
+                                <button onclick="agregarAlPedido('Hamburguesa La Master', 27000, this, true)"
+                                    class="product-btn btn-combo">
+                                    <i data-lucide="zap" class="icon-xs"></i> + Papas y Gaseosa
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+```
+
+-----------------------------------------
+2. JAVASCRIPT FUNCTIONS (src/main.js)
+-----------------------------------------
+
+--- WINDOW EXPOSURES AND INITIALIZER CALLS (src/main.js lines 20, 49) ---
+```javascript
+window.closeVideoModal = closeVideoModal;
+
+// inside initPreloader() callback
+initVideoModal();
+```
+
+--- MODAL AND COMBO LOGIC (src/main.js lines 58-174) ---
+```javascript
+// ===== VIDEO ANNOUNCEMENT MODAL =====
+function initVideoModal() {
+    const modal = document.getElementById('video-modal');
+    const closeBtn = document.getElementById('video-modal-close');
+    if (!modal) return;
+
+    // Mostrar el modal con animación
+    modal.style.display = 'flex';
+
+    // Recrear los iconos Lucide dentro del modal
+    if (window.lucide) lucide.createIcons();
+
+    // Cerrar con el botón X
+    closeBtn?.addEventListener('click', closeVideoModal);
+
+    // Cerrar al hacer clic en el backdrop (fuera de la tarjeta)
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeVideoModal();
+    });
+
+    // Cerrar con Escape
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeVideoModal();
+    }, { once: true });
+}
+
+function closeVideoModal() {
+    const modal = document.getElementById('video-modal');
+    const video = document.getElementById('modal-video');
+    if (!modal || modal.classList.contains('closing')) return;
+
+    modal.classList.add('closing');
+    if (video) {
+        video.pause();
+    }
+    setTimeout(() => {
+        modal.style.display = 'none';
+        modal.classList.remove('closing');
+        // Resetear estado del botón de sonido
+        resetVideoSound();
+    }, 400);
+}
+
+// Función para controlar el sonido del video
+window.toggleVideoSound = function() {
+    const video = document.getElementById('modal-video');
+    const iconOff = document.getElementById('sound-icon-off');
+    const iconOn = document.getElementById('sound-icon-on');
+    const text = document.getElementById('sound-text');
+    const btn = document.getElementById('vmodal-sound-btn');
+    
+    if (!video) return;
+
+    if (video.muted) {
+        // Activar sonido
+        video.muted = false;
+        video.volume = 1;
+        iconOff.classList.add('hidden');
+        iconOn.classList.remove('hidden');
+        text.innerText = "Sonido activado";
+        btn.style.animation = "none"; // Quitar pulso
+        btn.style.background = "rgba(10, 10, 12, 0.8)";
+    } else {
+        // Desactivar sonido
+        video.muted = true;
+        iconOn.classList.add('hidden');
+        iconOff.classList.remove('hidden');
+        text.innerText = "Activar sonido";
+        btn.style.animation = "vSoundPulse 2s infinite";
+        btn.style.background = "rgba(234, 88, 12, 0.9)";
+    }
+};
+
+function resetVideoSound() {
+    const video = document.getElementById('modal-video');
+    const iconOff = document.getElementById('sound-icon-off');
+    const iconOn = document.getElementById('sound-icon-on');
+    const text = document.getElementById('sound-text');
+    const btn = document.getElementById('vmodal-sound-btn');
+    
+    if (video) video.muted = true;
+    if (iconOff) iconOff.classList.remove('hidden');
+    if (iconOn) iconOn.classList.add('hidden');
+    if (text) text.innerText = "Activar sonido";
+    if (btn) {
+        btn.style.animation = "vSoundPulse 2s infinite";
+        btn.style.background = "rgba(234, 88, 12, 0.9)";
+    }
+}
+
+// Función específica para pedir La Master desde el modal
+window.pedirLaMaster = function() {
+    // Mostrar el modal de combo personalizado
+    const comboModal = document.getElementById('combo-modal');
+    if (comboModal) {
+        comboModal.style.display = 'flex';
+    }
+};
+
+window.cerrarComboModal = function() {
+    const comboModal = document.getElementById('combo-modal');
+    if (comboModal) {
+        comboModal.style.display = 'none';
+    }
+};
+
+window.confirmarMasterCombo = function(quiereCombo) {
+    if (quiereCombo) {
+        agregarAlPedido('Hamburguesa La Master', 27000, null, true);
+    } else {
+        agregarAlPedido('Hamburguesa La Master', 21000, null, false);
+    }
+    
+    // Cerrar el modal de combo
+    cerrarComboModal();
+    // Cerrar el modal de video original
+    closeVideoModal();
+};
+```
+
+-----------------------------------------
+3. STYLES CODE BLOCK (src/style.css)
+-----------------------------------------
+
+--- CSS CLASS SECTIONS FOR VIDEO MODAL, COMBO MODAL AND MASTER PRODUCT (src/style.css lines 1956-2603) ---
+```css
+/* ===== VIDEO ANNOUNCEMENT MODAL ===== */
+
+.video-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    animation: vmodalFadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.video-modal-overlay.closing {
+    animation: vmodalFadeOut 0.4s cubic-bezier(0.4, 0, 1, 1) forwards;
+}
+
+@keyframes vmodalFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes vmodalFadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; pointer-events: none; }
+}
+
+/* Partículas flotantes */
+.vmodal-particles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.vp {
+    position: absolute;
+    font-size: 2rem;
+    opacity: 0;
+    animation: vParticleFloat 6s ease-in-out infinite;
+    user-select: none;
+}
+
+.vp-1 { left: 8%;  top: 20%; animation-delay: 0s;    animation-duration: 7s; }
+.vp-2 { right: 10%; top: 15%; animation-delay: 1.2s; animation-duration: 5.5s; }
+.vp-3 { left: 15%; bottom: 25%; animation-delay: 2s;  animation-duration: 6.5s; }
+.vp-4 { right: 8%;  bottom: 20%; animation-delay: 0.7s; animation-duration: 8s; }
+.vp-5 { left: 50%; top: 8%;  animation-delay: 1.8s; animation-duration: 6s; }
+
+@keyframes vParticleFloat {
+    0%   { opacity: 0; transform: translateY(30px) scale(0.5) rotate(-10deg); }
+    20%  { opacity: 0.7; }
+    50%  { opacity: 0.5; transform: translateY(-20px) scale(1) rotate(10deg); }
+    80%  { opacity: 0.6; }
+    100% { opacity: 0; transform: translateY(30px) scale(0.5) rotate(-10deg); }
+}
+
+/* Tarjeta principal del modal */
+.video-modal-card {
+    position: relative;
+    width: 100%;
+    max-width: 540px;
+    background: linear-gradient(145deg, rgba(18, 18, 20, 0.98), rgba(10, 10, 12, 0.99));
+    border: 1px solid rgba(249, 115, 22, 0.2);
+    border-radius: 2rem;
+    overflow: hidden;
+    box-shadow:
+        0 0 0 1px rgba(249, 115, 22, 0.08),
+        0 40px 100px rgba(0, 0, 0, 0.8),
+        0 0 80px rgba(234, 88, 12, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    animation: vmodalSlideUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+}
+
+@keyframes vmodalSlideUp {
+    from { opacity: 0; transform: translateY(60px) scale(0.92); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Línea superior decorativa animada */
+.video-modal-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+        transparent 0%,
+        var(--primary-dark) 20%,
+        var(--primary) 50%,
+        var(--primary-light) 80%,
+        transparent 100%);
+    animation: vmodalShimmer 2.5s ease-in-out infinite;
+    background-size: 200% 100%;
+}
+
+@keyframes vmodalShimmer {
+    0%   { background-position: -100% 0; }
+    100% { background-position: 200% 0; }
+}
+
+/* Header del modal */
+.vmodal-header {
+    text-align: center;
+    padding: 2rem 2rem 1.25rem;
+}
+
+.vmodal-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(234, 88, 12, 0.15);
+    border: 1px solid rgba(249, 115, 22, 0.3);
+    color: var(--primary);
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 0.45rem 1.2rem;
+    border-radius: 50px;
+    margin-bottom: 1rem;
+    font-family: var(--font-alt);
+    position: relative;
+    overflow: hidden;
+}
+
+.vmodal-badge::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(249, 115, 22, 0.08), transparent);
+    animation: vBadgeSweep 2s ease-in-out infinite;
+}
+
+@keyframes vBadgeSweep {
+    0%   { transform: translateX(-100%); }
+    100% { transform: translateX(200%); }
+}
+
+.vmodal-badge-pulse {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--primary);
+    display: inline-block;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.vmodal-badge-pulse::after {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 50%;
+    background: rgba(249, 115, 22, 0.4);
+    animation: ping 1.4s ease-in-out infinite;
+}
+
+.vmodal-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 5vw, 2.6rem);
+    color: #fff;
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+    letter-spacing: 1px;
+}
+
+.vmodal-subtitle {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-family: var(--font-alt);
+}
+
+/* Contenedor de video */
+.vmodal-video-wrap {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    /* Sin bordes — el efecto de viñeta los reemplaza */
+    margin: 0;
+}
+
+.vmodal-video-glow {
+    position: absolute;
+    inset: -30px;
+    background: radial-gradient(ellipse at center, rgba(234, 88, 12, 0.15), transparent 70%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.vmodal-video {
+    width: 100%;
+    height: auto;
+    max-height: 450px;
+    object-fit: contain;
+    display: block;
+    border-radius: 8px; /* Pequeño redondeo si el fondo se asoma */
+}
+
+/* Viñeta en los 4 bordes — efecto infinito */
+.vmodal-video-fade {
+    position: absolute;
+    inset: 0;
+    background:
+        /* Superior — funde con el header */
+        linear-gradient(to bottom,
+            rgba(12, 12, 14, 0.92) 0%,
+            transparent 30%
+        ),
+        /* Inferior — funde con el footer */
+        linear-gradient(to top,
+            rgba(12, 12, 14, 0.95) 0%,
+            transparent 35%
+        ),
+        /* Izquierda */
+        linear-gradient(to right,
+            rgba(12, 12, 14, 0.7) 0%,
+            transparent 25%
+        ),
+        /* Derecha */
+        linear-gradient(to left,
+            rgba(12, 12, 14, 0.7) 0%,
+            transparent 25%
+        );
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Controles de Sonido */
+.vmodal-sound-btn {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    z-index: 5;
+    background: rgba(234, 88, 12, 0.9);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    font-size: 0.8rem;
+    font-family: var(--font-alt);
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    animation: vSoundPulse 2s infinite;
+}
+
+@keyframes vSoundPulse {
+    0% { box-shadow: 0 0 0 0 rgba(234, 88, 12, 0.6); }
+    70% { box-shadow: 0 0 0 10px rgba(234, 88, 12, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(234, 88, 12, 0); }
+}
+
+.vmodal-sound-btn:hover {
+    background: var(--primary);
+    transform: scale(1.05);
+}
+
+.hidden { display: none !important; }
+
+/* Badge sobre el video */
+.vmodal-video-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 3;
+    background: rgba(10, 10, 12, 0.8);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(249, 115, 22, 0.3);
+    color: var(--primary);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 0.4rem 0.9rem;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-alt);
+    animation: vBadgePulse 2.5s ease-in-out infinite;
+}
+
+@keyframes vBadgePulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(249, 115, 22, 0); }
+    50%       { box-shadow: 0 0 0 6px rgba(249, 115, 22, 0.15); }
+}
+
+/* Pie del modal */
+.vmodal-footer {
+    padding: 1.5rem 2rem 2rem;
+    text-align: center;
+}
+
+.vmodal-cta-text {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-family: var(--font-alt);
+    margin-bottom: 1.25rem;
+}
+
+.vmodal-actions {
+    display: flex;
+    gap: 0.85rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.vmodal-btn-close {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-muted);
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-md);
+    font-size: 0.875rem;
+    font-weight: 600;
+    font-family: var(--font-alt);
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.vmodal-btn-close:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.18);
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.vmodal-btn-order {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+    color: #fff;
+    padding: 0.75rem 1.75rem;
+    border-radius: var(--radius-md);
+    font-size: 0.9rem;
+    font-weight: 800;
+    font-family: var(--font-alt);
+    transition: all 0.3s;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(234, 88, 12, 0.35);
+    letter-spacing: 0.5px;
+}
+
+.vmodal-btn-order:hover {
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 16px 40px rgba(234, 88, 12, 0.5);
+}
+
+.vmodal-btn-order:active { transform: scale(0.96); }
+
+/* Responsive */
+@media (max-width: 480px) {
+    .video-modal-card { border-radius: 1.5rem; }
+    .vmodal-header { padding: 1.5rem 1.25rem 1rem; }
+    .vmodal-footer { padding: 1.25rem 1.25rem 1.5rem; }
+    .vmodal-video { height: 200px; }
+    .vmodal-title { font-size: 1.8rem; }
+    .vmodal-actions { gap: 0.65rem; }
+    .vmodal-btn-close, .vmodal-btn-order { padding: 0.7rem 1.2rem; font-size: 0.82rem; }
+}
+
+/* ===== "LA MASTER" PRODUCT NAME SECTION ===== */
+
+.vmodal-product-name-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+    margin: 0.75rem 0 1rem;
+}
+
+.vmodal-product-pre {
+    font-family: var(--font-alt);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+}
+
+.vmodal-product-name {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 10vw, 5rem);
+    line-height: 1;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    background: linear-gradient(135deg,
+        #f97316 0%,
+        #fb923c 30%,
+        #fbbf24 55%,
+        #fb923c 75%,
+        #ea580c 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 20px rgba(249, 115, 22, 0.4));
+    animation: vNameGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes vNameGlow {
+    from { filter: drop-shadow(0 0 15px rgba(249, 115, 22, 0.3)); }
+    to   { filter: drop-shadow(0 0 30px rgba(251, 191, 36, 0.6)); }
+}
+
+.vmodal-product-line {
+    width: 4rem;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--primary), var(--primary-light), transparent);
+    border-radius: 10px;
+    margin-top: 0.4rem;
+}
+
+/* Descripción de ingredientes */
+.vmodal-product-desc {
+    font-family: var(--font-alt);
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    text-align: center;
+    max-width: 90%;
+    margin: 0 auto 0.5rem;
+    padding: 0.85rem 1.25rem;
+    background: rgba(249, 115, 22, 0.04);
+    border: 1px solid rgba(249, 115, 22, 0.1);
+    border-radius: var(--radius-sm);
+    position: relative;
+}
+
+.vmodal-product-desc::before {
+    content: '🍔';
+    position: absolute;
+    top: -0.75rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.25rem;
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5));
+}
+
+/* Ajustar header para que no sea tan comprimido con el nuevo contenido */
+.vmodal-header {
+    padding: 1.75rem 1.75rem 1.25rem;
+}
+
+.vmodal-title {
+    margin-bottom: 0;
+}
+
+/* Responsive para el nombre del producto */
+@media (max-width: 480px) {
+    .vmodal-product-name { font-size: 3rem; }
+    .vmodal-product-desc { font-size: 0.72rem; padding: 0.7rem 1rem; }
+    .vmodal-header { padding: 1.25rem 1rem 1rem; }
+}
+
+/* ===== COMBO MODAL ===== */
+.combo-modal-card {
+    position: relative;
+    width: 90%;
+    max-width: 400px;
+    background: linear-gradient(145deg, rgba(18, 18, 20, 0.98), rgba(10, 10, 12, 0.99));
+    border: 1px solid rgba(249, 115, 22, 0.3);
+    border-radius: 1.5rem;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9), 0 0 40px rgba(234, 88, 12, 0.15);
+    animation: vmodalSlideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.combo-modal-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4));
+    animation: bounce 2s infinite ease-in-out;
+}
+
+.combo-modal-title {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    color: #fff;
+    margin-bottom: 0.5rem;
+    letter-spacing: 1px;
+}
+
+.combo-modal-desc {
+    font-family: var(--font-alt);
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+}
+
+.combo-modal-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.combo-btn-solo, .combo-btn-combo {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-alt);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.2;
+}
+
+.combo-btn-solo span, .combo-btn-combo span {
+    font-size: 0.8rem;
+    opacity: 0.8;
+    font-weight: 400;
+}
+
+.combo-btn-solo {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--text-dim);
+}
+
+.combo-btn-solo:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.4);
+    color: #fff;
+}
+
+.combo-btn-combo {
+    background: linear-gradient(135deg, var(--primary), var(--primary-light));
+    border: none;
+    color: white;
+    box-shadow: 0 4px 15px rgba(234, 88, 12, 0.4);
+}
+
+.combo-btn-combo:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(234, 88, 12, 0.6);
+}
+
+.combo-close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: #fff;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.combo-close-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* ===== PRODUCTO MASTER EN EL MENÚ ===== */
+.product-card-master {
+    position: relative;
+    border: 2px solid transparent;
+    background-image: linear-gradient(rgba(18, 18, 20, 0.95), rgba(10, 10, 12, 0.98)), linear-gradient(135deg, #f97316, #fbbf24, #ea580c, #f97316);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    box-shadow: 0 10px 30px rgba(234, 88, 12, 0.2);
+    transform: scale(1.02);
+    animation: masterFireBorder 3s linear infinite;
+    z-index: 2;
+}
+
+@keyframes masterFireBorder {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.product-card-master:hover {
+    transform: scale(1.04) translateY(-5px);
+    box-shadow: 0 15px 40px rgba(234, 88, 12, 0.4);
+}
+
+/* Pseudo-elemento para el resplandor de fuego detrás de la tarjeta */
+.product-card-master::before {
+    content: '';
+    position: absolute;
+    top: -4px; left: -4px; right: -4px; bottom: -4px;
+    background: linear-gradient(135deg, #f97316, #ef4444, #fbbf24, #f97316);
+    z-index: -1;
+    filter: blur(15px);
+    opacity: 0.5;
+    border-radius: inherit;
+    animation: masterFireGlow 2s alternate infinite;
+}
+
+@keyframes masterFireGlow {
+    0% { opacity: 0.3; filter: blur(10px); }
+    100% { opacity: 0.7; filter: blur(20px); }
+}
+
+.master-video-preview {
+    object-fit: cover;
+    object-position: center 30%;
+    transform: scale(1.05);
+}
+
+.tag-fire {
+    background: linear-gradient(90deg, #ea580c, #ef4444);
+    color: white;
+    border: none;
+    box-shadow: 0 4px 10px rgba(239, 68, 68, 0.5);
+    animation: fireTagPulse 1.5s infinite;
+}
+
+@keyframes fireTagPulse {
+    0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.6); }
+    70% { box-shadow: 0 0 0 8px rgba(239, 68, 68, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+}
+
+.master-title-glow {
+    background: linear-gradient(to right, #fbbf24, #f97316, #ef4444);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: 1.4rem !important;
+    letter-spacing: 1px;
+    filter: drop-shadow(0 2px 4px rgba(234, 88, 12, 0.3));
+}
+```
