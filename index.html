@@ -4,17 +4,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Saboratto - Comidas Rápidas Artesanales</title>
+    <title>Saboratto | Hamburguesas Artesanales en San Cristóbal, Bogotá</title>
     <meta name="description"
-        content="Saboratto - Hamburguesas artesanales, perros calientes y más. Sabor único con nuestra receta secreta de cebolla caramelizada. Pide por WhatsApp.">
-    <link rel="icon" type="image/png" href="/logo-saboratto.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Bebas+Neue&family=Outfit:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <link rel="stylesheet" href="/src/style.css">
+        content="Hamburguesas artesanales, perros calientes y salchipapas en Santa Inés Sur, San Cristóbal (Bogotá). Receta secreta de cebolla caramelizada. Pide por WhatsApp.">
+    <link rel="canonical" href="https://saboratto.vercel.app/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Saboratto">
+    <meta property="og:locale" content="es_CO">
+    <meta property="og:title" content="Saboratto | Hamburguesas Artesanales en San Cristóbal, Bogotá">
+    <meta property="og:description"
+        content="Hamburguesas artesanales, perros calientes y salchipapas en Santa Inés Sur, San Cristóbal (Bogotá). Receta secreta de cebolla caramelizada. Pide por WhatsApp.">
+    <meta property="og:url" content="https://saboratto.vercel.app/">
+    <meta property="og:image" content="https://saboratto.vercel.app/og/og-default.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="preload" as="image" href="/hamburguesa_con_todo.webp" fetchpriority="high">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Restaurant",
+        "@id": "https://saboratto.vercel.app/#restaurant",
+        "name": "Saboratto",
+        "alternateName": "Comida Rapida - Saboratto Oficial",
+        "description": "Comidas rápidas artesanales: hamburguesas, perros calientes, salchipapas y sándwiches con receta secreta de cebolla caramelizada. Domicilios por WhatsApp en San Cristóbal, Bogotá.",
+        "image": "https://saboratto.vercel.app/og/og-default.jpg",
+        "logo": "https://saboratto.vercel.app/logo-saboratto.png",
+        "url": "https://saboratto.vercel.app/",
+        "telephone": "+573222430079",
+        "priceRange": "$",
+        "currenciesAccepted": "COP",
+        "servesCuisine": ["Hamburguesas", "Comida rápida", "Perros calientes", "Salchipapas"],
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Cll 27a Sur #5-21 Este, Santa Inés Sur, San Cristóbal",
+            "addressLocality": "Bogotá",
+            "addressRegion": "Bogotá, D.C.",
+            "addressCountry": "CO"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 4.5641634,
+            "longitude": -74.0869148
+        },
+        "openingHoursSpecification": [
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Tuesday", "Wednesday", "Thursday"],
+                "opens": "19:00",
+                "closes": "22:00"
+            },
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Friday", "Saturday", "Sunday"],
+                "opens": "18:00",
+                "closes": "23:00"
+            }
+        ],
+        "hasMenu": "https://saboratto.vercel.app/#menu",
+        "sameAs": [
+            "https://www.instagram.com/saboratto.oficial/",
+            "https://www.tiktok.com/@saboratto_oficial",
+            "https://www.google.com/maps/place/Comida+Rapida+-+Saboratto+Oficial/@4.5641634,-74.0869148,20z"
+        ]
+    }
+    </script>
+    <!--#include:head-shared-->
 </head>
 
 <body>
@@ -25,7 +80,7 @@
     <!-- Preloader -->
     <div id="preloader" class="preloader">
         <div class="preloader-inner">
-            <img src="/logo-saboratto.png" alt="Saboratto" class="preloader-logo">
+            <img src="/logo-saboratto.webp" alt="Saboratto" class="preloader-logo" width="400" height="172">
             <div class="preloader-bar">
                 <div class="preloader-fill" id="preloader-fill"></div>
             </div>
@@ -33,53 +88,7 @@
         </div>
     </div>
 
-
-    <!-- Navegación -->
-    <nav id="navbar" class="navbar">
-        <div class="nav-container">
-            <div class="nav-inner">
-                <div class="nav-logo" onclick="scrollToSection('inicio')">
-                    <img src="/logo-saboratto.png" alt="Saboratto" class="nav-logo-img">
-                </div>
-
-                <!-- Menú Desktop -->
-                <div class="nav-links">
-                    <button class="nav-link" onclick="scrollToSection('inicio')">Inicio</button>
-                    <button class="nav-link" onclick="scrollToSection('menu')">Nuestro Menú</button>
-                    <button class="nav-link" onclick="scrollToSection('galeria')">Galería</button>
-                    <button class="nav-link" onclick="scrollToSection('contacto')">Ubicación</button>
-                </div>
-
-                <div class="nav-cta-wrap">
-                    <button onclick="togglePedido()" class="nav-cta magnetic-btn">
-                        <i data-lucide="shopping-bag" class="icon-sm"></i>
-                        Ver Pedido
-                    </button>
-                </div>
-
-                <!-- Botón Menú Móvil -->
-                <div class="nav-mobile-btn-wrap">
-                    <button id="mobile-menu-btn" class="nav-mobile-btn" onclick="toggleMobileMenu()">
-                        <i data-lucide="menu" class="icon-lg"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Menú Móvil -->
-        <div id="mobile-menu" class="mobile-menu hidden">
-            <div class="mobile-menu-inner">
-                <button onclick="scrollToSection('inicio'); toggleMobileMenu()" class="mobile-link">Inicio</button>
-                <button onclick="scrollToSection('menu'); toggleMobileMenu()" class="mobile-link">Nuestro Menú</button>
-                <button onclick="scrollToSection('galeria'); toggleMobileMenu()" class="mobile-link">Galería</button>
-                <button onclick="scrollToSection('contacto'); toggleMobileMenu()" class="mobile-link">Ubicación</button>
-                <button onclick="togglePedido(); toggleMobileMenu()" class="mobile-cta">
-                    <i data-lucide="shopping-bag" class="icon-sm"></i>
-                    Ver Pedido
-                </button>
-            </div>
-        </div>
-    </nav>
+    <!--#include:nav-->
 
     <!-- Hero Section -->
     <section id="inicio" class="hero">
@@ -102,26 +111,28 @@
                 </div>
 
                 <h1 class="hero-title">
-                    <span class="hero-line">
+                    <span class="sr-only">Hamburguesas artesanales y comida rápida en San Cristóbal, Bogotá —
+                        Saboratto</span>
+                    <span class="hero-line" aria-hidden="true">
                         <span class="hero-word" data-word>SABOR</span>
                     </span>
-                    <span class="hero-line">
+                    <span class="hero-line" aria-hidden="true">
                         <span class="hero-word hero-word-accent" data-word>ÚNICO</span>
                     </span>
-                    <span class="hero-line">
+                    <span class="hero-line" aria-hidden="true">
                         <span class="hero-word" data-word>ARTESANAL</span>
                     </span>
                 </h1>
 
                 <p class="hero-desc">
-                    Experiencia gastronómica que despierta tus sentidos. Hamburguesas de autor creadas con pasión y
-                    nuestra inconfundible cebolla secreta.
+                    Hamburguesas de autor, perros calientes y salchipapas en Santa Inés Sur, San Cristóbal.
+                    Creadas con pasión y nuestra inconfundible cebolla secreta, con domicilio por WhatsApp.
                 </p>
 
                 <div class="hero-buttons">
-                    <button onclick="scrollToSection('menu')" class="btn-primary magnetic-btn">
+                    <a href="/#menu" class="btn-primary magnetic-btn">
                         Explorar Menú
-                    </button>
+                    </a>
                     <button onclick="togglePedido()" class="btn-outline magnetic-btn">
                         <i data-lucide="shopping-bag" class="icon-md"></i>
                         Pide por WhatsApp
@@ -147,7 +158,7 @@
                 <div class="hero-glow"></div>
                 <div class="hero-img-wrap">
                     <video src="/hamburguesa_saboratto.mp4" class="hero-img" id="hero-img" autoplay loop muted
-                        playsinline preload="auto" typeof="video/mp4" poster="/hamburguesa_con_todo.jpg"></video>
+                        playsinline preload="metadata" poster="/hamburguesa_con_todo.webp"></video>
                 </div>
 
                 <!-- Badge Flotante -->
@@ -210,23 +221,23 @@
 
             <!-- Navegación de Categorías (Resumen) -->
             <div class="category-summary" data-reveal>
-                <a href="#hamburguesas" class="cat-pill">
+                <a href="/hamburguesas/" class="cat-pill">
                     <span class="cat-icon">🍔</span>
                     <span class="cat-name">Hamburguesas</span>
                 </a>
-                <a href="#perros" class="cat-pill">
+                <a href="/perros-calientes/" class="cat-pill">
                     <span class="cat-icon">🌭</span>
                     <span class="cat-name">Perros</span>
                 </a>
-                <a href="#salchipapas" class="cat-pill">
+                <a href="/salchipapas/" class="cat-pill">
                     <span class="cat-icon">🍟</span>
                     <span class="cat-name">Salchipapas</span>
                 </a>
-                <a href="#sandwiches" class="cat-pill">
+                <a href="/sandwiches/" class="cat-pill">
                     <span class="cat-icon">🥪</span>
                     <span class="cat-name">Sándwiches</span>
                 </a>
-                <a href="#bebidasyadicionales" class="cat-pill">
+                <a href="/bebidas/" class="cat-pill">
                     <span class="cat-icon">🥤</span>
                     <span class="cat-name">Bebidas</span>
                 </a>
@@ -242,56 +253,8 @@
 
                     <div class="product-card" data-reveal>
                         <div class="product-img-wrap">
-                            <img src="/hamburguesa_tradicional.jpg" alt="Hamburguesa Tradicional" class="product-img">
-                        </div>
-                        <div class="product-info">
-                            <div class="product-header">
-                                <h4 class="product-name">TRADICIONAL</h4>
-                                <span class="product-price">$11.500</span>
-                            </div>
-                            <p class="product-desc">Pan artesanal, carne artesanal, queso, cebolla Saboratto, lechuga,
-                                tomate, papa ripio y salsa de la casa.</p>
-                            <div class="product-actions-grid">
-                                <button onclick="agregarAlPedido('Hamburguesa Tradicional', 11500, this)"
-                                    class="product-btn btn-sm">
-                                    <i data-lucide="plus" class="icon-xs"></i> Solo
-                                </button>
-                                <button onclick="agregarAlPedido('Hamburguesa Tradicional', 17500, this, true)"
-                                    class="product-btn btn-combo">
-                                    <i data-lucide="zap" class="icon-xs"></i> + Papas y Gaseosa
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="product-card" data-reveal>
-                        <div class="product-img-wrap">
-                            <img src="/hamburguesa_especial_v3.png" alt="Hamburguesa Especial" class="product-img">
-                            <span class="product-tag">Especial</span>
-                        </div>
-                        <div class="product-info">
-                            <div class="product-header">
-                                <h4 class="product-name">ESPECIAL</h4>
-                                <span class="product-price">$15.000</span>
-                            </div>
-                            <p class="product-desc">Todos los ingredientes de la tradicional + jamón ahumado, doble
-                                tocineta y huevo de codorniz.</p>
-                            <div class="product-actions-grid">
-                                <button onclick="agregarAlPedido('Hamburguesa Especial', 15000, this)"
-                                    class="product-btn btn-sm">
-                                    <i data-lucide="plus" class="icon-xs"></i> Solo
-                                </button>
-                                <button onclick="agregarAlPedido('Hamburguesa Especial', 21000, this, true)"
-                                    class="product-btn btn-combo">
-                                    <i data-lucide="zap" class="icon-xs"></i> + Papas y Gaseosa
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="product-card" data-reveal>
-                        <div class="product-img-wrap">
-                            <img src="/hamburguesa_ranchera.jpg" alt="Hamburguesa Ranchera" class="product-img">
+                            <img src="/hamburguesa_ranchera.webp" alt="Hamburguesa Ranchera artesanal de Saboratto"
+                                class="product-img" width="747" height="1024" loading="lazy" decoding="async">
                             <span class="product-tag">La más vendida</span>
                         </div>
                         <div class="product-info">
@@ -314,34 +277,11 @@
                         </div>
                     </div>
 
-
-                    <div class="product-card" data-reveal>
-                        <div class="product-img-wrap">
-                            <img src="/hamburguesa_con_todo.jpg" alt="Hamburguesa Con Todo" class="product-img">
-                            <span class="product-tag">La Más Grande</span>
-                        </div>
-                        <div class="product-info">
-                            <div class="product-header">
-                                <h4 class="product-name">CON TODO</h4>
-                                <span class="product-price">$22.000</span>
-                            </div>
-                            <p class="product-desc">Todos los ingredientes de la especial + doble carne + salchicha
-                                Ranchera premium y tocineta.</p>
-                            <div class="product-actions-grid">
-                                <button onclick="agregarAlPedido('Hamburguesa Con Todo', 22000, this)"
-                                    class="product-btn btn-sm">
-                                    <i data-lucide="plus" class="icon-xs"></i> Solo
-                                </button>
-                                <button onclick="agregarAlPedido('Hamburguesa Con Todo', 28000, this, true)"
-                                    class="product-btn btn-combo">
-                                    <i data-lucide="zap" class="icon-xs"></i> + Papas y Gaseosa
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-
                 </div>
+                <a href="/hamburguesas/" class="category-more">
+                    Ver las 4 hamburguesas artesanales
+                    <i data-lucide="arrow-right" class="icon-sm"></i>
+                </a>
             </div>
 
             <!-- PERROS CALIENTES -->
@@ -354,43 +294,8 @@
 
                     <div class="product-card" data-reveal>
                         <div class="product-img-wrap">
-                            <img src="/perro_tradicional.PNG" alt="Perro Caliente Tradicional" class="product-img">
-                        </div>
-                        <div class="product-info">
-                            <div class="product-header">
-                                <h4 class="product-name">TRADICIONAL</h4>
-                                <span class="product-price">$8.000</span>
-                            </div>
-                            <p class="product-desc">Pan artesanal, salchicha de cerdo ahumado, cebolla Saboratto, papa
-                                ripio, salsa de la casa y queso doble crema.</p>
-                            <button onclick="agregarAlPedido('Perro Caliente Tradicional', 8000, this)"
-                                class="product-btn magnetic-btn">
-                                <i data-lucide="plus" class="icon-sm"></i> Agregar
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="product-card" data-reveal>
-                        <div class="product-img-wrap">
-                            <img src="/perro_especial.PNG" alt="Perro Caliente Especial" class="product-img">
-                        </div>
-                        <div class="product-info">
-                            <div class="product-header">
-                                <h4 class="product-name">ESPECIAL</h4>
-                                <span class="product-price">$13.000</span>
-                            </div>
-                            <p class="product-desc">Todos los ingredientes del tradicional + jamón ahumado, doble
-                                tocineta y huevo de codorniz.</p>
-                            <button onclick="agregarAlPedido('Perro Caliente Especial', 13000, this)"
-                                class="product-btn magnetic-btn">
-                                <i data-lucide="plus" class="icon-sm"></i> Agregar
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="product-card" data-reveal>
-                        <div class="product-img-wrap">
-                            <img src="/perro_ranchero.jpg" alt="Perro Caliente Ranchero" class="product-img">
+                            <img src="/perro_ranchero.webp" alt="Perro Caliente Ranchero de Saboratto"
+                                class="product-img" width="682" height="1024" loading="lazy" decoding="async">
                             <span class="product-tag">El más comprado</span>
                         </div>
                         <div class="product-info">
@@ -407,6 +312,10 @@
                         </div>
                     </div>
                 </div>
+                <a href="/perros-calientes/" class="category-more">
+                    Ver los 3 perros calientes
+                    <i data-lucide="arrow-right" class="icon-sm"></i>
+                </a>
             </div>
 
             <!-- SALCHIPAPAS -->
@@ -418,44 +327,9 @@
                 <div class="product-grid">
 
                     <div class="product-card" data-reveal>
-                        <div class="product-img-wrap product-img-placeholder">
-                            <div class="placeholder-icon">🍟</div>
-                        </div>
-                        <div class="product-info">
-                            <div class="product-header">
-                                <h4 class="product-name">TRADICIONAL</h4>
-                                <span class="product-price">$10.000</span>
-                            </div>
-                            <p class="product-desc">Papa francesa, salchicha de cerdo ahumado, triple queso, huevo de
-                                codorniz y salsa cheddar.</p>
-                            <button onclick="agregarAlPedido('Salchipapa Tradicional', 10000, this)"
-                                class="product-btn magnetic-btn">
-                                <i data-lucide="plus" class="icon-sm"></i> Agregar
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="product-card" data-reveal>
-                        <div class="product-img-wrap product-img-placeholder">
-                            <div class="placeholder-icon">🍟</div>
-                        </div>
-                        <div class="product-info">
-                            <div class="product-header">
-                                <h4 class="product-name">RANCHERA</h4>
-                                <span class="product-price">$15.000</span>
-                            </div>
-                            <p class="product-desc">Todos los ingredientes de la tradicional + salchicha Ranchera
-                                premium y tocineta.</p>
-                            <button onclick="agregarAlPedido('Salchipapa Ranchera', 15000, this)"
-                                class="product-btn magnetic-btn">
-                                <i data-lucide="plus" class="icon-sm"></i> Agregar
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="product-card" data-reveal>
                         <div class="product-img-wrap">
-                            <img src="/salchipapa_doble.jpg" alt="Salchipapa Doble" class="product-img">
+                            <img src="/salchipapa_doble.webp" alt="Salchipapa Doble de Saboratto" class="product-img"
+                                width="747" height="1024" loading="lazy" decoding="async">
                             <span class="product-tag">La más grande</span>
                         </div>
                         <div class="product-info">
@@ -472,6 +346,10 @@
                         </div>
                     </div>
                 </div>
+                <a href="/salchipapas/" class="category-more">
+                    Ver las 3 salchipapas
+                    <i data-lucide="arrow-right" class="icon-sm"></i>
+                </a>
             </div>
 
             <!-- SÁNDWICHES -->
@@ -483,7 +361,8 @@
                 <div class="product-grid">
                     <div class="product-card" data-reveal>
                         <div class="product-img-wrap">
-                            <img src="/sandwich.jpg" alt="Sándwich Saboratto" class="product-img">
+                            <img src="/sandwich.webp" alt="Sándwich con carne de hamburguesa de Saboratto"
+                                class="product-img" width="800" height="533" loading="lazy" decoding="async">
                             <span class="product-tag">Imperdible</span>
                         </div>
                         <div class="product-info">
@@ -500,43 +379,19 @@
                         </div>
                     </div>
                 </div>
+                <a href="/sandwiches/" class="category-more">
+                    Conoce nuestro sándwich
+                    <i data-lucide="arrow-right" class="icon-sm"></i>
+                </a>
             </div>
 
-
-            <!-- BEBIDAS 🥤 -->
+            <!-- BEBIDAS Y ADICIONALES -->
             <div id="bebidasyadicionales" class="menu-category" data-reveal>
                 <div class="category-header">
-                    <h3 class="category-title">🥤 BEBIDAS</h3>
+                    <h3 class="category-title">🥤 BEBIDAS Y ADICIONALES</h3>
                     <div class="category-line"></div>
                 </div>
-
-                <!-- COCA-COLA -->
-                <div class="drink-brand-header">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/c/ce/Coca-Cola_logo.svg" alt="Coca-Cola"
-                        class="brand-logo">
-                    <span class="brand-tag">Original & Cero</span>
-                </div>
-                <div class="product-grid drink-grid">
-                    <div class="product-card drink-card" data-reveal>
-                        <div class="product-info">
-                            <h4 class="product-name">Coca Cola pequeña combo</h4>
-                            <span class="product-price">$2.000</span>
-                            <button onclick="agregarAlPedido('Coca Cola pequeña de combo', 2000, this)"
-                                class="product-btn btn-drink">
-                                <i data-lucide="plus" class="icon-xs"></i> Agregar
-                            </button>
-                        </div>
-                    </div>
-                    <div class="product-card drink-card" data-reveal>
-                        <div class="product-info">
-                            <h4 class="product-name">Coca Cola pequeña original</h4>
-                            <span class="product-price">$2.500</span>
-                            <button onclick="agregarAlPedido('Coca Cola pequeña original', 2500, this)"
-                                class="product-btn btn-drink">
-                                <i data-lucide="plus" class="icon-xs"></i> Agregar
-                            </button>
-                        </div>
-                    </div>
+                <div class="product-grid">
                     <div class="product-card drink-card" data-reveal>
                         <div class="product-info">
                             <h4 class="product-name">Coca Cola personal</h4>
@@ -547,123 +402,10 @@
                             </button>
                         </div>
                     </div>
-                    <div class="product-card drink-card" data-reveal>
-                        <div class="product-info">
-                            <h4 class="product-name">Coca Cola 1.5L</h4>
-                            <span class="product-price">$6.500</span>
-                            <button onclick="agregarAlPedido('Coca Cola 1.5L', 6500, this)"
-                                class="product-btn btn-drink">
-                                <i data-lucide="plus" class="icon-xs"></i> Agregar
-                            </button>
-                        </div>
-                    </div>
-                    <div class="product-card drink-card" data-reveal>
-                        <div class="product-info">
-                            <h4 class="product-name">Quatro 1.5L</h4>
-                            <span class="product-price">$5.000</span>
-                            <button onclick="agregarAlPedido('Quatro 1.5L', 5000, this)" class="product-btn btn-drink">
-                                <i data-lucide="plus" class="icon-xs"></i> Agregar
-                            </button>
-                        </div>
-                    </div>
-                    <div class="product-card drink-card" data-reveal>
-                        <div class="product-info">
-                            <h4 class="product-name">Sprite 1.5L</h4>
-                            <span class="product-price">$5.000</span>
-                            <button onclick="agregarAlPedido('Sprite 1.5L', 5000, this)" class="product-btn btn-drink">
-                                <i data-lucide="plus" class="icon-xs"></i> Agregar
-                            </button>
-                        </div>
-                    </div>
-                    <div class="product-card drink-card" data-reveal>
-                        <div class="product-info">
-                            <h4 class="product-name">Jugo Del Valle</h4>
-                            <span class="product-price">$5.000</span>
-                            <button onclick="agregarAlPedido('Jugo Del Valle', 5000, this)"
-                                class="product-btn btn-drink">
-                                <i data-lucide="plus" class="icon-xs"></i> Agregar
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- POSTOBON -->
-                <div class="drink-brand-header">
-                    <img src="/logo_postobon.png" alt="Postobón" class="brand-logo">
-                    <span class="brand-tag">Sabores Locales</span>
-                </div>
-                <div class="product-grid drink-grid">
-                    <div class="product-card drink-card" data-reveal>
-                        <div class="product-info">
-                            <h4 class="product-name">Manzana pequeña</h4>
-                            <span class="product-price">$1.500</span>
-                            <button onclick="agregarAlPedido('Manzana pequeña', 1500, this)"
-                                class="product-btn btn-drink">
-                                <i data-lucide="plus" class="icon-xs"></i> Agregar
-                            </button>
-                        </div>
-                    </div>
-                    <div class="product-card drink-card" data-reveal>
-                        <div class="product-info">
-                            <h4 class="product-name">Colombiana pequeña</h4>
-                            <span class="product-price">$1.500</span>
-                            <button onclick="agregarAlPedido('Colombiana pequeña', 1500, this)"
-                                class="product-btn btn-drink">
-                                <i data-lucide="plus" class="icon-xs"></i> Agregar
-                            </button>
-                        </div>
-                    </div>
-                    <div class="product-card drink-card" data-reveal>
-                        <div class="product-info">
-                            <h4 class="product-name">Pepsi pequeña</h4>
-                            <span class="product-price">$1.500</span>
-                            <button onclick="agregarAlPedido('Pepsi pequeña', 1500, this)"
-                                class="product-btn btn-drink">
-                                <i data-lucide="plus" class="icon-xs"></i> Agregar
-                            </button>
-                        </div>
-                    </div>
-                    <div class="product-card drink-card" data-reveal>
-                        <div class="product-info">
-                            <h4 class="product-name">Manzana 2.5L</h4>
-                            <span class="product-price">$6.000</span>
-                            <button onclick="agregarAlPedido('Manzana 2.5L', 6000, this)" class="product-btn btn-drink">
-                                <i data-lucide="plus" class="icon-xs"></i> Agregar
-                            </button>
-                        </div>
-                    </div>
-                    <div class="product-card drink-card" data-reveal>
-                        <div class="product-info">
-                            <h4 class="product-name">Colombiana 2.5L</h4>
-                            <span class="product-price">$6.000</span>
-                            <button onclick="agregarAlPedido('Colombiana 2.5L', 6000, this)"
-                                class="product-btn btn-drink">
-                                <i data-lucide="plus" class="icon-xs"></i> Agregar
-                            </button>
-                        </div>
-                    </div>
-                    <div class="product-card drink-card" data-reveal>
-                        <div class="product-info">
-                            <h4 class="product-name">Pepsi 2.5L</h4>
-                            <span class="product-price">$6.000</span>
-                            <button onclick="agregarAlPedido('Pepsi 2.5L', 6000, this)" class="product-btn btn-drink">
-                                <i data-lucide="plus" class="icon-xs"></i> Agregar
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ADICIONALES -->
-            <div class="menu-category" data-reveal>
-                <div class="category-header">
-                    <h3 class="category-title">➕ ADICIONALES</h3>
-                    <div class="category-line"></div>
-                </div>
-                <div class="product-grid">
                     <div class="product-card" data-reveal>
                         <div class="product-img-wrap">
-                            <img src="/porcion_papas.png" alt="Porción de Papas" class="product-img">
+                            <img src="/porcion_papas.webp" alt="Porción de papas a la francesa de Saboratto"
+                                class="product-img" width="800" height="600" loading="lazy" decoding="async">
                         </div>
                         <div class="product-info">
                             <div class="product-header">
@@ -677,6 +419,10 @@
                         </div>
                     </div>
                 </div>
+                <a href="/bebidas/" class="category-more">
+                    Ver todas las bebidas y adicionales
+                    <i data-lucide="arrow-right" class="icon-sm"></i>
+                </a>
             </div>
         </div>
     </section>
@@ -805,8 +551,7 @@
                 <div class="testimonial-card">
                     <div class="testimonial-header">
                         <div class="testimonial-google">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_Maps_icon_%282020%29.svg"
-                                alt="Google Maps" class="google-icon">
+                            <i data-lucide="map-pin" class="icon-sm text-orange"></i>
                             <span>Google Maps</span>
                         </div>
                         <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
@@ -833,10 +578,10 @@
                     <h2 class="section-title section-title-sm">GALERÍA SABORATTO</h2>
                 </div>
                 <div class="gallery-arrows">
-                    <button class="gallery-arrow" onclick="scrollGallery('left')">
+                    <button class="gallery-arrow" onclick="scrollGallery('left')" aria-label="Anterior">
                         <i data-lucide="chevron-left"></i>
                     </button>
-                    <button class="gallery-arrow" onclick="scrollGallery('right')">
+                    <button class="gallery-arrow" onclick="scrollGallery('right')" aria-label="Siguiente">
                         <i data-lucide="chevron-right"></i>
                     </button>
                 </div>
@@ -845,154 +590,32 @@
         <div class="gallery-track-wrap">
             <div id="gallery-container" class="gallery-track">
                 <div class="gallery-item">
-                    <img src="/gallery/gallery_1.jpg" alt="Saboratto Ambiente" class="gallery-img">
+                    <img src="/gallery/gallery_1.webp" alt="Ambiente del local Saboratto en San Cristóbal"
+                        class="gallery-img" width="682" height="1024" loading="lazy" decoding="async">
                 </div>
                 <div class="gallery-item">
-                    <img src="/gallery/gallery_2.jpg" alt="Saboratto Hamburguesa Especial" class="gallery-img">
+                    <img src="/gallery/gallery_2.webp" alt="Hamburguesa Especial de Saboratto" class="gallery-img"
+                        width="682" height="1024" loading="lazy" decoding="async">
                 </div>
                 <div class="gallery-item">
-                    <img src="/gallery/gallery_3.jpg" alt="Saboratto Textura" class="gallery-img">
+                    <img src="/gallery/gallery_3.webp" alt="Textura de la carne artesanal Saboratto" class="gallery-img"
+                        width="764" height="1024" loading="lazy" decoding="async">
                 </div>
                 <div class="gallery-item">
-                    <img src="/gallery/gallery_4.jpg" alt="Saboratto Presentación" class="gallery-img">
+                    <img src="/gallery/gallery_4.webp" alt="Presentación de los platos Saboratto" class="gallery-img"
+                        width="764" height="1024" loading="lazy" decoding="async">
                 </div>
                 <div class="gallery-item">
-                    <img src="/gallery/gallery_5.jpg" alt="Saboratto Local" class="gallery-img">
+                    <img src="/gallery/gallery_5.webp" alt="Local de Saboratto en Santa Inés Sur, Bogotá"
+                        class="gallery-img" width="576" height="1024" loading="lazy" decoding="async">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer & Contacto -->
-    <footer id="contacto" class="footer">
-        <div class="container">
-            <div class="footer-grid">
+    <!--#include:footer-->
 
-                <!-- Logo y Redes -->
-                <div class="footer-brand">
-                    <img src="/logo-saboratto.png" alt="Saboratto" class="footer-logo">
-                    <p class="footer-desc">No hacemos simples comidas rápidas, creamos experiencias llenas de sabor,
-                        calidad y tradición en cada mordida.</p>
-                    <div class="footer-socials">
-                        <a href="https://www.instagram.com/saboratto.oficial/" target="_blank" class="social-link">
-                            <svg class="social-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.332 3.608 1.308.975.975 1.245 2.242 1.308 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.063 1.366-.333 2.633-1.308 3.608-.975.975-2.242 1.245-3.608 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.063-2.633-.333-3.608-1.308-.975-.975-1.245-2.242-1.308-3.608-.058-1.266-.07-1.646-.07-4.85s.012-3.584.07-4.85c.062-1.366.332-2.633 1.308-3.608.975-.975 2.242-1.245 3.608-1.308 1.266-.058 1.646-.07 4.85-.07zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072s3.667-.014 4.947-.072c4.358-.2 6.78-2.618 6.98-6.98.058-1.281.072-1.689.072-4.948s-.014-3.667-.072-4.947c-.2-4.358-2.618-6.78-6.98-6.98-1.281-.058-1.689-.072-4.948-.072zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.791-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.209-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-                            </svg>
-                        </a>
-                        <a href="https://www.tiktok.com/@saboratto_oficial?_r=1&_t=ZS-94jzUiOFgzQ" target="_blank"
-                            class="social-link">
-                            <svg class="social-icon social-icon-sm" viewBox="0 0 448 512"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M448,209.91a210.06,210.06,0,0,1-122.77-39.25V349.38A162.55,162.55,0,1,1,185,188.31V278.2a74.62,74.62,0,1,0,52.23,71.18V0l88,0a121.18,121.18,0,0,0,1.86,22.17h0A122.18,122.18,0,0,0,381,102.39a121.43,121.43,0,0,0,67,20.14Z" />
-                            </svg>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Horarios -->
-                <div class="footer-block" data-reveal>
-                    <h4 class="footer-heading">Horario</h4>
-                    <ul class="footer-schedule">
-                        <li><span>Martes - Jueves</span><span class="text-white">7:00 PM - 10:00 PM</span></li>
-                        <li><span>Viernes - Domingo</span><span class="text-white">6:00 PM - 11:00 PM</span></li>
-                        <li class="schedule-closed"><span>Lunes</span><span class="text-red">Cerrado</span></li>
-                    </ul>
-                </div>
-
-                <!-- Contacto -->
-                <div class="footer-block" data-reveal>
-                    <h4 class="footer-heading">Contacto</h4>
-                    <ul class="footer-contact">
-                        <li>
-                            <i data-lucide="map-pin" class="icon-sm text-orange"></i>
-                            <a href="https://www.google.com/maps/place/Comida+Rapida+-+Saboratto+Oficial/@4.56414,-74.0870547,20z/data=!4m14!1m7!3m6!1s0x8e3f995ab5bb5fa1:0x82d3b3e4b5426609!2sComida+Rapida+-+Saboratto+Oficial!8m2!3d4.5641634!4d-74.0869148!16s%2Fg%2F11yy165vvs!3m5!1s0x8e3f995ab5bb5fa1:0x82d3b3e4b5426609!8m2!3d4.5641634!4d-74.0869148!16s%2Fg%2F11yy165vvs?entry=ttu&amp;g_ep=EgoyMDI2MDQwMS4wIKXMDSoASAFQAw%3D%3D"
-                                target="_blank" class="footer-link">
-                                Cll 27a Sur #5-21 este<br>Santa Ines Sur - San Cristobal<br>Bogotá, Colombia
-                            </a>
-                        </li>
-                        <li>
-                            <i data-lucide="phone" class="icon-sm text-orange"></i>
-                            <span>+57 322 2430079</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- CTA Mapa -->
-                <div class="footer-block" data-reveal>
-                    <h4 class="footer-heading">¡Encuéntranos!</h4>
-                    <p class="footer-desc-sm">¿Antojo? Toca el botón para ver cómo llegar a Saboratto en Google Maps.
-                    </p>
-                    <a href="https://www.google.com/maps/place/Comida+Rapida+-+Saboratto+Oficial/@4.56414,-74.0870547,20z/data=!4m14!1m7!3m6!1s0x8e3f995ab5bb5fa1:0x82d3b3e4b5426609!2sComida+Rapida+-+Saboratto+Oficial!8m2!3d4.5641634!4d-74.0869148!16s%2Fg%2F11yy165vvs!3m5!1s0x8e3f995ab5bb5fa1:0x82d3b3e4b5426609!8m2!3d4.5641634!4d-74.0869148!16s%2Fg%2F11yy165vvs?entry=ttu&amp;g_ep=EgoyMDI2MDQwMS4wIKXMDSoASAFQAw%3D%3D"
-                        target="_blank" class="footer-map-btn magnetic-btn">
-                        <i data-lucide="map" class="icon-sm"></i>
-                        Ver en el Mapa
-                    </a>
-                </div>
-            </div>
-
-            <div class="footer-bottom">
-                <p>&copy; 2026 Saboratto Oficial. Todos los derechos reservados.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Botón flotante del pedido -->
-    <button id="pedido-fab" class="pedido-fab" onclick="togglePedido()">
-        <i data-lucide="shopping-bag" class="icon-lg"></i>
-        <span id="pedido-count" class="pedido-count">0</span>
-    </button>
-
-    <!-- Overlay -->
-    <div id="pedido-overlay" class="pedido-overlay" onclick="togglePedido()"></div>
-
-    <!-- Panel de Pedido -->
-    <div id="pedido-panel" class="pedido-panel">
-        <div class="pedido-panel-header">
-            <div class="pedido-panel-title-wrap">
-                <i data-lucide="shopping-bag" class="icon-lg text-orange"></i>
-                <h3 class="pedido-panel-title">Tu Pedido</h3>
-            </div>
-            <button class="pedido-close" onclick="togglePedido()">
-                <i data-lucide="x" class="icon-lg"></i>
-            </button>
-        </div>
-
-        <div id="pedido-items" class="pedido-items">
-            <!-- Items dinámicos -->
-        </div>
-
-        <div id="pedido-empty" class="pedido-empty">
-            <div class="pedido-empty-icon">🍔</div>
-            <p class="pedido-empty-text">Tu pedido está vacío</p>
-            <p class="pedido-empty-hint">Agrega productos del menú para armar tu pedido</p>
-        </div>
-
-        <div id="pedido-footer" class="pedido-footer">
-            <div class="pedido-total-row">
-                <span class="pedido-total-label">Total estimado</span>
-                <span id="pedido-total" class="pedido-total-value">$0</span>
-            </div>
-            <button id="pedido-enviar" class="pedido-enviar magnetic-btn" onclick="enviarPedidoWhatsApp()">
-                <svg class="whatsapp-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
-                        fill="currentColor" />
-                </svg>
-                Enviar Pedido por WhatsApp
-            </button>
-            <button class="pedido-limpiar" onclick="limpiarPedido()">
-                <i data-lucide="trash-2" class="icon-sm"></i> Vaciar pedido
-            </button>
-        </div>
-    </div>
-
-    <!-- Toast de confirmación -->
-    <div id="toast" class="toast">
-        <i data-lucide="check-circle" class="icon-md"></i>
-        <span id="toast-text">Producto agregado</span>
-    </div>
+    <!--#include:pedido-->
 
     <script type="module" src="/src/main.js"></script>
 </body>

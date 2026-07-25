@@ -1,0 +1,49 @@
+<nav id="navbar" class="navbar">
+        <div class="nav-container">
+            <div class="nav-inner">
+                <a href="/" class="nav-logo" aria-label="Saboratto - Inicio">
+                    <img src="/logo-saboratto.webp" alt="Saboratto" class="nav-logo-img" width="400" height="172">
+                </a>
+
+                <!-- Menú Desktop -->
+                <div class="nav-links">
+                    <a class="nav-link" href="/">Inicio</a>
+                    <a class="nav-link" href="/#menu">Nuestro Menú</a>
+                    <a class="nav-link" href="/#galeria">Galería</a>
+                    <a class="nav-link" href="/#contacto">Ubicación</a>
+                </div>
+
+                <div class="nav-cta-wrap">
+                    <button onclick="togglePedido()" class="nav-cta magnetic-btn">
+                        <i data-lucide="shopping-bag" class="icon-sm"></i>
+                        Ver Pedido
+                    </button>
+                </div>
+
+                <!-- Botón Menú Móvil -->
+                <div class="nav-mobile-btn-wrap">
+                    <button id="mobile-menu-btn" class="nav-mobile-btn" onclick="toggleMobileMenu()"
+                        aria-label="Abrir menú">
+                        <i data-lucide="menu" class="icon-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menú Móvil -->
+        <div id="mobile-menu" class="mobile-menu hidden">
+            <div class="mobile-menu-inner">
+                <a href="/" class="mobile-link" onclick="toggleMobileMenu()">Inicio</a>
+                <a href="/hamburguesas/" class="mobile-link" onclick="toggleMobileMenu()">Hamburguesas</a>
+                <a href="/perros-calientes/" class="mobile-link" onclick="toggleMobileMenu()">Perros Calientes</a>
+                <a href="/salchipapas/" class="mobile-link" onclick="toggleMobileMenu()">Salchipapas</a>
+                <a href="/sandwiches/" class="mobile-link" onclick="toggleMobileMenu()">Sándwiches</a>
+                <a href="/bebidas/" class="mobile-link" onclick="toggleMobileMenu()">Bebidas y Adicionales</a>
+                <a href="/#contacto" class="mobile-link" onclick="toggleMobileMenu()">Ubicación</a>
+                <button onclick="togglePedido(); toggleMobileMenu()" class="mobile-cta">
+                    <i data-lucide="shopping-bag" class="icon-sm"></i>
+                    Ver Pedido
+                </button>
+            </div>
+        </div>
+    </nav>

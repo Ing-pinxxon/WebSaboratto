@@ -1,6 +1,21 @@
 const numeroSaboratto = '573222430079';
+const STORAGE_KEY = 'saboratto_pedido';
 
 export let pedido = [];
+
+// El pedido se guarda en localStorage para que sobreviva la navegación entre páginas
+function guardarPedido() {
+    try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(pedido));
+    } catch { /* almacenamiento no disponible (modo privado, etc.) */ }
+}
+
+function cargarPedido() {
+    try {
+        const guardado = JSON.parse(localStorage.getItem(STORAGE_KEY));
+        if (Array.isArray(guardado)) pedido = guardado;
+    } catch { /* datos corruptos: se ignora y arranca vacío */ }
+}
 
 const INGREDIENTES_REMOVIBLES = {
     'Hamburguesa Tradicional': ['Queso', 'Cebolla Saboratto', 'Lechuga', 'Tomate', 'Papa ripio', 'Salsa de la casa'],
@@ -31,6 +46,8 @@ const EMOJIS_INGREDIENTES = {
 };
 
 export function initCartUI(actualizarPedidoUI) {
+    cargarPedido();
+
     window.agregarAlPedido = function (nombre, precio, btnEl, esCombo = false) {
         if (INGREDIENTES_REMOVIBLES[nombre] && btnEl) {
             mostrarOpcionesInline(nombre, precio, btnEl, esCombo);
@@ -136,17 +153,20 @@ export function initCartUI(actualizarPedidoUI) {
         if (pedido[index]) {
             pedido[index].cantidad += delta;
             if (pedido[index].cantidad <= 0) pedido.splice(index, 1);
+            guardarPedido();
             actualizarPedidoUI();
         }
     };
 
     window.eliminarItem = function (index) {
         pedido.splice(index, 1);
+        guardarPedido();
         actualizarPedidoUI();
     };
 
     window.limpiarPedido = function () {
         pedido = [];
+        guardarPedido();
         actualizarPedidoUI();
         window.togglePedido();
     };
@@ -178,9 +198,13 @@ export function initCartUI(actualizarPedidoUI) {
         } else {
             pedido.push({ nombre, precio, cantidad: 1, exclusiones: [...exclusiones], esCombo });
         }
+        guardarPedido();
         actualizarPedidoUI();
         window.mostrarToast(`Agregaste: ${nombre}${esCombo ? ' (Combo)' : ''}`);
     }
+
+    // Pintar el pedido guardado de una visita/página anterior
+    if (pedido.length > 0) actualizarPedidoUI();
 }
 
 export function enviarPedidoWhatsApp() {
@@ -220,6 +244,11 @@ export function enviarPedidoWhatsApp() {
     if (costoIcopor > 0) mensaje += `Icopor: $${costoIcopor.toLocaleString('es-CO')} (${unidadesIcopor} unidades)%0A`;
     mensaje += `Domicilio: $${costoDomicilio.toLocaleString('es-CO')}%0A`;
     mensaje += `*Total: $${granTotal.toLocaleString('es-CO')}*`;
+
+    // Medición GA4 del clic de pedido (solo si gtag está configurado)
+    if (typeof window.gtag === 'function') {
+        window.gtag('event', 'begin_checkout', { currency: 'COP', value: granTotal });
+    }
 
     window.open(`https://wa.me/${numeroSaboratto}?text=${mensaje}`, '_blank');
 }

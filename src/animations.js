@@ -64,6 +64,8 @@ function initMagneticButtons() {
 }
 
 function initHeroAnimations() {
+    if (!document.querySelector('.hero')) return;
+
     const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
     tl.to('.hero-content', { opacity: 1, duration: 0.01 })
@@ -258,6 +260,18 @@ export function initScrollAnimations() {
 }
 
 export function initParallax() {
+    gsap.utils.toArray('.feature-icon-wrap').forEach(icon => {
+        gsap.to(icon, {
+            y: -10,
+            duration: 2.5,
+            ease: 'sine.inOut',
+            yoyo: true,
+            repeat: -1
+        });
+    });
+
+    if (!document.querySelector('.hero')) return;
+
     gsap.to('.hero-orb-1', {
         y: -100,
         ease: 'none',
@@ -279,16 +293,6 @@ export function initParallax() {
             end: 'bottom top',
             scrub: 3
         }
-    });
-
-    gsap.utils.toArray('.feature-icon-wrap').forEach(icon => {
-        gsap.to(icon, {
-            y: -10,
-            duration: 2.5,
-            ease: 'sine.inOut',
-            yoyo: true,
-            repeat: -1
-        });
     });
 }
 

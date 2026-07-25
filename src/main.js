@@ -2,6 +2,17 @@ import './style.css';
 import { initAnimations, initAutoScroll, initScrollAnimations, initParallax } from './animations';
 import { initCartUI, enviarPedidoWhatsApp, pedido } from './cart';
 import { initStatusIndicator } from './status';
+import {
+    createIcons, ShoppingBag, Menu, Plus, Minus, Zap, Trash2, X, CircleCheck,
+    Flame, Beef, Sparkles, Truck, MapPin, Phone, Map, ChevronLeft, ChevronRight, ArrowRight
+} from 'lucide';
+
+const refreshIcons = () => createIcons({
+    icons: {
+        ShoppingBag, Menu, Plus, Minus, Zap, Trash2, X, CircleCheck,
+        Flame, Beef, Sparkles, Truck, MapPin, Phone, Map, ChevronLeft, ChevronRight, ArrowRight
+    }
+});
 
 // ===== INITIALIZATION =====
 document.addEventListener('DOMContentLoaded', () => {
@@ -9,23 +20,26 @@ document.addEventListener('DOMContentLoaded', () => {
     initCartUI(actualizarPedidoUI);
     initAutoScroll();
     initStatusIndicator();
-    
+
     // Global functions exposure
     window.enviarPedidoWhatsApp = enviarPedidoWhatsApp;
     window.mostrarToast = mostrarToast;
     window.enviarWhatsAppGeneral = enviarWhatsAppGeneral;
-    window.scrollToSection = scrollToSection;
     window.toggleMobileMenu = toggleMobileMenu;
     window.scrollGallery = scrollGallery;
 
-    if (window.lucide) lucide.createIcons();
+    refreshIcons();
 });
 
 // ===== PRELOADER =====
 function initPreloader() {
     const preloader = document.getElementById('preloader');
     const fill = document.getElementById('preloader-fill');
-    if (!preloader) return;
+    // Las páginas de categoría no tienen preloader: arrancan las animaciones de una vez
+    if (!preloader) {
+        initAnimations(initNavbar, initParallax);
+        return;
+    }
 
     // We keep animation here to ensure immediate execution on load
     import('gsap').then(({ default: gsap }) => {
@@ -137,7 +151,7 @@ function actualizarPedidoUI() {
                 <div class="breakdown-row total-row"><span>Total:</span> <span>$${totalFinal.toLocaleString('es-CO')}</span></div>
             </div>
         `;
-        if (window.lucide) lucide.createIcons();
+        refreshIcons();
     } else {
         fabButton.classList.remove('visible');
         emptyState.style.display = 'flex';
@@ -158,15 +172,6 @@ function mostrarToast(mensaje) {
 function enviarWhatsAppGeneral() {
     const msg = `¡Hola Saboratto! 👋 Quiero hacer un pedido, ¿me pueden tomar la orden por favor?`;
     window.open(`https://wa.me/573222430079?text=${encodeURIComponent(msg)}`, '_blank');
-}
-
-function scrollToSection(id) {
-    const el = document.getElementById(id);
-    if (el) {
-        const offset = 80;
-        const top = el.getBoundingClientRect().top + window.scrollY - offset;
-        window.scrollTo({ top, behavior: 'smooth' });
-    }
 }
 
 function toggleMobileMenu() {

@@ -27,9 +27,11 @@
 /* ===== RESET & BASE ===== */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* Offset para que las anclas no queden bajo el navbar fijo */
+[id] { scroll-margin-top: 90px; }
+
 html {
-    scroll-behavior: auto; /* GSAP maneja el smooth scrolling */
-    scroll-margin-top: 100px; /* Offset para el navbar fijo */
+    scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -1118,7 +1120,7 @@ h1, h2, h3, h4, .font-display {
 }
 
 @media (min-width: 1024px) {
-    .footer-grid { grid-template-columns: 1.2fr 1fr 1fr 1fr; }
+    .footer-grid { grid-template-columns: 1.3fr 1fr 1fr 1fr 1fr; }
 }
 
 .footer-logo { height: 5.5rem; margin-bottom: 1rem; }
@@ -1953,3 +1955,86 @@ h1, h2, h3, h4, .font-display {
     border-top: 1px dashed var(--border);
 }
 
+
+/* ===== PÁGINAS DE CATEGORÍA Y SEO ===== */
+
+/* Texto visible solo para lectores de pantalla y buscadores */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.category-page {
+    padding-top: 8rem;
+    padding-bottom: 4rem;
+    min-height: 100vh;
+}
+
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+}
+
+.breadcrumb a { color: var(--text-muted); transition: color 0.3s; }
+.breadcrumb a:hover { color: var(--primary); }
+.breadcrumb-sep { color: var(--primary); }
+.breadcrumb span:last-child { color: #fff; }
+
+.category-page-header { text-align: left; }
+
+.category-intro {
+    max-width: 52rem;
+    margin: 0 0 3rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+    font-size: 1.05rem;
+}
+
+.category-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 1.75rem;
+    padding: 0.9rem 1.75rem;
+    border: 2px solid var(--primary-dark);
+    border-radius: var(--radius-md);
+    color: var(--primary);
+    font-weight: 700;
+    transition: all 0.3s;
+}
+
+.category-more:hover {
+    background: var(--primary-dark);
+    color: #fff;
+    transform: translateX(4px);
+}
+
+.cross-links {
+    margin-top: 4rem;
+    text-align: center;
+}
+
+.cross-links-title {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    letter-spacing: 0.05em;
+    margin-bottom: 1.5rem;
+    color: #fff;
+}
+
+.footer-menu {
+    list-style: none;
+}
+
+.footer-menu li { margin-bottom: 0.75rem; }

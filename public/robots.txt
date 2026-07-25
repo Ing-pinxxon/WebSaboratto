@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://saboratto.vercel.app/sitemap.xml
