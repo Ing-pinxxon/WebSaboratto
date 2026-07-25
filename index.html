@@ -213,215 +213,58 @@
     <!-- Sección de Menú -->
     <section id="menu" class="menu-section">
         <div class="container">
-            <div class="section-header" data-reveal>
+            <div class="section-header section-header-menu" data-reveal>
                 <span class="section-tag">Directo al Grano</span>
                 <h2 class="section-title">¿QUÉ TE APETECE HOY?</h2>
                 <div class="section-line"></div>
             </div>
 
-            <!-- Navegación de Categorías (Resumen) -->
-            <div class="category-summary" data-reveal>
-                <a href="/hamburguesas/" class="cat-pill">
-                    <span class="cat-icon">🍔</span>
-                    <span class="cat-name">Hamburguesas</span>
-                </a>
-                <a href="/perros-calientes/" class="cat-pill">
-                    <span class="cat-icon">🌭</span>
-                    <span class="cat-name">Perros</span>
-                </a>
-                <a href="/salchipapas/" class="cat-pill">
-                    <span class="cat-icon">🍟</span>
-                    <span class="cat-name">Salchipapas</span>
-                </a>
-                <a href="/sandwiches/" class="cat-pill">
-                    <span class="cat-icon">🥪</span>
-                    <span class="cat-name">Sándwiches</span>
-                </a>
-                <a href="/bebidas/" class="cat-pill">
-                    <span class="cat-icon">🥤</span>
-                    <span class="cat-name">Bebidas</span>
-                </a>
-            </div>
-
-            <!-- HAMBURGUESAS -->
-            <div id="hamburguesas" class="menu-category" data-reveal>
-                <div class="category-header">
-                    <h3 class="category-title">🍔 HAMBURGUESAS</h3>
-                    <div class="category-line"></div>
-                </div>
-                <div class="product-grid">
-
-                    <div class="product-card" data-reveal>
-                        <div class="product-img-wrap">
-                            <img src="/hamburguesa_ranchera.webp" alt="Hamburguesa Ranchera artesanal de Saboratto"
-                                class="product-img" width="747" height="1024" loading="lazy" decoding="async">
-                            <span class="product-tag">La más vendida</span>
-                        </div>
-                        <div class="product-info">
-                            <div class="product-header">
-                                <h4 class="product-name">RANCHERA</h4>
-                                <span class="product-price">$15.000</span>
-                            </div>
-                            <p class="product-desc">Todos los ingredientes de la tradicional + salchicha Ranchera
-                                premium, tocineta y queso doble crema + huevo de codorniz.</p>
-                            <div class="product-actions-grid">
-                                <button onclick="agregarAlPedido('Hamburguesa Ranchera', 15000, this)"
-                                    class="product-btn btn-sm">
-                                    <i data-lucide="plus" class="icon-xs"></i> Solo
-                                </button>
-                                <button onclick="agregarAlPedido('Hamburguesa Ranchera', 21000, this, true)"
-                                    class="product-btn btn-combo">
-                                    <i data-lucide="zap" class="icon-xs"></i> + Papas y Gaseosa
-                                </button>
-                            </div>
-                        </div>
+            <!-- Tarjetas de categoría: cada una lleva a su página -->
+            <div class="category-grid">
+                <a href="/hamburguesas/" class="category-card">
+                    <img src="/hamburguesa_ranchera.webp" alt="Hamburguesas artesanales Saboratto"
+                        class="category-card-img" width="747" height="1024" loading="lazy" decoding="async">
+                    <div class="category-card-overlay">
+                        <h3 class="category-card-name">Hamburguesas</h3>
+                        <span class="category-card-sub">Desde $11.500</span>
+                        <span class="category-card-arrow"><i data-lucide="arrow-right" class="icon-sm"></i></span>
                     </div>
-
-                </div>
-                <a href="/hamburguesas/" class="category-more">
-                    Ver las 4 hamburguesas artesanales
-                    <i data-lucide="arrow-right" class="icon-sm"></i>
                 </a>
-            </div>
-
-            <!-- PERROS CALIENTES -->
-            <div class="menu-category" data-reveal>
-                <div id="perros" class="category-header">
-                    <h3 class="category-title">🌭 PERROS CALIENTES</h3>
-                    <div class="category-line"></div>
-                </div>
-                <div class="product-grid">
-
-                    <div class="product-card" data-reveal>
-                        <div class="product-img-wrap">
-                            <img src="/perro_ranchero.webp" alt="Perro Caliente Ranchero de Saboratto"
-                                class="product-img" width="682" height="1024" loading="lazy" decoding="async">
-                            <span class="product-tag">El más comprado</span>
-                        </div>
-                        <div class="product-info">
-                            <div class="product-header">
-                                <h4 class="product-name">RANCHERO</h4>
-                                <span class="product-price">$13.000</span>
-                            </div>
-                            <p class="product-desc">Todos los ingredientes del tradicional + salchicha Ranchera premium,
-                                tocineta y extra queso doble crema.</p>
-                            <button onclick="agregarAlPedido('Perro Caliente Ranchero', 13000, this)"
-                                class="product-btn magnetic-btn">
-                                <i data-lucide="plus" class="icon-sm"></i> Agregar
-                            </button>
-                        </div>
+                <a href="/perros-calientes/" class="category-card">
+                    <img src="/perro_ranchero.webp" alt="Perros calientes Saboratto" class="category-card-img"
+                        width="682" height="1024" loading="lazy" decoding="async">
+                    <div class="category-card-overlay">
+                        <h3 class="category-card-name">Perros Calientes</h3>
+                        <span class="category-card-sub">Desde $8.000</span>
+                        <span class="category-card-arrow"><i data-lucide="arrow-right" class="icon-sm"></i></span>
                     </div>
-                </div>
-                <a href="/perros-calientes/" class="category-more">
-                    Ver los 3 perros calientes
-                    <i data-lucide="arrow-right" class="icon-sm"></i>
                 </a>
-            </div>
-
-            <!-- SALCHIPAPAS -->
-            <div class="menu-category" data-reveal>
-                <div id="salchipapas" class="category-header">
-                    <h3 class="category-title">🍟 SALCHIPAPAS</h3>
-                    <div class="category-line"></div>
-                </div>
-                <div class="product-grid">
-
-                    <div class="product-card" data-reveal>
-                        <div class="product-img-wrap">
-                            <img src="/salchipapa_doble.webp" alt="Salchipapa Doble de Saboratto" class="product-img"
-                                width="747" height="1024" loading="lazy" decoding="async">
-                            <span class="product-tag">La más grande</span>
-                        </div>
-                        <div class="product-info">
-                            <div class="product-header">
-                                <h4 class="product-name">DOBLE</h4>
-                                <span class="product-price">$22.000</span>
-                            </div>
-                            <p class="product-desc">Todos los ingredientes de la ranchera + otra porción de salchicha y
-                                papas, extra queso y más huevos de codorniz.</p>
-                            <button onclick="agregarAlPedido('Salchipapa Doble', 22000, this)"
-                                class="product-btn magnetic-btn">
-                                <i data-lucide="plus" class="icon-sm"></i> Agregar
-                            </button>
-                        </div>
+                <a href="/salchipapas/" class="category-card">
+                    <img src="/salchipapa_doble.webp" alt="Salchipapas Saboratto" class="category-card-img" width="747"
+                        height="1024" loading="lazy" decoding="async">
+                    <div class="category-card-overlay">
+                        <h3 class="category-card-name">Salchipapas</h3>
+                        <span class="category-card-sub">Desde $10.000</span>
+                        <span class="category-card-arrow"><i data-lucide="arrow-right" class="icon-sm"></i></span>
                     </div>
-                </div>
-                <a href="/salchipapas/" class="category-more">
-                    Ver las 3 salchipapas
-                    <i data-lucide="arrow-right" class="icon-sm"></i>
                 </a>
-            </div>
-
-            <!-- SÁNDWICHES -->
-            <div class="menu-category" data-reveal>
-                <div id="sandwiches" class="category-header">
-                    <h3 class="category-title">🥪 SÁNDWICHES</h3>
-                    <div class="category-line"></div>
-                </div>
-                <div class="product-grid">
-                    <div class="product-card" data-reveal>
-                        <div class="product-img-wrap">
-                            <img src="/sandwich.webp" alt="Sándwich con carne de hamburguesa de Saboratto"
-                                class="product-img" width="800" height="533" loading="lazy" decoding="async">
-                            <span class="product-tag">Imperdible</span>
-                        </div>
-                        <div class="product-info">
-                            <div class="product-header">
-                                <h4 class="product-name">SÁNDWICH CON CARNE DE HAMBURGUESA</h4>
-                                <span class="product-price">$12.000</span>
-                            </div>
-                            <p class="product-desc">Pan artesanal tipo sandwich, carne artesanal, queso, cebolla
-                                Saboratto, lechuga, tomate, papa ripio y salsa de la casa.</p>
-                            <button onclick="agregarAlPedido('Sándwich con carne de hamburguesa', 12000, this)"
-                                class="product-btn magnetic-btn">
-                                <i data-lucide="plus" class="icon-sm"></i> Agregar
-                            </button>
-                        </div>
+                <a href="/sandwiches/" class="category-card">
+                    <img src="/sandwich.webp" alt="Sándwich con carne de hamburguesa Saboratto"
+                        class="category-card-img" width="800" height="533" loading="lazy" decoding="async">
+                    <div class="category-card-overlay">
+                        <h3 class="category-card-name">Sándwiches</h3>
+                        <span class="category-card-sub">Desde $12.000</span>
+                        <span class="category-card-arrow"><i data-lucide="arrow-right" class="icon-sm"></i></span>
                     </div>
-                </div>
-                <a href="/sandwiches/" class="category-more">
-                    Conoce nuestro sándwich
-                    <i data-lucide="arrow-right" class="icon-sm"></i>
                 </a>
-            </div>
-
-            <!-- BEBIDAS Y ADICIONALES -->
-            <div id="bebidasyadicionales" class="menu-category" data-reveal>
-                <div class="category-header">
-                    <h3 class="category-title">🥤 BEBIDAS Y ADICIONALES</h3>
-                    <div class="category-line"></div>
-                </div>
-                <div class="product-grid">
-                    <div class="product-card drink-card" data-reveal>
-                        <div class="product-info">
-                            <h4 class="product-name">Coca Cola personal</h4>
-                            <span class="product-price">$3.500</span>
-                            <button onclick="agregarAlPedido('Coca Cola personal', 3500, this)"
-                                class="product-btn btn-drink">
-                                <i data-lucide="plus" class="icon-xs"></i> Agregar
-                            </button>
-                        </div>
+                <a href="/bebidas/" class="category-card">
+                    <img src="/gallery/gallery_1.webp" alt="Bebidas y adicionales Saboratto" class="category-card-img"
+                        width="682" height="1024" loading="lazy" decoding="async">
+                    <div class="category-card-overlay">
+                        <h3 class="category-card-name">Bebidas y Adicionales</h3>
+                        <span class="category-card-sub">Desde $1.500</span>
+                        <span class="category-card-arrow"><i data-lucide="arrow-right" class="icon-sm"></i></span>
                     </div>
-                    <div class="product-card" data-reveal>
-                        <div class="product-img-wrap">
-                            <img src="/porcion_papas.webp" alt="Porción de papas a la francesa de Saboratto"
-                                class="product-img" width="800" height="600" loading="lazy" decoding="async">
-                        </div>
-                        <div class="product-info">
-                            <div class="product-header">
-                                <h4 class="product-name">PORCIÓN DE PAPAS</h4>
-                                <span class="product-price">$4.000</span>
-                            </div>
-                            <p class="product-desc">Porción extra de papas a la francesa, crocantes y calientes.</p>
-                            <button onclick="agregarAlPedido('Porción de papas', 4000, this)" class="product-btn">
-                                <i data-lucide="plus" class="icon-sm"></i> Agregar
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <a href="/bebidas/" class="category-more">
-                    Ver todas las bebidas y adicionales
-                    <i data-lucide="arrow-right" class="icon-sm"></i>
                 </a>
             </div>
         </div>
