@@ -1246,6 +1246,28 @@ h1, h2, h3, h4, .font-display {
     color: var(--text-dim);
 }
 
+/* ===== SELLO DE AUTORÍA (Inge Pinzón) ===== */
+.sello-pinzon {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 0.75rem;
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 0.8125rem;
+    line-height: 1.2;
+    opacity: 0.65;
+    transition: opacity 0.2s ease, color 0.2s ease;
+}
+
+.sello-pinzon:hover {
+    opacity: 1;
+    color: var(--primary);
+}
+
+.sello-pinzon svg { flex: none; display: block; }
+.sello-pinzon strong { font-weight: 600; }
+
 /* ===== SISTEMA DE PEDIDOS ===== */
 .pedido-fab {
     position: fixed;
