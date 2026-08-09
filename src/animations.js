@@ -288,8 +288,17 @@ export function initSelloPinzon() {
         if (io) io.disconnect();
     };
 
-    // Red de seguridad: si el observer nunca dispara, el sello aparece igual.
-    timer = setTimeout(reveal, 3500);
+    // Red de seguridad, pero NUNCA a ciegas: si disparara sola, en un móvil el
+    // pájaro volaría con el pie fuera de pantalla (nadie baja hasta el footer en
+    // 3.5s) y el usuario llegaría con la animación ya consumida. Así que solo
+    // rescata el caso que de verdad importa —el sello está a la vista y el
+    // observer no reaccionó—; si aún no se ha llegado al pie, no hace nada y deja
+    // que el observer haga su trabajo cuando toque.
+    timer = setTimeout(() => {
+        const r = sello.getBoundingClientRect();
+        const aLaVista = r.top < window.innerHeight && r.bottom > 0;
+        if (aLaVista) reveal();
+    }, 3500);
 
     // Sin rootMargin negativo a propósito: con el scroll al fondo el sello queda a
     // unos 44px del borde inferior, así que cualquier banda excluida mayor lo deja
