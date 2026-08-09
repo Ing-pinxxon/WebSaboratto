@@ -259,6 +259,49 @@ export function initScrollAnimations() {
     }, 3000);
 }
 
+/**
+ * Entrada del sello de autoría del pie de página.
+ *
+ * No usa GSAP a propósito: en la home initAnimations() no corre hasta que termina
+ * el preloader (~3s), y con un IntersectionObserver las seis páginas se comportan
+ * igual. La animación en sí vive en CSS (.sello-bird / @keyframes selloBirdIn).
+ *
+ * El estado oculto lo aplica .is-armed desde aquí, nunca desde el CSS base: si este
+ * módulo no llega a ejecutarse, el sello se ve como siempre.
+ */
+export function initSelloPinzon() {
+    const sello = document.querySelector('.sello-pinzon');
+    if (!sello) return;
+
+    // Sin movimiento: no se arma, así que el sello queda visible al instante.
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (!('IntersectionObserver' in window)) return;
+
+    sello.classList.add('is-armed');
+
+    let timer;
+    let io;
+
+    const reveal = () => {
+        clearTimeout(timer);
+        sello.classList.add('is-in');
+        if (io) io.disconnect();
+    };
+
+    // Red de seguridad: si el observer nunca dispara, el sello aparece igual.
+    timer = setTimeout(reveal, 3500);
+
+    // Sin rootMargin negativo a propósito: con el scroll al fondo el sello queda a
+    // unos 44px del borde inferior, así que cualquier banda excluida mayor lo deja
+    // permanentemente fuera de alcance y el observer no dispara nunca. El umbral
+    // alto hace el trabajo de encuadre sin ese riesgo.
+    io = new IntersectionObserver(([entry]) => {
+        if (entry.isIntersecting) reveal();
+    }, { threshold: 0.6 });
+
+    io.observe(sello);
+}
+
 export function initParallax() {
     gsap.utils.toArray('.feature-icon-wrap').forEach(icon => {
         gsap.to(icon, {

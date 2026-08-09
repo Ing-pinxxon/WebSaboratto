@@ -1,5 +1,5 @@
 import './style.css';
-import { initAnimations, initAutoScroll, initScrollAnimations, initParallax } from './animations';
+import { initAnimations, initAutoScroll, initScrollAnimations, initParallax, initSelloPinzon } from './animations';
 import { initCartUI, enviarPedidoWhatsApp, pedido } from './cart';
 import { initStatusIndicator } from './status';
 import {
@@ -20,6 +20,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initCartUI(actualizarPedidoUI);
     initAutoScroll();
     initStatusIndicator();
+    // Fuera de initAnimations() a propósito: en la home esa cadena espera al preloader.
+    initSelloPinzon();
 
     // Global functions exposure
     window.enviarPedidoWhatsApp = enviarPedidoWhatsApp;

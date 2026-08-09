@@ -1265,8 +1265,66 @@ h1, h2, h3, h4, .font-display {
     color: var(--primary);
 }
 
-.sello-pinzon svg { flex: none; display: block; }
+.sello-pinzon svg {
+    flex: none;
+    display: block;
+    /* El giro se hace sobre el centro de masa del cuerpo: el bounding box incluye
+       la cola larga, y rotar ahí haría que el pico barriera de más. */
+    transform-origin: 45% 45%;
+    transition: transform 0.22s cubic-bezier(0.34, 1.25, 0.64, 1);
+}
+
 .sello-pinzon strong { font-weight: 600; }
+
+/* El pájaro levanta el pico y se adelanta en su dirección de vuelo: a punto de despegar. */
+.sello-pinzon:hover svg { transform: translate3d(-2px, -1.5px, 0) rotate(-5deg); }
+
+/* Entrada del pájaro.
+   Se anima el wrapper, no el enlace: la opacidad del hijo se multiplica por la del
+   padre, así que 0 -> 1 aquí se ve como 0 -> 0.65 y el reposo/hover del enlace
+   quedan intactos. El transform de entrada vive en el wrapper y el de hover en el
+   <svg> para que el `fill: both` no congele la transición del hover.
+   El estado oculto depende de .is-armed, que solo añade el JS: sin JS el sello se
+   ve normal. */
+.sello-bird {
+    flex: none;
+    display: flex;
+    transform-origin: 45% 45%;
+}
+
+.sello-pinzon.is-armed .sello-bird { opacity: 0; }
+
+.sello-pinzon.is-in .sello-bird {
+    animation: selloBirdIn 0.62s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+}
+
+@keyframes selloBirdIn {
+    from {
+        opacity: 0;
+        /* Llega desde arriba a la derecha, picado (el pico mira a la izquierda,
+           así que vuela hacia donde mira) y nivela al posarse. */
+        transform: translate3d(18px, -9px, 0) rotate(10deg) scale(0.86);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* Cinturón por si el JS llegara a armar el sello igualmente: misma especificidad
+   que los selectores de arriba, sin !important. El color del hover se conserva:
+   reducir movimiento no es quitar feedback. */
+@media (prefers-reduced-motion: reduce) {
+    .sello-pinzon.is-armed .sello-bird,
+    .sello-pinzon.is-in .sello-bird {
+        opacity: 1;
+        transform: none;
+        animation: none;
+    }
+
+    .sello-pinzon svg { transition: none; }
+    .sello-pinzon:hover svg { transform: none; }
+}
 
 /* ===== SISTEMA DE PEDIDOS ===== */
 .pedido-fab {
