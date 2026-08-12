@@ -1294,16 +1294,20 @@ h1, h2, h3, h4, .font-display {
 
 .sello-pinzon.is-armed .sello-bird { opacity: 0; }
 
+/* El delay es corto porque el disparo ya espera a que el scroll se detenga. */
 .sello-pinzon.is-in .sello-bird {
-    animation: selloBirdIn 0.62s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+    animation: selloBirdIn 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both;
 }
 
 @keyframes selloBirdIn {
     from {
         opacity: 0;
         /* Llega desde arriba a la derecha, picado (el pico mira a la izquierda,
-           así que vuela hacia donde mira) y nivela al posarse. */
-        transform: translate3d(18px, -9px, 0) rotate(10deg) scale(0.86);
+           así que vuela hacia donde mira) y nivela al posarse. El recorrido es
+           amplio a propósito: con 18px el gesto era imperceptible en un glifo de
+           19x16px en gris apagado sobre negro. Lo que lo hace legible es la
+           distancia y la duración, no un rebote. */
+        transform: translate3d(30px, -14px, 0) rotate(12deg) scale(0.8);
     }
     to {
         opacity: 1;

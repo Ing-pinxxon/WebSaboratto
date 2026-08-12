@@ -279,34 +279,65 @@ export function initSelloPinzon() {
 
     sello.classList.add('is-armed');
 
-    let timer;
-    let io;
+    const ESPERA_QUIETO = 140;   // ms sin scroll para dar por detenido al usuario
+    const TOPE_VISIBLE = 1200;   // ms visible sin aquietarse tras los que se vuela igual
+    const RED_SEGURIDAD = 3500;  // ms para rescatar un observer que no reaccionó
 
-    const reveal = () => {
-        clearTimeout(timer);
-        sello.classList.add('is-in');
-        if (io) io.disconnect();
+    let debounce;      // espera a que pare el scroll
+    let tope;          // tope por si el scroll nunca para
+    let redSeguridad;
+    let io;
+    let hecho = false;
+
+    const visible = () => {
+        const r = sello.getBoundingClientRect();
+        return r.top < window.innerHeight && r.bottom > 0;
     };
 
-    // Red de seguridad, pero NUNCA a ciegas: si disparara sola, en un móvil el
-    // pájaro volaría con el pie fuera de pantalla (nadie baja hasta el footer en
-    // 3.5s) y el usuario llegaría con la animación ya consumida. Así que solo
-    // rescata el caso que de verdad importa —el sello está a la vista y el
-    // observer no reaccionó—; si aún no se ha llegado al pie, no hace nada y deja
-    // que el observer haga su trabajo cuando toque.
-    timer = setTimeout(() => {
-        const r = sello.getBoundingClientRect();
-        const aLaVista = r.top < window.innerHeight && r.bottom > 0;
-        if (aLaVista) reveal();
-    }, 3500);
+    const reveal = () => {
+        if (hecho) return;
+        hecho = true;
+        clearTimeout(debounce);
+        clearTimeout(tope);
+        clearTimeout(redSeguridad);
+        window.removeEventListener('scroll', alDetectar);
+        if (io) io.disconnect();
+        sello.classList.add('is-in');
+    };
 
-    // Sin rootMargin negativo a propósito: con el scroll al fondo el sello queda a
-    // unos 44px del borde inferior, así que cualquier banda excluida mayor lo deja
-    // permanentemente fuera de alcance y el observer no dispara nunca. El umbral
-    // alto hace el trabajo de encuadre sin ese riesgo.
+    // No se vuela en cuanto el sello asoma: eso pasa con el pájaro pegado al borde
+    // inferior y el usuario todavía deslizando con inercia, así que la animación se
+    // consume antes de que el ojo llegue al pie. Se espera a que el scroll se
+    // detenga y recién ahí despega, con el footer quieto delante.
+    function alDetectar() {
+        if (hecho || !visible()) return;
+        clearTimeout(debounce);
+        debounce = setTimeout(reveal, ESPERA_QUIETO);
+        // Si el usuario nunca deja de scrollear, no lo dejamos colgado para siempre.
+        if (!tope) tope = setTimeout(reveal, TOPE_VISIBLE);
+    }
+
+    // El listener de scroll no es redundante con el observer: en Safari iOS el IO
+    // entrega los callbacks de forma irregular durante el scroll con inercia, y
+    // este recálculo directo del rect cubre ese hueco.
+    window.addEventListener('scroll', alDetectar, { passive: true });
+
+    // Umbral bajo: aquí solo interesa DETECTAR que el sello llegó a pantalla; el
+    // encuadre lo resuelve la espera a que el scroll pare, no el umbral. Sin
+    // rootMargin negativo: con el scroll al fondo el sello queda a unos 44px del
+    // borde, así que cualquier banda excluida mayor lo dejaría fuera de alcance
+    // permanentemente y el observer no dispararía nunca.
     io = new IntersectionObserver(([entry]) => {
-        if (entry.isIntersecting) reveal();
-    }, { threshold: 0.6 });
+        if (entry.isIntersecting) alDetectar();
+    }, { threshold: 0.3 });
+
+    // Red de seguridad, pero NUNCA a ciegas: si disparara sola, el pájaro volaría
+    // con el pie fuera de pantalla (nadie baja hasta el footer en 3.5s) y el
+    // usuario llegaría con la animación ya hecha. Solo rescata el caso que importa:
+    // el sello está a la vista y nada lo reveló.
+    redSeguridad = setTimeout(() => {
+        if (visible()) reveal();
+    }, RED_SEGURIDAD);
 
     io.observe(sello);
 }
