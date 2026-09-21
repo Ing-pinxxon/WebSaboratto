@@ -18,10 +18,10 @@ function cargarPedido() {
 }
 
 const INGREDIENTES_REMOVIBLES = {
-    'Hamburguesa Tradicional': ['Queso', 'Cebolla Saboratto', 'Lechuga', 'Tomate', 'Papa ripio', 'Salsa de la casa'],
-    'Hamburguesa Especial': ['Queso', 'Cebolla Saboratto', 'Lechuga', 'Tomate', 'Papa ripio', 'Salsa de la casa', 'Jamón ahumado', 'Tocineta', 'Huevo de codorniz'],
-    'Hamburguesa Ranchera': ['Queso', 'Cebolla Saboratto', 'Lechuga', 'Tomate', 'Papa ripio', 'Salsa de la casa', 'Tocineta', 'Huevo de codorniz'],
-    'Hamburguesa Con Todo': ['Queso', 'Cebolla Saboratto', 'Lechuga', 'Tomate', 'Papa ripio', 'Salsa de la casa', 'Jamón ahumado', 'Tocineta', 'Huevo de codorniz'],
+    'Hamburguesa Tradicional': ['Queso', 'Cebolla Saboratto', 'Lechuga', 'Tomate', 'Salsa de la casa'],
+    'Hamburguesa Especial': ['Queso', 'Cebolla Saboratto', 'Lechuga', 'Tomate', 'Salsa de la casa', 'Jamón ahumado', 'Tocineta', 'Huevo de codorniz'],
+    'Hamburguesa Ranchera': ['Queso', 'Cebolla Saboratto', 'Lechuga', 'Tomate', 'Salsa de la casa', 'Tocineta', 'Huevo de codorniz'],
+    'Hamburguesa Con Todo': ['Queso', 'Cebolla Saboratto', 'Lechuga', 'Tomate', 'Salsa de la casa', 'Jamón ahumado', 'Tocineta', 'Huevo de codorniz'],
     'Perro Caliente Tradicional': ['Queso doble crema', 'Cebolla Saboratto', 'Papa ripio', 'Salsa de la casa'],
     'Perro Caliente Especial': ['Queso doble crema', 'Cebolla Saboratto', 'Papa ripio', 'Salsa de la casa', 'Jamón ahumado', 'Tocineta', 'Huevo de codorniz'],
     'Perro Caliente Ranchero': ['Queso doble crema', 'Cebolla Saboratto', 'Papa ripio', 'Salsa de la casa', 'Tocineta'],
