@@ -45,10 +45,28 @@ const EMOJIS_INGREDIENTES = {
     'Salsa cheddar': '🧀'
 };
 
+// ── Promo martes a jueves: combo de Hamburguesa Tradicional a $15.900 ──
+const PRECIO_COMBO_TRADICIONAL_PROMO = 15900;
+
+function esDiaPromo() {
+    const d = new Date().getDay(); // 0=Dom … 2=Mar, 3=Mié, 4=Jue
+    return d >= 2 && d <= 4;
+}
+
+function esItemPromo(item) {
+    return item.esCombo
+        && item.nombre === 'Hamburguesa Tradicional'
+        && item.precio === PRECIO_COMBO_TRADICIONAL_PROMO;
+}
+
 export function initCartUI(actualizarPedidoUI) {
     cargarPedido();
 
     window.agregarAlPedido = function (nombre, precio, btnEl, esCombo = false) {
+        // Promo martes a jueves: el combo de la Tradicional entra a $15.900.
+        if (esCombo && nombre === 'Hamburguesa Tradicional' && esDiaPromo()) {
+            precio = PRECIO_COMBO_TRADICIONAL_PROMO;
+        }
         if (INGREDIENTES_REMOVIBLES[nombre] && btnEl) {
             mostrarOpcionesInline(nombre, precio, btnEl, esCombo);
         } else {
@@ -205,6 +223,11 @@ export function initCartUI(actualizarPedidoUI) {
 
     // Pintar el pedido guardado de una visita/página anterior
     if (pedido.length > 0) actualizarPedidoUI();
+
+    // Promo martes a jueves: mostrar los avisos/badges de la promo.
+    if (esDiaPromo()) {
+        document.querySelectorAll('[data-promo-badge]').forEach(el => { el.hidden = false; });
+    }
 }
 
 export function enviarPedidoWhatsApp() {
@@ -212,6 +235,7 @@ export function enviarPedidoWhatsApp() {
 
     let mensaje = "¡Hola Saboratto! 👋 Quiero hacer el siguiente pedido mediante la página web:%0A%0A";
     let subtotal = 0;
+    let subtotalDescontable = 0; // subtotal SIN los items en promo (para el 5%)
     let unidadesIcopor = 0;
 
     pedido.forEach(item => {
@@ -230,10 +254,12 @@ export function enviarPedidoWhatsApp() {
         }
         if (item.exclusiones && item.exclusiones.length > 0) mensaje += `  – Sin: ${item.exclusiones.join(', ')}%0A`;
         subtotal += item.precio * item.cantidad;
+        // El combo en promo queda exacto en $15.900: no recibe el 5% web.
+        if (!esItemPromo(item)) subtotalDescontable += item.precio * item.cantidad;
         mensaje += "%0A";
     });
 
-    const descuento = subtotal * 0.05;
+    const descuento = subtotalDescontable * 0.05;
     const totalConDescuento = subtotal - descuento;
     const costoIcopor = unidadesIcopor * 500;
     const costoDomicilio = 1000;

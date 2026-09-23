@@ -2220,3 +2220,27 @@ h1, h2, h3, h4, .font-display {
     color: #fff;
     transform: translateX(3px);
 }
+
+/* Badge de promo martes a jueves (combo Hamburguesa Tradicional) */
+.combo-promo-badge {
+    display: inline-block;
+    margin: 0 0 0.75rem;
+    padding: 0.35rem 0.85rem;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    color: #fff;
+    font-family: var(--font-alt), var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    line-height: 1.2;
+    box-shadow: 0 4px 14px var(--primary-glow);
+    animation: promoPulse 2.2s ease-in-out infinite;
+}
+.combo-promo-badge[hidden] {
+    display: none;
+}
+@keyframes promoPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.04); }
+}
