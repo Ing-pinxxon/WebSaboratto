@@ -1,8 +1,7 @@
 /**
  * Lógica para verificar el estado de apertura de Saboratto
  * Horario Colombia (UTC-5)
- * Lunes: Cerrado
- * Martes - Jueves: 6:00 PM - 10:00 PM (18:00 - 22:00)
+ * Lunes - Jueves: 6:00 PM - 10:00 PM (18:00 - 22:00)
  * Viernes - Domingo: 6:00 PM - 11:00 PM (18:00 - 23:00)
  */
 
@@ -41,10 +40,7 @@ export function initStatusIndicator() {
         let nextOpening = '';
 
         // Lógica de horarios
-        if (dayName === 'lunes') {
-            isOpen = false;
-            nextOpening = 'Abre mañana a las 6:00 PM';
-        } else if (['martes', 'miércoles', 'miercoles', 'jueves'].includes(dayName)) {
+        if (['lunes', 'martes', 'miércoles', 'miercoles', 'jueves'].includes(dayName)) {
             if (currentTime >= 18 && currentTime < 22) {
                 isOpen = true;
             } else {
@@ -56,7 +52,7 @@ export function initStatusIndicator() {
                 isOpen = true;
             } else {
                 isOpen = false;
-                nextOpening = currentTime < 18 ? 'Abre hoy a las 6:00 PM' : (dayName === 'domingo' ? 'Cerrado hasta el martes' : 'Abre mañana a las 6:00 PM');
+                nextOpening = currentTime < 18 ? 'Abre hoy a las 6:00 PM' : 'Abre mañana a las 6:00 PM';
             }
         }
 

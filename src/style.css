@@ -1179,11 +1179,6 @@ h1, h2, h3, h4, .font-display {
     font-size: 0.9rem;
 }
 
-.schedule-closed {
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-    padding-top: 0.85rem;
-}
-
 .footer-contact {
     list-style: none;
     display: flex;
