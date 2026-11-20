@@ -28,6 +28,7 @@ const INGREDIENTES_REMOVIBLES = {
     'Salchipapa Tradicional': ['Queso', 'Huevo de codorniz', 'Salsa cheddar'],
     'Salchipapa Ranchera': ['Queso', 'Huevo de codorniz', 'Salsa cheddar', 'Tocineta'],
     'Salchipapa Doble': ['Queso', 'Huevo de codorniz', 'Salsa cheddar', 'Tocineta'],
+    'Salchipapa Suprema': ['Cebolla caramelizada', 'Queso fundido', 'Huevo de codorniz', 'Salsa de la casa'],
     'Sándwich con carne de hamburguesa': ['Queso', 'Cebolla Saboratto', 'Lechuga', 'Tomate', 'Papa ripio', 'Salsa de la casa']
 };
 
@@ -42,7 +43,9 @@ const EMOJIS_INGREDIENTES = {
     'Tocineta': '🥓',
     'Huevo de codorniz': '🥚',
     'Queso doble crema': '🧀',
-    'Salsa cheddar': '🧀'
+    'Salsa cheddar': '🧀',
+    'Cebolla caramelizada': '🧅',
+    'Queso fundido': '🧀'
 };
 
 // ── Promo lunes a jueves: combo de Hamburguesa Tradicional a $15.900 ──

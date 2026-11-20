@@ -49,6 +49,13 @@
                         "description": "Todos los ingredientes de la ranchera más otra porción de salchicha y papas, extra queso y más huevos de codorniz.",
                         "image": "https://saboratto.vercel.app/salchipapa_doble.webp",
                         "offers": { "@type": "Offer", "price": "22000", "priceCurrency": "COP" }
+                    },
+                    {
+                        "@type": "MenuItem",
+                        "name": "Salchipapa Suprema",
+                        "description": "Doble porción de papa, doble salchicha, pollo, carne, cebolla caramelizada, doble queso fundido, doble huevo de codorniz y salsas de la casa premium.",
+                        "image": "https://saboratto.vercel.app/salchipapa_doble.webp",
+                        "offers": { "@type": "Offer", "price": "25000", "priceCurrency": "COP" }
                     }
                 ]
             }
@@ -147,6 +154,25 @@
                         <p class="product-desc">Todos los ingredientes de la ranchera + otra porción de salchicha y
                             papas, extra queso y más huevos de codorniz.</p>
                         <button onclick="agregarAlPedido('Salchipapa Doble', 22000, this)"
+                            class="product-btn magnetic-btn">
+                            <i data-lucide="plus" class="icon-sm"></i> Agregar
+                        </button>
+                    </div>
+                </div>
+                <div class="product-card" data-reveal>
+                    <div class="product-img-wrap">
+                        <img src="/salchipapa_doble.webp" alt="Salchipapa Suprema, la más cargada de Saboratto"
+                            class="product-img" width="747" height="1024" loading="lazy" decoding="async">
+                        <span class="product-tag">Nueva</span>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-header">
+                            <h2 class="product-name">SUPREMA</h2>
+                            <span class="product-price">$25.000</span>
+                        </div>
+                        <p class="product-desc">Doble porción de papa, doble salchicha, pollo, carne, cebolla
+                            caramelizada, doble queso fundido, doble huevo de codorniz y salsas de la casa premium.</p>
+                        <button onclick="agregarAlPedido('Salchipapa Suprema', 25000, this)"
                             class="product-btn magnetic-btn">
                             <i data-lucide="plus" class="icon-sm"></i> Agregar
                         </button>
