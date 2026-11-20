@@ -45,12 +45,17 @@ const EMOJIS_INGREDIENTES = {
     'Salsa cheddar': '🧀'
 };
 
-// ── Promo martes a jueves: combo de Hamburguesa Tradicional a $15.900 ──
+// ── Promo lunes a jueves: combo de Hamburguesa Tradicional a $15.900 ──
 const PRECIO_COMBO_TRADICIONAL_PROMO = 15900;
 
 function esDiaPromo() {
-    const d = new Date().getDay(); // 0=Dom … 2=Mar, 3=Mié, 4=Jue
-    return d >= 2 && d <= 4;
+    // El día se toma en la hora de Colombia, no en la del dispositivo del cliente,
+    // igual que el indicador de abierto/cerrado (src/status.js).
+    const dia = new Intl.DateTimeFormat('es-CO', {
+        timeZone: 'America/Bogota',
+        weekday: 'long'
+    }).format(new Date()).toLowerCase();
+    return ['lunes', 'martes', 'miércoles', 'miercoles', 'jueves'].includes(dia);
 }
 
 function esItemPromo(item) {
@@ -63,7 +68,7 @@ export function initCartUI(actualizarPedidoUI) {
     cargarPedido();
 
     window.agregarAlPedido = function (nombre, precio, btnEl, esCombo = false) {
-        // Promo martes a jueves: el combo de la Tradicional entra a $15.900.
+        // Promo lunes a jueves: el combo de la Tradicional entra a $15.900.
         if (esCombo && nombre === 'Hamburguesa Tradicional' && esDiaPromo()) {
             precio = PRECIO_COMBO_TRADICIONAL_PROMO;
         }
@@ -224,7 +229,7 @@ export function initCartUI(actualizarPedidoUI) {
     // Pintar el pedido guardado de una visita/página anterior
     if (pedido.length > 0) actualizarPedidoUI();
 
-    // Promo martes a jueves: mostrar los avisos/badges de la promo.
+    // Promo lunes a jueves: mostrar los avisos/badges de la promo.
     if (esDiaPromo()) {
         document.querySelectorAll('[data-promo-badge]').forEach(el => { el.hidden = false; });
     }

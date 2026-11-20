@@ -2216,7 +2216,7 @@ h1, h2, h3, h4, .font-display {
     transform: translateX(3px);
 }
 
-/* Badge de promo martes a jueves (combo Hamburguesa Tradicional) */
+/* Badge de promo lunes a jueves (combo Hamburguesa Tradicional) */
 .combo-promo-badge {
     display: inline-block;
     margin: 0 0 0.75rem;
