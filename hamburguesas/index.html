@@ -54,6 +54,12 @@
                     },
                     {
                         "@type": "MenuItem",
+                        "name": "Hamburguesa Doble",
+                        "description": "Todos los ingredientes de la especial más otra porción de carne artesanal y queso.",
+                        "offers": { "@type": "Offer", "price": "18000", "priceCurrency": "COP" }
+                    },
+                    {
+                        "@type": "MenuItem",
                         "name": "Hamburguesa Con Todo",
                         "description": "Todos los ingredientes de la especial más doble carne, salchicha Ranchera premium y tocineta.",
                         "image": "https://saboratto.vercel.app/hamburguesa_con_todo.webp",
@@ -178,6 +184,29 @@
                                 <i data-lucide="plus" class="icon-xs"></i> Solo
                             </button>
                             <button onclick="agregarAlPedido('Hamburguesa Ranchera', 21000, this, true)"
+                                class="product-btn btn-combo">
+                                <i data-lucide="zap" class="icon-xs"></i> + Papas y Gaseosa
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-card" data-reveal>
+                    <div class="product-img-wrap product-img-placeholder">
+                        <div class="placeholder-icon">🍔</div>
+                    </div>
+                    <div class="product-info">
+                        <div class="product-header">
+                            <h2 class="product-name">DOBLE</h2>
+                            <span class="product-price">$18.000</span>
+                        </div>
+                        <p class="product-desc">Todos los ingredientes de la especial + otra porción de carne artesanal y queso. Doble carne para el antojo grande.</p>
+                        <div class="product-actions-grid">
+                            <button onclick="agregarAlPedido('Hamburguesa Doble', 18000, this)"
+                                class="product-btn btn-sm">
+                                <i data-lucide="plus" class="icon-xs"></i> Solo
+                            </button>
+                            <button onclick="agregarAlPedido('Hamburguesa Doble', 24000, this, true)"
                                 class="product-btn btn-combo">
                                 <i data-lucide="zap" class="icon-xs"></i> + Papas y Gaseosa
                             </button>
